@@ -4,7 +4,6 @@ import {
     StyleSheet,
     Dimensions
 } from 'react-native';
-
 let DropdownCss = StyleSheet.create({
 	containerSelect: {
 		width: Dimensions.get('window').width,
@@ -37,4 +36,3 @@ let DropdownCss = StyleSheet.create({
 
 });
 module.exports = DropdownCss;
-/*                <Text>Selected provicne of Canada: {this.state.canada}</Text>*/

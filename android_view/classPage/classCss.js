@@ -4,7 +4,6 @@ import {
     StyleSheet,
     Dimensions
 } from 'react-native';
-
 let classCss = StyleSheet.create({
 	headText: {
 		width: Dimensions.get('window').width,
@@ -39,4 +38,3 @@ let classCss = StyleSheet.create({
 	}
 });
 module.exports = classCss;
-/*                <Text>Selected provicne of Canada: {this.state.canada}</Text>*/

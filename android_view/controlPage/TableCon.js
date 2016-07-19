@@ -12,7 +12,7 @@ import {
     Dimensions
 } from 'react-native';
 import TableConCss from "./TableConCss";
-class TableCon extends Component{
+export default class TableCon extends Component{
     render() {
         return (
             <View style={TableConCss.containerTableCon}>
@@ -28,4 +28,3 @@ class TableCon extends Component{
     }
 }
 AppRegistry.registerComponent('TableCon', () => TableCon);
-module.exports = TableCon;

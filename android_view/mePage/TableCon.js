@@ -15,7 +15,7 @@ import {
 import TableConCss from "./TableConCss";
 import meCss       from "./meCss";
 
-class TableCon extends Component{
+export default class TableCon extends Component{
     render() {
         return (
             <View style={meCss.containerTableCon}>
@@ -29,4 +29,3 @@ class TableCon extends Component{
     }
 }
 AppRegistry.registerComponent('TableCon', () => TableCon);
-module.exports = TableCon;

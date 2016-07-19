@@ -11,14 +11,12 @@ import {
     TextInput,
     Dimensions
 } from 'react-native';
-
 import styles        from   '../common/commonCss';
 import classCss      from   './classCss';
 import applyPage     from   '../applyPage/applyPage';
 import controlPage   from   '../controlPage/controlPage';
 import mePage        from   '../mePage/mePage';
 import ModalBox      from   './ModalBox';
-
 export default class classPage extends Component {
     _tabClass(type = 'Right') {
         this.props.navigator.push({

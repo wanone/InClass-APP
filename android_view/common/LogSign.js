@@ -9,10 +9,8 @@ import {
     Image,
     TextInput
 } from 'react-native';
-
 import  styles      from  './commonCss';
 import  homePage    from  './homePage';
-
 export default class LogSign extends Component {
     _navigate(type = 'Normal') {
         this.props.navigator.push({
@@ -39,7 +37,6 @@ export default class LogSign extends Component {
         );
     }
 }
-
 class logPage2 extends Component {
     constructor(props){
         super(props);
@@ -86,13 +83,12 @@ class logPage2 extends Component {
                     </View>
                     <View style={styles.sureIcon}>
                         <TouchableOpacity style={styles.logBtn}
-                        onPress={()=>{
-                                        
-                                  this.props.navigator.push({
-                                        component: homePage
-                                  })
-                        }  }>
-                           <Text style={styles.styleLog}>{'登 录'}</Text>
+                        onPress={()=>{      
+                            this.props.navigator.push({
+                                  component: homePage
+                            })
+                        }}>
+                            <Text style={styles.styleLog}>{'登 录'}</Text>
                         </TouchableOpacity>
                     </View>
                 </Image>

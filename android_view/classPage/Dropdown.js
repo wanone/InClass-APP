@@ -12,7 +12,7 @@ import {
     Dimensions
 } from 'react-native';
 import DropdownCss from "./DropdownCss";
-class Dropdown extends Component{
+export default class Dropdown extends Component{
     render() {
         return (
             <View style={DropdownCss.containerSelect}>
@@ -24,4 +24,3 @@ class Dropdown extends Component{
         )
     }
 }
-module.exports = Dropdown;

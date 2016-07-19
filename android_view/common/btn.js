@@ -9,23 +9,21 @@ import {
     View,
     Dimensions
 } from 'react-native';
-
 var styles = StyleSheet.create({
     container:{
         display: flex,
-        justify-content: center,
-        align-items: center,
+        justifyContent: center,
+        alignItems: center,
         width: 50,
         height: 30,
         backgroundColor: {this.props.bgColor}
     },
-    text{
+    text:{
         color: {this.props.textColor},
         fontSize: 16
     }
 })
-
-class Btn extends Component {
+export default class Btn extends Component {
     render() {
         return (
         	<View style={styles.container}>
@@ -34,5 +32,3 @@ class Btn extends Component {
         );
     }
 }
-
-module.exports = Btn;

@@ -4,7 +4,6 @@ import {
     StyleSheet,
     Dimensions
 } from 'react-native';
-
 let styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -216,9 +215,3 @@ let styles = StyleSheet.create({
     }
 });
 module.exports = styles;
-/*
-import classPage     from  './android_view/classPage/class';
-import applyPage     from  './android_view/applyPage/apply';
-import controlPage   from  './android_view/controlPage/control';
-import mePage        from  './android_view/mePage/me';
- */

@@ -17,4 +17,3 @@ let TableConCss = StyleSheet.create({
     
 });
 module.exports = TableConCss;
-/*                <Text>Selected provicne of Canada: {this.state.canada}</Text>*/

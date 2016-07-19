@@ -12,7 +12,7 @@ import {
     Dimensions
 } from 'react-native';
 import meCss   from  "./meCss"
-class RowText extends Component{
+export default class RowText extends Component{
     render() {
         return (
             <View style={meCss.rowInform}>
@@ -22,4 +22,3 @@ class RowText extends Component{
     }
 }
 AppRegistry.registerComponent('RowText', () => RowText);
-module.exports = RowText;

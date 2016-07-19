@@ -9,13 +9,11 @@ import {
     Image,
     TextInput
 } from 'react-native';
-
 import styles        from  './commonCss';
 import classPage     from  '../classPage/classPage';
 import applyPage     from  '../applyPage/applyPage';
 import controlPage   from  '../controlPage/controlPage';
 import mePage        from  '../mePage/mePage';
-
 export default class homePage extends Component {
     renderScene(route, navigator) {
         return <route.component navigator={navigator}  {...route.passProps} />;

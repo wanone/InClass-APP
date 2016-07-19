@@ -12,12 +12,7 @@ import {
 import meCss      from  './meCss';
 import TableCon   from  './TableCon';
 
-class ApplyRecord extends Component {
-/**
-* 给Navigator传递参数
-* @param name 参数
-* @private
-*/
+export default class ApplyRecord extends Component {
     _navigate(type = 'Normal') {
         this.props.navigator.push({
           component: logPage2,
@@ -25,7 +20,6 @@ class ApplyRecord extends Component {
         });
     }
     render() {
-        // 点击按钮使用Home页面入栈
         return (
             <TouchableOpacity style={meCss.containerStyleTab}
             onPress={()=>this._navigate('Right')}>
@@ -34,8 +28,6 @@ class ApplyRecord extends Component {
         );
     }
 }
-
-/////////////////////////////////////////////// 登录注册填写界面
 class logPage2 extends Component {
     render() {
         return (
@@ -62,5 +54,3 @@ class logPage2 extends Component {
         );
     }
 };
-
-module.exports = ApplyRecord;

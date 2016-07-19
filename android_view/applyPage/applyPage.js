@@ -11,7 +11,6 @@ import {
     TextInput,
     Dimensions
 } from 'react-native';
-
 import styles        from   '../common/commonCss';
 import applyCss      from   './applyCss';
 import classPage     from   '../classPage/classPage';

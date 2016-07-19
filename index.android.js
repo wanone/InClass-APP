@@ -1,8 +1,3 @@
-/*
-* InClass APP Code
-* author:wanyinjun  Email:848540294@qq.com
-* date:2016/7/13
-*/
 import React, { Component } from 'react';
 import {
     AppRegistry,
@@ -25,12 +20,6 @@ import   meCss            from  './android_view/mePage/meCss';
 import   LogSign          from  './android_view/common/LogSign';
 
 class inclass extends Component {
-    /*
-     * 使用动态页面加载
-     * @param route 路由
-     * @param navigator 导航器
-     * @returns {XML} 页面
-     */
     renderScene(route, navigator) {
       return <route.component navigator={navigator}  {...route.passProps} />;
     }

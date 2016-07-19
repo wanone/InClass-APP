@@ -4,7 +4,6 @@ import {
     StyleSheet,
     Dimensions
 } from 'react-native';
-
 let TableCss = StyleSheet.create({
     containerTable: {
         flexDirection: "row",
@@ -39,4 +38,3 @@ let TableCss = StyleSheet.create({
     }
 });
 module.exports = TableCss;
-/*                <Text>Selected provicne of Canada: {this.state.canada}</Text>*/
