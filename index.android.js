@@ -32,38 +32,7 @@ import SystemInform     from  './android_view/mePage/SystemInform';
 import ModalBox         from  './android_view/classPage/ModalBox';
 import TableCon         from  './android_view/controlPage/TableCon';
 /////////////////////////////////////////////////登录注册界面
-class logPage1 extends Component {
-/**
-* 给Navigator传递参数
-* @param name 参数
-* @private
-*/
-    _navigate(type = 'Normal') {
-        this.props.navigator.push({
-            component: logPage2,
-            type: type
-        })
-    }
-    render() {
-        // 点击按钮使用Home页面入栈
-        return (
-            <View style={styles.container}>
-                <Image source={require('./android_view/common/commonImg/start.png')} style={styles.bgColor}>
-                    <View style={styles.logBox}>
-                        <TouchableOpacity style={styles.containerStyleLog}
-                        onPress={()=>this._navigate('Right')}>
-                           <Text style={styles.styleLog}>{'登录'}</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.containerStyleSign}
-                        onPress={()=>this._navigate('Right')}>
-                          <Text style={styles.styleSign}>{'注册'}</Text>
-                        </TouchableOpacity>
-                    </View>
-                </Image>
-            </View>
-        );
-    }
-}
+
 
 
 
