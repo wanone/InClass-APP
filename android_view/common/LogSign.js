@@ -13,7 +13,7 @@ import {
 import  styles      from  './commonCss';
 import  homePage    from  './homePage';
 
-class LogSign extends Component {
+export default class LogSign extends Component {
     _navigate(type = 'Normal') {
         this.props.navigator.push({
             component: logPage2,
@@ -100,5 +100,3 @@ class logPage2 extends Component {
         );
     }
 };
-
-module.exports = LogSign;

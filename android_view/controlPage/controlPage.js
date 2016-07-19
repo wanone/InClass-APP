@@ -19,29 +19,7 @@ import  applyPage     from   '../applyPage/applyPage';
 import  mePage        from   '../mePage/mePage';
 import  TableCon      from   './TableCon';
 
-class homePage extends Component {
-    renderScene(route, navigator) {
-        return <route.component navigator={navigator}  {...route.passProps} />;
-    }
-    configureScene(route, routeStack) {
-        if (route.type == "Right") {
-            return Navigator.SceneConfigs.PushFromRight; // 右侧弹出
-        }
-        return Navigator.SceneConfigs.PushFromLeft; // 左侧弹出
-    }
-    render() {
-        return (
-          <Navigator
-            style={{flex:1}}
-            initialRoute={{component: classPage}}
-            configureScene={this.configureScene}
-            renderScene={this.renderScene}/>
-        );
-    }
-}
-
-////////////////////////////////////////////////////controlPage
-class controlPage extends Component {
+export default class controlPage extends Component {
     _tabClass(type = 'Left') {
         this.props.navigator.push({
             component: classPage,
@@ -129,5 +107,4 @@ class controlPage extends Component {
         );
     }
 }
-AppRegistry.registerComponent('controlPage', () => controlPage);
-module.exports = controlPage;
+

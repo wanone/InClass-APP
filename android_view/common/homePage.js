@@ -10,10 +10,13 @@ import {
     TextInput
 } from 'react-native';
 
-import styles      from  './commonCss';
-import classPage   from  '../classPage/classPage';
+import styles        from  './commonCss';
+import classPage     from  '../classPage/classPage';
+import applyPage     from  '../applyPage/applyPage';
+import controlPage   from  '../controlPage/controlPage';
+import mePage        from  '../mePage/mePage';
 
-class homePage extends Component {
+export default class homePage extends Component {
     renderScene(route, navigator) {
         return <route.component navigator={navigator}  {...route.passProps} />;
     }
@@ -33,5 +36,3 @@ class homePage extends Component {
         );
     }
 }
-
-module.exports = homePage;

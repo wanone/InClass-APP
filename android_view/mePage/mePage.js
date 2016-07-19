@@ -21,7 +21,9 @@ import  ApplyRecord      from   './ApplyRecord';
 import  ModifyPass       from   './ModifyPass';
 import  SystemInform     from   './SystemInform';
 
-class homePage extends Component {
+
+export default class mePage extends Component {
+
     renderScene(route, navigator) {
         return <route.component navigator={navigator}  {...route.passProps} />;
     }
@@ -40,10 +42,7 @@ class homePage extends Component {
             renderScene={this.renderScene}/>
         );
     }
-}
 
-////////////////////////////////////////////////////mePage
-class mePage extends Component {
     _tabClass(type = 'Left') {
         this.props.navigator.push({
             component: classPage,
@@ -129,5 +128,3 @@ class mePage extends Component {
         );
     }
 }
-AppRegistry.registerComponent('mePage', () => mePage);
-module.exports = mePage;

@@ -18,29 +18,7 @@ import classPage     from   '../classPage/classPage';
 import controlPage   from   '../controlPage/controlPage';
 import mePage        from   '../mePage/mePage';
 
-class homePage extends Component {
-    renderScene(route, navigator) {
-        return <route.component navigator={navigator}  {...route.passProps} />;
-    }
-    configureScene(route, routeStack) {
-        if (route.type == "Right") {
-            return Navigator.SceneConfigs.PushFromRight; // 右侧弹出
-        }
-        return Navigator.SceneConfigs.PushFromLeft; // 左侧弹出
-    }
-    render() {
-        return (
-          <Navigator
-            style={{flex:1}}
-            initialRoute={{component: classPage}}
-            configureScene={this.configureScene}
-            renderScene={this.renderScene}/>
-        );
-    }
-}
-
-////////////////////////////////////////////////////applyPage
-class applyPage extends Component {
+export default class applyPage extends Component {
     _tabClass(type = 'Left') {
         this.props.navigator.push({
             component: classPage,
@@ -222,5 +200,3 @@ class applyPage extends Component {
         );
     }
 }
-AppRegistry.registerComponent('applyPage', () => applyPage);
-module.exports = applyPage;

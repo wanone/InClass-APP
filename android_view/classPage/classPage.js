@@ -19,28 +19,7 @@ import controlPage   from   '../controlPage/controlPage';
 import mePage        from   '../mePage/mePage';
 import ModalBox      from   './ModalBox';
 
-class homePage extends Component {
-    renderScene(route, navigator) {
-        return <route.component navigator={navigator}  {...route.passProps} />;
-    }
-    configureScene(route, routeStack) {
-        if (route.type == "Right") {
-            return Navigator.SceneConfigs.PushFromRight; // 右侧弹出
-        }
-        return Navigator.SceneConfigs.PushFromLeft; // 左侧弹出
-    }
-    render() {
-        return (
-          <Navigator
-            style={{flex:1}}
-            initialRoute={{component: classPage}}
-            configureScene={this.configureScene}
-            renderScene={this.renderScene}/>
-        );
-    }
-}
-
-class classPage extends Component {
+export default class classPage extends Component {
     _tabClass(type = 'Right') {
         this.props.navigator.push({
             component: classPage,
@@ -129,6 +108,3 @@ class classPage extends Component {
         );
     }
 }
-
-AppRegistry.registerComponent('classPage', () => classPage);
-module.exports = classPage;
