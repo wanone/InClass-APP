@@ -34,12 +34,6 @@ class inclass extends Component {
     renderScene(route, navigator) {
       return <route.component navigator={navigator}  {...route.passProps} />;
     }
-    /*
-     * 渲染场景, 通过不同参数, 设置不同页面
-     * @param route 路由, 场景信息
-     * @param navigator 导航器
-     * @returns {XML} 页面
-     */
     configureScene(route, routeStack) {
         if (route.type == 'Right') {
             return Navigator.SceneConfigs.PushFromRight; // 底部弹出
