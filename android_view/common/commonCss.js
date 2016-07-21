@@ -20,7 +20,6 @@ let styles = StyleSheet.create({
         position: "relative",
         backgroundColor: "#0187d6"
     },
-    // 导航栏
     heading: {
       　height: 44,
       　alignItems: 'center',
@@ -28,12 +27,10 @@ let styles = StyleSheet.create({
       　backgroundColor: '#ff1046',
       　marginBottom: 10
     },　
-    // 导航栏文字
     headText: {
         color: '#ffffff',
         fontSize: 22
     },
-    // 按钮
     button: {
         height: 60,
         marginTop: 10,
@@ -41,7 +38,6 @@ let styles = StyleSheet.create({
         backgroundColor: '#eeeeee',
         alignItems: 'center'
     },
-    // 按钮文字
     buttonText: {
         fontSize: 18
     },
@@ -168,7 +164,7 @@ let styles = StyleSheet.create({
         height: 50,
         justifyContent: "center",
         alignItems: "center",
-        paddingTop: 8   
+        paddingTop: 8  
     },
     tabTextContainer: {
         width: Dimensions.get('window').width/4,
@@ -212,6 +208,9 @@ let styles = StyleSheet.create({
         textAlign: "center",
         textAlignVertical: "center",
         backgroundColor: "#ddd",
+    },
+    show: {
+
     }
 });
 module.exports = styles;

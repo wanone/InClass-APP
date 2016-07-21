@@ -17,6 +17,7 @@ import applyPage     from   '../applyPage/applyPage';
 import controlPage   from   '../controlPage/controlPage';
 import mePage        from   '../mePage/mePage';
 import ModalBox      from   './ModalBox';
+import allPage       from   './allPage';
 export default class classPage extends Component {
     _tabClass(type = 'Right') {
         this.props.navigator.push({
@@ -39,6 +40,12 @@ export default class classPage extends Component {
     _tabMe(type = 'Right') {
         this.props.navigator.push({
             component: mePage,
+            type: type
+        })
+    }
+    _tabAll(type = 'Right') {
+        this.props.navigator.push({
+            component: allPage,
             type: type
         })
     }
@@ -89,12 +96,11 @@ export default class classPage extends Component {
                 <View style={styles.containerCon}>
                     <View style={classCss.headText}>
                         <View style={classCss.twoTab}>
-                            <TouchableOpacity style={classCss.containerStyleTab}
-                            >
+                            <TouchableOpacity style={classCss.containerStyleTab}>
                                 <Text style={classCss.tabText}>{'推荐'}</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={classCss.containerStyleTab}
-                            >
+                            onPress={()=>this._tabAll("Right")}>
                                 <Text style={classCss.tabText}>{'全部'}</Text>
                             </TouchableOpacity>
                         </View>
@@ -105,4 +111,4 @@ export default class classPage extends Component {
             </View>
         );
     }
-}
+};

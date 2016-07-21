@@ -41,8 +41,8 @@ class logPage2 extends Component {
     constructor(props){
         super(props);
         this.state={
-          valueUser:'用户名',
-          valuePass:'******'
+          valueUser: '用户名',
+          valuePass: '******'
         };
     }
     onChangeText(text){

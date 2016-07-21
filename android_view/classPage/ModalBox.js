@@ -12,11 +12,13 @@ import {
     Dimensions,
     ScrollView
 } from 'react-native';
+
 import  Button     from  'react-native-button';
 import  Modal      from  'react-native-modalbox';
 import  Slider     from  'react-native-slider';
 import  Dropdown   from  './Dropdown';
 import  Table      from  './Table';
+
 var window  = Dimensions.get('window');
 var styles  = StyleSheet.create({
     wrapper: {
@@ -69,8 +71,20 @@ var styles  = StyleSheet.create({
     },
     tableContainer: {
         flex: 1,
+        position: "relative",
         marginTop: 10,
         marginBottom: 30
+    },
+    classContainer: {
+        flex: 1,
+        position: "absolute",
+        top: 0,
+    },
+    show:{
+        left: 0,
+    },
+    hide: {
+        left: -9999,
     },
     containerTableCellHead: {
         flexDirection: "row",
@@ -112,7 +126,9 @@ var ModalBox = React.createClass({
             isOpen: false,
       　    isDisabled: false,
       　    swipeToClose: true,
-      　    sliderValue: 0.3
+      　    sliderValue: 0.3,
+            class1: true,
+            class2: false,
         }
     },
     openModal1(id) {
@@ -170,54 +186,80 @@ var ModalBox = React.createClass({
                     </ScrollView>
                 </Modal>
                 <Button onPress={this.openModal5}><Dropdown></Dropdown></Button>
+                 
                 <View style={styles.tableContainer}>
-                    <Table seNum="序号"   num="编号"  place="位置"  ratio="占用率" style={styles.containerTableCellHead}></Table>
-                    <Table seNum="010101" num="11029" place="X6405" ratio="70%"　  style={styles.containerTableCellGray}></Table>
-                    <Table seNum="010102" num="11021" place="X6405" ratio="80%"　  style={styles.containerTableCellBlue}></Table>
-                    <Table seNum="010103" num="11022" place="X6405" ratio="80%"　  style={styles.containerTableCellGray}></Table>
-                    <Table seNum="010104" num="11023" place="X6405" ratio="80%"　  style={styles.containerTableCellBlue}></Table>
-                    <Table seNum="010105" num="11024" place="X6405" ratio="80%"　  style={styles.containerTableCellGray}></Table>
-                    <Table seNum="010106" num="11025" place="X6405" ratio="80%"　  style={styles.containerTableCellBlue}></Table>
-                    <Table seNum="010107" num="11026" place="X6405" ratio="80%"　  style={styles.containerTableCellGray}></Table>
-                    <Table seNum="010108" num="11027" place="X6405" ratio="80%"　  style={styles.containerTableCellBlue}></Table>
+                    <View style={styles.classContainer, styles.hide} ref="class1">
+                        <Table seNum="序号"   num="编号"  place="位置"  ratio="占用率" style={styles.containerTableCellHead}></Table>
+                        <Table seNum="110101" num="11029" place="X6405" ratio="70%"　  style={styles.containerTableCellGray}></Table>
+                        <Table seNum="110102" num="11021" place="X6405" ratio="80%"　  style={styles.containerTableCellBlue}></Table>
+                        <Table seNum="110103" num="11022" place="X6405" ratio="80%"　  style={styles.containerTableCellGray}></Table>
+                        <Table seNum="110104" num="11023" place="X6405" ratio="80%"　  style={styles.containerTableCellBlue}></Table>
+                        <Table seNum="110105" num="11024" place="X6405" ratio="80%"　  style={styles.containerTableCellGray}></Table>
+                        <Table seNum="110106" num="11025" place="X6405" ratio="80%"　  style={styles.containerTableCellBlue}></Table>
+                        <Table seNum="110107" num="11026" place="X6405" ratio="80%"　  style={styles.containerTableCellGray}></Table>
+                        <Table seNum="110108" num="11027" place="X6405" ratio="80%"　  style={styles.containerTableCellBlue}></Table>
+                    </View>
+
+                    <View style={styles.classContainer, styles.show} ref="class2">
+                        <Table seNum="序号"   num="编号"  place="位置"  ratio="占用率" style={styles.containerTableCellHead}></Table>
+                        <Table seNum="210101" num="11029" place="X6405" ratio="70%"　  style={styles.containerTableCellGray}></Table>
+                        <Table seNum="210102" num="11021" place="X6405" ratio="80%"　  style={styles.containerTableCellBlue}></Table>
+                        <Table seNum="210103" num="11022" place="X6405" ratio="80%"　  style={styles.containerTableCellGray}></Table>
+                        <Table seNum="210104" num="11023" place="X6405" ratio="80%"　  style={styles.containerTableCellBlue}></Table>
+                        <Table seNum="210105" num="11024" place="X6405" ratio="80%"　  style={styles.containerTableCellGray}></Table>
+                        <Table seNum="210106" num="11025" place="X6405" ratio="80%"　  style={styles.containerTableCellBlue}></Table>
+                        <Table seNum="210107" num="11026" place="X6405" ratio="80%"　  style={styles.containerTableCellGray}></Table>
+                        <Table seNum="210108" num="11027" place="X6405" ratio="80%"　  style={styles.containerTableCellBlue}></Table>
+                    </View>
+
                 </View>
                 <Modal isOpen={this.state.isOpen} onClosed={this.closeModal5} style={[styles.modal, styles.modal4]} position={"center"} backdropContent={BContent}>
+                    
                     <TouchableOpacity style={styles.containerStyleTab}
-                    onPress={()=>this._navigate('Right')}>
+                    onPress={this.closeModal5}>
                        <Text style={styles.styleLog}>{"第一教学楼"}</Text>
                     </TouchableOpacity>
+
                     <TouchableOpacity style={styles.containerStyleTab}
-                    onPress={()=>this._navigate('Right')}>
+                    onPress={this.closeModal5}>
                        <Text style={styles.styleLog}>{"第二教学楼"}</Text>
                     </TouchableOpacity>
+
                     <TouchableOpacity style={styles.containerStyleTab}
-                    onPress={()=>this._navigate('Right')}>
+                    onPress={this.closeModal5}>
                        <Text style={styles.styleLog}>{"第三教学楼"}</Text>
                     </TouchableOpacity>
+
                     <TouchableOpacity style={styles.containerStyleTab}
-                    onPress={()=>this._navigate('Right')}>
+                    onPress={this.closeModal5}>
                        <Text style={styles.styleLog}>{"第四教学楼"}</Text>
                     </TouchableOpacity>
+
                     <TouchableOpacity style={styles.containerStyleTab}
-                    onPress={()=>this._navigate('Right')}>
+                    onPress={this.closeModal5}>
                        <Text style={styles.styleLog}>{"第五教学楼"}</Text>
                     </TouchableOpacity>
+
                     <TouchableOpacity style={styles.containerStyleTab}
-                    onPress={()=>this._navigate('Right')}>
+                    onPress={this.closeModal5}>
                        <Text style={styles.styleLog}>{"第六教学楼"}</Text>
                     </TouchableOpacity>
+
                     <TouchableOpacity style={styles.containerStyleTab}
-                    onPress={()=>this._navigate('Right')}>
+                    onPress={this.closeModal5}>
                        <Text style={styles.styleLog}>{"第七教学楼"}</Text>
                     </TouchableOpacity>
+
                     <TouchableOpacity style={styles.containerStyleTab}
-                    onPress={()=>this._navigate('Right')}>
+                    onPress={this.closeModal5}>
                        <Text style={styles.styleLog}>{"第八教学楼"}</Text>
                     </TouchableOpacity>
+
                     <TouchableOpacity style={styles.containerStyleTab}
-                    onPress={()=>this._navigate('Right')}>
+                    onPress={this.closeModal5}>
                        <Text style={styles.styleLog}>{"第九教学楼"}</Text>
                     </TouchableOpacity>
+
                 </Modal>
             </View>
         );
