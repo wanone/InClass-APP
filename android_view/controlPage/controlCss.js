@@ -22,9 +22,8 @@ let controlCss = StyleSheet.create({
 		color: "white"
 	},
 	tableContainer: {
-		width: Dimensions.get('window').width,
-		height: Dimensions.get('window').height-168,
-		marginTop: 10,
+		flex: 1,
+        marginBottom: 50,
 	},
 	containerTableConCellHead: {
         flexDirection: "row",
@@ -58,6 +57,10 @@ let controlCss = StyleSheet.create({
         textAlign: "center",
         textAlignVertical: "center",
         backgroundColor: "#ddd",
-    }
+    },
+    scrollCon: {
+        width: Dimensions.get('window').width,
+        height: 200,
+    },
 });
 module.exports = controlCss;

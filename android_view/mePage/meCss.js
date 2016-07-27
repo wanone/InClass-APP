@@ -12,8 +12,11 @@ let meCss = StyleSheet.create({
     },
     containerCon: {
         flex: 1,
+        marginBottom: 70,
+    },
+    scrollCon: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').width-50,
+        height: 200,
     },
     portrait: {
         width: Dimensions.get('window').width/3,
@@ -57,6 +60,9 @@ let meCss = StyleSheet.create({
     backIcon: {
         width: 50,
         height: 50,
+        position: "absolute",
+        left: 0,
+        top: 0,
         justifyContent: "center",
         alignItems: "center",
     },
@@ -70,22 +76,32 @@ let meCss = StyleSheet.create({
         backgroundColor: "#0187d6",
         position: "relative",
     },
+    containerLSNew: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+        backgroundColor: "#fff",
+        position: "relative",
+    },
+    headIcon: {
+        width: Dimensions.get('window').width,
+        height: 50,
+        backgroundColor: "white",
+        position: "relative",
+    },
+    headIconNew: {
+        width: Dimensions.get('window').width,
+        height: 50,
+        backgroundColor: "#0187d6",
+        position: "relative",
+    },
     funcCon: {
         flex: 1,
         width: Dimensions.get('window').width,
         marginTop: 20,
         backgroundColor: "#ddd",
     },
-    headIcon: {
-        width: Dimensions.get('window').width,
-        height: 50,
-        flexDirection: "row",
-        justifyContent: "flex-start",
-        alignItems: "center",
-        backgroundColor: "white",
-    },
     headCon: {
-        width: Dimensions.get('window').width-50,
+        width: Dimensions.get('window').width,
         height: 50,
         flexDirection: "row",
         justifyContent: "center",
@@ -103,6 +119,14 @@ let meCss = StyleSheet.create({
         height: 50,
         fontSize: 20,
         color: "#0187d6",
+        textAlign: "center",
+        textAlignVertical: "center",
+    },
+    headTextNew: {
+        width: Dimensions.get('window').width/2-25,
+        height: 50,
+        fontSize: 20,
+        color: "white",
         textAlign: "center",
         textAlignVertical: "center",
     },
@@ -141,19 +165,19 @@ let meCss = StyleSheet.create({
     },
     rowInform: {
         width: Dimensions.get('window').width,
-        height: 50,
+        height: 40,
         justifyContent: "center",
         alignItems: "center",
         marginBottom: 1,
-        paddingLeft: 30,
-        backgroundColor: "#ddd",
+        backgroundColor: "#eee",
     },
     rowText: {
         width: Dimensions.get('window').width,
-        height: 50,
+        height: 40,
         padding: 5,
         color: "#0187d6",
         fontSize: 16,
+        textAlign: "center",
         textAlignVertical: "center",
     },
     textInput: {
@@ -186,7 +210,8 @@ let meCss = StyleSheet.create({
         textAlign: "center",
         textAlignVertical: "center",
         color: "white",
-        backgroundColor: '#0187d6'
+        backgroundColor: '#0187d6',
+        borderRadius: 15,
     },
     formSure: {
         width: Dimensions.get('window').width-20,

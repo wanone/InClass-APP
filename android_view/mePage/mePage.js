@@ -9,7 +9,10 @@ import {
     Image,
     TouchableWithoutFeedback,
     TextInput,
-    Dimensions
+    Dimensions,
+    BackAndroid,
+    Platform,
+    ToastAndroid
 } from 'react-native';
 
 import  styles           from   '../common/commonCss';
@@ -20,6 +23,9 @@ import  controlPage      from   '../controlPage/controlPage';
 import  ApplyRecord      from   './ApplyRecord';
 import  ModifyPass       from   './ModifyPass';
 import  SystemInform     from   './SystemInform';
+import  Profile          from   './Profile';
+import  Exit             from   './Exit';
+
 
 
 export default class mePage extends Component {
@@ -67,6 +73,25 @@ export default class mePage extends Component {
             type: type
         })
     }
+    componentWillMount() {
+        if (Platform.OS === 'android') {
+            BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
+        }
+    }
+    componentWillUnmount() {
+        if (Platform.OS === 'android') {
+            BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
+        }
+    }
+    onBackAndroid = () => {
+        if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
+            //最近2秒内按过back键，可以退出应用。
+            return false;
+        }
+        this.lastBackPressed = Date.now();
+        ToastAndroid.show('再点击一次退出应用',ToastAndroid.SHORT);
+        return true;
+    };
     render() {
         return (
             <View style={styles.container}>
@@ -101,7 +126,7 @@ export default class mePage extends Component {
                         </View>
                     </TouchableOpacity>
     
-                    <View style={styles.containerStyleTab}>
+                    <View style={styles.containerStyleTab, styles.meTab}>
                        <View style={styles.tabContainer}>
                             <Image source={require('../common/commonImg/me.png')} style={styles.tabImg}/>
                         </View>
@@ -122,6 +147,8 @@ export default class mePage extends Component {
                         <ApplyRecord navigator={this.props.navigator}></ApplyRecord>
                         <SystemInform navigator={this.props.navigator}></SystemInform>
                         <ModifyPass navigator={this.props.navigator}></ModifyPass>
+                        <Profile navigator={this.props.navigator}></Profile>
+                        <Exit></Exit>
                     </View>
                 </View>
             </View>

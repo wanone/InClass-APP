@@ -4,7 +4,7 @@ import {
     StyleSheet,
     Dimensions
 } from 'react-native';
-let allCss = StyleSheet.create({
+let AllCss = StyleSheet.create({
 	containerLS: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
@@ -59,8 +59,7 @@ let allCss = StyleSheet.create({
     },
     scrollCon: {
     	width: Dimensions.get('window').width,
-    	height: Dimensions.get('window').height+50,
-    	backgroundColor: "#0187d6",
+    	height: 200,
     },
     tableContainer: {
         flex: 1,
@@ -101,4 +100,4 @@ let allCss = StyleSheet.create({
         backgroundColor: "#ddd",
     }
 });
-module.exports = allCss;
+module.exports = AllCss;

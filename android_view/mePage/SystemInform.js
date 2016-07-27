@@ -7,7 +7,8 @@ import {
     Navigator,
     TouchableOpacity,
     Image,
-    TextInput
+    TextInput,
+    ScrollView
 } from 'react-native';
 import meCss         from    './meCss';
 import RowText       from    './RowText';
@@ -42,11 +43,23 @@ class logPage2 extends Component {
                     </View>
                 </View>
                 <View style={meCss.containerCon}>
-                    <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
-                    <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
-                    <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
-                    <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
-                    <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
+                    <ScrollView style={meCss.scrollCon} showsVerticalScrollIndicator = {false}>
+                        <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
+                        <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
+                        <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
+                        <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
+                        <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
+                        <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
+                        <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
+                        <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
+                        <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
+                        <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
+                        <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
+                        <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
+                        <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
+                        <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
+                        <RowText text="系统通知系统通知系统通知系统通知系统通知"></RowText>
+                    </ScrollView>
                 </View>
             </View>
         );

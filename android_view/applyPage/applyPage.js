@@ -9,13 +9,17 @@ import {
     Image,
     TouchableWithoutFeedback,
     TextInput,
-    Dimensions
+    Dimensions,
+    BackAndroid,
+    Platform,
+    ToastAndroid
 } from 'react-native';
 import styles        from   '../common/commonCss';
 import applyCss      from   './applyCss';
 import classPage     from   '../classPage/classPage';
 import controlPage   from   '../controlPage/controlPage';
 import mePage        from   '../mePage/mePage';
+import ModalBox      from   './ModalBox';
 
 export default class applyPage extends Component {
     _tabClass(type = 'Left') {
@@ -42,7 +46,82 @@ export default class applyPage extends Component {
             type: type
         })
     }
+    constructor(props){
+        super(props);
+        this.state={
+            valueName: '姓名',
+            valueNumber: '学号',
+            valueClass: '班级',
+            valueID: '身份证',
+            valueApplyTime: '申请时间',
+            valueApplyReason1: '申请理由',
+            valueApplyReason2: '',
+            valueApplyReason3: '',
+            valueApplyReason4: '',
+            valueProveThing: '',
+        };
+    }
+    ChangeName(text){
+        this.setState({valueName:text});
+    }
+    ChangeNumber(text){
+        this.setState({valueNumber:text});
+    }
+    ChangeClass(text){
+        this.setState({valueClass:text});
+    }
+    ChangeID(text){
+        this.setState({valueID:text});
+    }
+    ChangeApplyTime(text){
+        this.setState({valueApplyTime:text});
+    }
+    ChangeApplyReason1(text){
+        this.setState({valueApplyReason1:text});
+    }
+    ChangeApplyReason2(text){
+        this.setState({valueApplyReason2:text});
+    }
+    ChangeApplyReason3(text){
+        this.setState({valueApplyReason3:text});
+    }
+    ChangeApplyReason4(text){
+        this.setState({valueApplyReason4:text});
+    }
+    ChangeProveThing(text){
+        this.setState({valueProveThing:text});
+    }
+    componentWillMount() {
+        if (Platform.OS === 'android') {
+            BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
+        }
+    }
+    componentWillUnmount() {
+        if (Platform.OS === 'android') {
+            BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
+        }
+    }
+    onBackAndroid = () => {
+        if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
+            //最近2秒内按过back键，可以退出应用。
+            return false;
+        }
+        this.lastBackPressed = Date.now();
+        ToastAndroid.show('再点击一次退出应用',ToastAndroid.SHORT);
+        return true;
+    };
     render() {
+        valueName = this.state.valueName;
+        valueNumber = this.state.valueNumber;
+        valueClass = this.state.valueClass;
+        valueID = this.state.valueID;
+        valueApplyTime = this.state.valueApplyTime;
+        valueApplyReason1 = this.state.valueApplyReason1;
+        valueApplyReason2 = this.state.valueApplyReason2;
+        valueApplyReason3 = this.state.valueApplyReason3;
+        valueApplyReason4 = this.state.valueApplyReason4;
+        valueApplyReason = valueApplyReason1 + valueApplyReason2 + valueApplyReason3 + valueApplyReason4;
+        valueProveThing = this.state.valueProveThing;
         return (
             <View style={styles.container}>
                 <View style={styles.tabBar}>
@@ -56,7 +135,7 @@ export default class applyPage extends Component {
                         </View>
                     </TouchableOpacity>
     
-                    <View style={styles.containerStyleTab}>
+                    <View style={styles.containerStyleTab, styles.applyTab}>
                        <View style={styles.tabContainer}>
                             <Image source={require('../common/commonImg/apply.png')} style={styles.tabImg}/>
                         </View>
@@ -86,113 +165,13 @@ export default class applyPage extends Component {
                     </TouchableOpacity>
                 </View>
 
+
+
                 <View style={styles.containerCon}>
                     <View style={applyCss.headText}>
                         <Text style={applyCss.tabText}>{"教室借用申请表"}</Text>
                     </View>
-                    <View style={applyCss.tableContainer}>
-                        <View style={applyCss.formRow}>
-                            <Text style={applyCss.formText}>{"姓名:"}</Text>
-                            <TextInput
-                            style={applyCss.textInput}
-                            placeholder="姓名"
-                            placeholderTextColor="#ccc"
-                            secureTextEntry={true}
-                            multiline = {false}
-                            onChangeText={ (text) => this.handleChange(text)}/>
-
-                            <Text style={applyCss.formText}>{"学号:"}</Text>
-                            <TextInput
-                            style={applyCss.textInput}
-                            placeholder="学号"
-                            placeholderTextColor="#ccc"
-                            secureTextEntry={true}
-                            multiline = {false}
-                            onChangeText={ (text) => this.handleChange(text)}/>
-                        </View>
-
-                        <View style={applyCss.formRow}>
-                            <Text style={applyCss.formText}>{"班级:"}</Text>
-                            <TextInput
-                            style={applyCss.textInput}
-                            placeholder="班级"
-                            placeholderTextColor="#ccc"
-                            secureTextEntry={true}
-                            multiline = {false}
-                            onChangeText={ (text) => this.handleChange(text)}/>
-                            
-                            <Text style={applyCss.formText}>{"身份证:"}</Text>
-                            <TextInput
-                            style={applyCss.textInput}
-                            placeholder="身份证"
-                            placeholderTextColor="#ccc"
-                            secureTextEntry={true}
-                            multiline = {false}
-                            onChangeText={ (text) => this.handleChange(text)}/>
-                        </View>
-
-                        <View style={applyCss.formRow}>
-                            <Text style={applyCss.formTextTime}>{"申请时间:"}</Text>
-                            <TextInput
-                            style={applyCss.textInputTime}
-                            placeholder="申请时间"
-                            placeholderTextColor="#ccc"
-                            secureTextEntry={true}
-                            multiline = {false}
-                            onChangeText={ (text) => this.handleChange(text)}/>
-                            
-                        </View>
-
-
-                        <View style={applyCss.formRowCon}>
-                            
-                            <Text style={applyCss.formTextCon}>{"申请理由:"}</Text>
-                            
-                            <TextInput
-                            style={applyCss.textInputCon}
-                            placeholder="申请理由"
-                            placeholderTextColor="#ccc"
-                            multiline = {true}
-                            onChangeText={ (text) => this.handleChange(text)}/>
-
-                            <TextInput
-                            style={applyCss.textInputCon}
-                            placeholderTextColor="#ccc"
-                            multiline = {true}
-                            onChangeText={ (text) => this.handleChange(text)}/>
-
-                            <TextInput
-                            style={applyCss.textInputCon}
-                            placeholderTextColor="#ccc"
-                            multiline = {true}
-                            onChangeText={ (text) => this.handleChange(text)}/>
-
-                            <TextInput
-                            style={applyCss.textInputCon}
-                            placeholderTextColor="#ccc"
-                            multiline = {true}
-                            onChangeText={ (text) => this.handleChange(text)}/>
-                            
-                        </View>
-
-                        <View style={applyCss.formRow}>
-                            <Text style={applyCss.formTextTime}>{"证明材料:"}</Text>
-                            <TextInput
-                            style={applyCss.textInputTime}
-                            placeholder="证明材料"
-                            placeholderTextColor="#ccc"
-                            secureTextEntry={true}
-                            multiline = {false}
-                            onChangeText={ (text) => this.handleChange(text)}/>
-                        </View>
-                        
-                        <View style={applyCss.sureIcon}>
-                            <TouchableOpacity style={applyCss.logBtn}>
-                                <Text style={applyCss.styleLog}>{'提 交'}</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                    </View>
+                    <ModalBox></ModalBox>
                 </View>
 
             </View>

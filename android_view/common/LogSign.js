@@ -7,7 +7,10 @@ import {
     Navigator,
     TouchableOpacity,
     Image,
-    TextInput
+    TextInput,
+    BackAndroid,
+    Platform,
+    ToastAndroid
 } from 'react-native';
 import  styles      from  './commonCss';
 import  homePage    from  './homePage';
@@ -17,6 +20,39 @@ export default class LogSign extends Component {
             component: logPage2,
             type: type
         })
+    }
+    componentWillMount() {
+        if (Platform.OS === 'android') {
+            BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
+        }
+    }
+    componentWillUnmount() {
+        if (Platform.OS === 'android') {
+            BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
+        }
+    }
+    onBackAndroid = () => {
+        if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
+            //最近2秒内按过back键，可以退出应用。
+            return false;
+        }
+        this.lastBackPressed = Date.now();
+        ToastAndroid.show('再点击一次退出应用',ToastAndroid.SHORT);
+        return true;
+    }
+    getData(){
+        fetch('http://222.18.57.22/inclass/api/classroom/getbuildings')
+            .then((response) => response.text())
+            .then((responseText) => {
+                alert(responseText);
+            })
+            .catch((error) => {
+                alert("error");
+            });
+    }
+    getD(){
+        alert("hello1");
+        /*getData('http://222.18.57.22/inclass/api/classroom/getbuildings/')*/
     }
     render() {
         return (
@@ -28,7 +64,7 @@ export default class LogSign extends Component {
                            <Text style={styles.styleLog}>{'登录'}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.containerStyleSign}
-                        onPress={()=>this._navigate('Right')}>
+                        onPress={()=>this.getData()}>
                           <Text style={styles.styleSign}>{'注册'}</Text>
                         </TouchableOpacity>
                     </View>
@@ -83,10 +119,10 @@ class logPage2 extends Component {
                     </View>
                     <View style={styles.sureIcon}>
                         <TouchableOpacity style={styles.logBtn}
-                        onPress={()=>{      
+                        onPress={()=>{
                             this.props.navigator.push({
-                                  component: homePage
-                            })
+                                component: homePage,
+                            });
                         }}>
                             <Text style={styles.styleLog}>{'登 录'}</Text>
                         </TouchableOpacity>

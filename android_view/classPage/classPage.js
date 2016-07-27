@@ -9,15 +9,22 @@ import {
     Image,
     TouchableWithoutFeedback,
     TextInput,
-    Dimensions
+    Dimensions,
+    BackAndroid,
+    Platform,
+    ToastAndroid
 } from 'react-native';
-import styles        from   '../common/commonCss';
-import classCss      from   './classCss';
-import applyPage     from   '../applyPage/applyPage';
-import controlPage   from   '../controlPage/controlPage';
-import mePage        from   '../mePage/mePage';
-import ModalBox      from   './ModalBox';
-import allPage       from   './allPage';
+
+import ScrollableTabView, { DefaultTabBar, } from 'react-native-scrollable-tab-view';
+import styles              from   '../common/commonCss';
+import classCss            from   './classCss';
+import applyPage           from   '../applyPage/applyPage';
+import controlPage         from   '../controlPage/controlPage';
+import mePage              from   '../mePage/mePage';
+import RecommendNewPage    from   './RecommendNewPage';
+import AllNewPage          from   './AllNewPage';
+import ExitAPP             from   '../common/ExitAPP';
+
 export default class classPage extends Component {
     _tabClass(type = 'Right') {
         this.props.navigator.push({
@@ -43,17 +50,30 @@ export default class classPage extends Component {
             type: type
         })
     }
-    _tabAll(type = 'Right') {
-        this.props.navigator.push({
-            component: allPage,
-            type: type
-        })
+    componentWillMount() {
+        if (Platform.OS === 'android') {
+            BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
+        }
     }
+    componentWillUnmount() {
+        if (Platform.OS === 'android') {
+            BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
+        }
+    }
+    onBackAndroid = () => {
+        if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
+            //最近2秒内按过back键，可以退出应用。
+            return false;
+        }
+        this.lastBackPressed = Date.now();
+        ToastAndroid.show('再点击一次退出应用',ToastAndroid.SHORT);
+        return true;
+    };
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.tabBar}>
-                    <View style={styles.containerStyleTab}>
+                    <View style={styles.containerStyleTab, styles.classTab}>
                         <View style={styles.tabContainer}>
                             <Image source={require('../common/commonImg/class.png')} style={styles.tabImg}/>
                         </View>
@@ -94,20 +114,12 @@ export default class classPage extends Component {
                 </View>
 
                 <View style={styles.containerCon}>
-                    <View style={classCss.headText}>
-                        <View style={classCss.twoTab}>
-                            <TouchableOpacity style={classCss.containerStyleTab}>
-                                <Text style={classCss.tabText}>{'推荐'}</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={classCss.containerStyleTab}
-                            onPress={()=>this._tabAll("Right")}>
-                                <Text style={classCss.tabText}>{'全部'}</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                    <ModalBox></ModalBox>
+                    <ScrollableTabView
+                    renderTabBar={()=><DefaultTabBar/>}>
+                        <RecommendNewPage tabLabel="推荐"></RecommendNewPage>
+                        <AllNewPage    tabLabel="全部"></AllNewPage>
+                    </ScrollableTabView>
                 </View>
-
             </View>
         );
     }

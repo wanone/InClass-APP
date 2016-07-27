@@ -13,26 +13,18 @@ let DropdownCss = StyleSheet.create({
 		alignItems: "center",
 	},
 	containerSelectTab: {
-		width: Dimensions.get('window').width/2,
-		height: 50,
-		backgroundColor: "white",
-		paddingLeft: 20,
-		flexDirection: "row",
-		justifyContent: "flex-start",
+		width: Dimensions.get('window').width*0.6,
+		height: 40,
+		marginTop: 30,
+		marginLeft: Dimensions.get('window').width*0.2,
+		backgroundColor: "#0187d6",
+		justifyContent: "center",
 		alignItems: "center",
 		borderRadius: 15
 	},
 	containerSelectText: {
-		width: Dimensions.get('window').width/3,
-		height: 30,
-		fontSize: 18,
-		color: "#0187d6"
-	},
-	selectImg: {
-		width: 20,
-		height: 20,
-		resizeMode: "contain"
+		fontSize: 20,
+		color: "white"
 	}
-
 });
 module.exports = DropdownCss;

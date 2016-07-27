@@ -38,3 +38,4 @@ let classCss = StyleSheet.create({
 	}
 });
 module.exports = classCss;
+/*<ModalBox></ModalBox>*/

@@ -15,11 +15,8 @@ import DropdownCss from "./DropdownCss";
 export default class Dropdown extends Component{
     render() {
         return (
-            <View style={DropdownCss.containerSelect}>
-                <View style={DropdownCss.containerSelectTab}>
-                   <Text style={DropdownCss.containerSelectText}>{'第一教学楼'}</Text>
-                   <Image source={require('./start.png')} style={DropdownCss.selectImg}/>
-                </View>
+            <View style={DropdownCss.containerSelectTab}>
+                <Text style={DropdownCss.containerSelectText}>{'提 交'}</Text>
             </View>
         )
     }

@@ -209,8 +209,27 @@ let styles = StyleSheet.create({
         textAlignVertical: "center",
         backgroundColor: "#ddd",
     },
-    show: {
-
-    }
+    textS: {
+        fontSize: 20,
+    },
+    classTab: {
+        backgroundColor: "#0168d6",
+    },
+    applyTab: {
+        backgroundColor: "#0168d6",
+    },
+    controlTab: {
+        backgroundColor: "#0168d6",
+    },
+    meTab: {
+        backgroundColor: "#0168d6",
+    },
 });
 module.exports = styles;
+/*if (valueUser == "inclass" && valuePass == "123456"){
+                                this.props.navigator.push({
+                                    component: homePage,
+                                });
+                            }else{
+                                alert("用户名或密码输入有误");
+                            }   */
