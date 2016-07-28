@@ -17,19 +17,13 @@ import {
 
 import  styles           from   '../common/commonCss';
 import  meCss            from   './meCss';
-import  classPage        from   '../classPage/classPage';
-import  applyPage        from   '../applyPage/applyPage';
-import  controlPage      from   '../controlPage/controlPage';
 import  ApplyRecord      from   './ApplyRecord';
 import  ModifyPass       from   './ModifyPass';
 import  SystemInform     from   './SystemInform';
 import  Profile          from   './Profile';
 import  Exit             from   './Exit';
 
-
-
-export default class mePage extends Component {
-
+export default class MePage extends Component {
     renderScene(route, navigator) {
         return <route.component navigator={navigator}  {...route.passProps} />;
     }
@@ -43,35 +37,10 @@ export default class mePage extends Component {
         return (
           <Navigator
             style={{flex:1}}
-            initialRoute={{component: classPage}}
+            initialRoute={{component: MePage}}
             configureScene={this.configureScene}
             renderScene={this.renderScene}/>
         );
-    }
-
-    _tabClass(type = 'Left') {
-        this.props.navigator.push({
-            component: classPage,
-            type: type
-        })
-    }
-    _tabApply(type = 'Left') {
-        this.props.navigator.push({
-            component: applyPage,
-            type: type
-        })
-    }
-    _tabControl(type = 'Left') {
-        this.props.navigator.push({
-            component: controlPage,
-            type: type
-        })
-    }
-    _tabMe(type = 'Right') {
-        this.props.navigator.push({
-            component: mePage,
-            type: type
-        })
     }
     componentWillMount() {
         if (Platform.OS === 'android') {
@@ -94,64 +63,29 @@ export default class mePage extends Component {
     };
     render() {
         return (
-            <View style={styles.container}>
-                <View style={styles.tabBar}>
-                   <TouchableOpacity style={styles.containerStyleTab}
-                    onPress={()=>this._tabClass('Left')}>
-                        <View style={styles.tabContainer}>
-                            <Image source={require('../common/commonImg/class.png')} style={styles.tabImg}/>
-                        </View>
-                        <View style={styles.tabTextContainer}>
-                             <Text style={styles.tabText}>{'教室'}</Text>
-                        </View>
-                    </TouchableOpacity>
-    
-                    <TouchableOpacity style={styles.containerStyleTab}
-                    onPress={()=>this._tabApply('Left')}>
-                       <View style={styles.tabContainer}>
-                            <Image source={require('../common/commonImg/apply.png')} style={styles.tabImg}/>
-                        </View>
-                        <View style={styles.tabTextContainer}>
-                             <Text style={styles.tabText}>{'申请'}</Text>
-                        </View>
-                    </TouchableOpacity>
-    
-                    <TouchableOpacity style={styles.containerStyleTab}
-                    onPress={()=>this._tabControl('Left')}>
-                       <View style={styles.tabContainer}>
-                            <Image source={require('../common/commonImg/control.png')} style={styles.tabImg}/>
-                        </View>
-                        <View style={styles.tabTextContainer}>
-                             <Text style={styles.tabText}>{'控制'}</Text>
-                        </View>
-                    </TouchableOpacity>
-    
-                    <View style={styles.containerStyleTab, styles.meTab}>
-                       <View style={styles.tabContainer}>
-                            <Image source={require('../common/commonImg/me.png')} style={styles.tabImg}/>
-                        </View>
-                        <View style={styles.tabTextContainer}>
-                             <Text style={styles.tabText}>{'我'}</Text>
-                        </View>
-                    </View>
+            <View style={PageCss.container}>
+                <View style={meCss.portraitBg}>
+                    <Image source={require('../common/commonImg/start.png')} style={meCss.portrait}/>
                 </View>
-
-                <View style={styles.containerCon}>
-                    <View style={meCss.portraitBg}>
-                        <Image source={require('../common/commonImg/start.png')} style={meCss.portrait}/>
-                    </View>
-                    <View style={meCss.nameCon}>
-                        <Text style={meCss.nameText}>{'Wanone, 你好'}</Text>
-                    </View>
-                    <View style={meCss.funcCon}>
-                        <ApplyRecord navigator={this.props.navigator}></ApplyRecord>
-                        <SystemInform navigator={this.props.navigator}></SystemInform>
-                        <ModifyPass navigator={this.props.navigator}></ModifyPass>
-                        <Profile navigator={this.props.navigator}></Profile>
-                        <Exit></Exit>
-                    </View>
+                <View style={meCss.nameCon}>
+                    <Text style={meCss.nameText}>{'Wanone, 你好'}</Text>
+                </View>
+                <View style={meCss.funcCon}>
+                    <ApplyRecord navigator={this.props.navigator}></ApplyRecord>
+                    <SystemInform navigator={this.props.navigator}></SystemInform>
+                    <ModifyPass navigator={this.props.navigator}></ModifyPass>
+                    <Profile navigator={this.props.navigator}></Profile>
+                    <Exit></Exit>
                 </View>
             </View>
         );
     }
 }
+
+let PageCss = StyleSheet.create({
+    container: {
+        position: "absolute",
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height-93,
+    }
+})

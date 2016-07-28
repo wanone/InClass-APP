@@ -10,14 +10,16 @@ import {
     TextInput,
     ScrollView
 } from 'react-native';
+
 import meCss         from    './meCss';
 import RowText       from    './RowText';
+import MePage        from    './MePage';
 
-export default class LeftIcon extends Component {
+export default class SystemInform extends Component {
     _navigate(type = 'Normal') {
         this.props.navigator.push({
-          component: logPage2,
-          type: type
+            component: logPage2,
+            type: type
         });
     }
     render() {

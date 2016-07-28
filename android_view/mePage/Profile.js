@@ -10,12 +10,13 @@ import {
     TextInput,
     ScrollView,
 } from 'react-native';
+
 import meCss         from    './meCss';
-import mePage        from    './mePage';
 import applyCss      from    './applyCss';
 import RowText       from    './RowText';
+import MePage        from    './MePage';
 
-export default class LeftIcon extends Component {
+export default class Profile extends Component {
     _navigate(type = 'Normal') {
         this.props.navigator.push({
           component: logPage2,

@@ -24,8 +24,8 @@ import   EightPageR           from    './EightPageR';
 import   NinePageR            from    './NinePageR';
 import   ClassTabBar          from    './ClassTabBar';
 import   ScrollableTabView    from    'react-native-scrollable-tab-view';
-
-export default class AllNewPage extends Component{
+ 
+export default class RecommendNewPage extends Component{
     render() {
         return (
             <View style={styles.contrainer}>
@@ -48,6 +48,6 @@ export default class AllNewPage extends Component{
 const styles = StyleSheet.create({
     contrainer: {
         flex: 1,
-        marginBottom: 50,
+        marginBottom: 36,
     },
 });

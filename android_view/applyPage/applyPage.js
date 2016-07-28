@@ -14,38 +14,12 @@ import {
     Platform,
     ToastAndroid
 } from 'react-native';
+
 import styles        from   '../common/commonCss';
 import applyCss      from   './applyCss';
-import classPage     from   '../classPage/classPage';
-import controlPage   from   '../controlPage/controlPage';
-import mePage        from   '../mePage/mePage';
 import ModalBox      from   './ModalBox';
 
-export default class applyPage extends Component {
-    _tabClass(type = 'Left') {
-        this.props.navigator.push({
-            component: classPage,
-            type: type
-        })
-    }
-    _tabApply(type = 'Right') {
-        this.props.navigator.push({
-            component: applyPage,
-            type: type
-        })
-    }
-    _tabControl(type = 'Right') {
-        this.props.navigator.push({
-            component: controlPage,
-            type: type
-        })
-    }
-    _tabMe(type = 'Right') {
-        this.props.navigator.push({
-            component: mePage,
-            type: type
-        })
-    }
+export default class ApplyPage extends Component {
     constructor(props){
         super(props);
         this.state={
@@ -123,58 +97,20 @@ export default class applyPage extends Component {
         valueApplyReason = valueApplyReason1 + valueApplyReason2 + valueApplyReason3 + valueApplyReason4;
         valueProveThing = this.state.valueProveThing;
         return (
-            <View style={styles.container}>
-                <View style={styles.tabBar}>
-                    <TouchableOpacity style={styles.containerStyleTab}
-                    onPress={()=>this._tabClass('Left')}>
-                        <View style={styles.tabContainer}>
-                            <Image source={require('../common/commonImg/class.png')} style={styles.tabImg}/>
-                        </View>
-                        <View style={styles.tabTextContainer}>
-                             <Text style={styles.tabText}>{'教室'}</Text>
-                        </View>
-                    </TouchableOpacity>
-    
-                    <View style={styles.containerStyleTab, styles.applyTab}>
-                       <View style={styles.tabContainer}>
-                            <Image source={require('../common/commonImg/apply.png')} style={styles.tabImg}/>
-                        </View>
-                        <View style={styles.tabTextContainer}>
-                             <Text style={styles.tabText}>{'申请'}</Text>
-                        </View>
-                    </View>
-    
-                    <TouchableOpacity style={styles.containerStyleTab}
-                    onPress={()=>this._tabControl('Right')}>
-                       <View style={styles.tabContainer}>
-                            <Image source={require('../common/commonImg/control.png')} style={styles.tabImg}/>
-                        </View>
-                        <View style={styles.tabTextContainer}>
-                             <Text style={styles.tabText}>{'控制'}</Text>
-                        </View>
-                    </TouchableOpacity>
-    
-                    <TouchableOpacity style={styles.containerStyleTab}
-                    onPress={()=>this._tabMe('Right')}>
-                       <View style={styles.tabContainer}>
-                            <Image source={require('../common/commonImg/me.png')} style={styles.tabImg}/>
-                        </View>
-                        <View style={styles.tabTextContainer}>
-                             <Text style={styles.tabText}>{'我'}</Text>
-                        </View>
-                    </TouchableOpacity>
+            <View style={PageCss.container}>
+                <View style={applyCss.headText}>
+                    <Text style={applyCss.tabText}>{"教室借用申请表"}</Text>
                 </View>
-
-
-
-                <View style={styles.containerCon}>
-                    <View style={applyCss.headText}>
-                        <Text style={applyCss.tabText}>{"教室借用申请表"}</Text>
-                    </View>
-                    <ModalBox></ModalBox>
-                </View>
-
+                <ModalBox></ModalBox>
             </View>
         );
     }
 }
+
+let PageCss = StyleSheet.create({
+    container: {
+        position: "absolute",
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height-93,
+    }
+})

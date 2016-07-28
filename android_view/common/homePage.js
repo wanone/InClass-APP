@@ -11,10 +11,7 @@ import {
 } from 'react-native';
 
 import styles        from  './commonCss';
-import classPage     from  '../classPage/classPage';
-import applyPage     from  '../applyPage/applyPage';
-import controlPage   from  '../controlPage/controlPage';
-import mePage        from  '../mePage/mePage';
+import AppPage       from  './AppPage';
 
 export default class homePage extends Component {
     renderScene(route, navigator) {
@@ -30,7 +27,7 @@ export default class homePage extends Component {
         return (
           <Navigator
             style={{flex:1}}
-            initialRoute={{component: classPage}}
+            initialRoute={{component: AppPage}}
             configureScene={this.configureScene}
             renderScene={this.renderScene}/>
         );

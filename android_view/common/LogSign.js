@@ -12,8 +12,10 @@ import {
     Platform,
     ToastAndroid
 } from 'react-native';
+
 import  styles      from  './commonCss';
 import  homePage    from  './homePage';
+
 export default class LogSign extends Component {
     _navigate(type = 'Normal') {
         this.props.navigator.push({

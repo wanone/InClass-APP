@@ -48,6 +48,6 @@ export default class AllNewPage extends Component{
 const styles = StyleSheet.create({
     contrainer: {
         flex: 1,
-        marginBottom: 50,
+        marginBottom: 36,
     },
 });
