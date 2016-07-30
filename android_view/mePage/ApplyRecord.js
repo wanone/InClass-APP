@@ -10,10 +10,8 @@ import {
     TextInput,
     ScrollView
 } from 'react-native';
-
 import meCss      from  './meCss';
 import TableCon   from  './TableCon';
-import MePage     from    './MePage';
 
 export default class ApplyRecord extends Component {
     _navigate(type = 'Normal') {

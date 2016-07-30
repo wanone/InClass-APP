@@ -127,7 +127,7 @@ let applyCss = StyleSheet.create({
     },
     infoTextCon: {
         width: Dimensions.get('window').width*0.9,
-        height: 250
+        height: 210
     },
     infoText: {
         fontSize: 18,

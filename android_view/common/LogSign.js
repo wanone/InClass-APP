@@ -13,8 +13,8 @@ import {
     ToastAndroid
 } from 'react-native';
 
-import  styles      from  './commonCss';
-import  homePage    from  './homePage';
+import   styles      from  './commonCss';
+import   homePage    from  './homePage';
 
 export default class LogSign extends Component {
     _navigate(type = 'Normal') {
@@ -42,19 +42,32 @@ export default class LogSign extends Component {
         ToastAndroid.show('再点击一次退出应用',ToastAndroid.SHORT);
         return true;
     }
-    getData(){
-        fetch('http://222.18.57.22/inclass/api/classroom/getbuildings')
-            .then((response) => response.text())
-            .then((responseText) => {
-                alert(responseText);
-            })
-            .catch((error) => {
-                alert("error");
-            });
-    }
-    getD(){
-        alert("hello1");
-        /*getData('http://222.18.57.22/inclass/api/classroom/getbuildings/')*/
+    getData(url){
+        var datas = [];
+        var baseurl = "http://123.207.6.76/inclass/";
+        var urlNew = baseurl + url;
+        var datas = [];
+        fetch(urlNew)
+        .then((response) => response.text())
+        .then((responseText) => {
+            var data = JSON.parse(responseText);
+            if (data.status == 0){
+                var array = data.body;
+                alert(array.length);
+                for(var i=0; i<array.length; i++ ){
+                    datas.push(array[i]);
+                }
+                this.setState({
+                    dataSource: this.state.dataSource.cloneWithRows(datas),
+                });
+            }else{
+                alert("request fail");
+            }
+        })
+        .catch((error) => {
+            console.warn(error);
+        }).done;
+        return datas;
     }
     render() {
         return (
@@ -63,11 +76,11 @@ export default class LogSign extends Component {
                     <View style={styles.logBox}>
                         <TouchableOpacity style={styles.containerStyleLog}
                         onPress={()=>this._navigate('Right')}>
-                           <Text style={styles.styleLog}>{'登录'}</Text>
+                            <Text style={styles.styleLog}>{'登录'}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.containerStyleSign}
-                        onPress={()=>this.getData()}>
-                          <Text style={styles.styleSign}>{'注册'}</Text>
+                        onPress={()=>this.getData("api/classroom/getrecommendbybuilding?building=1")}>
+                            <Text style={styles.styleSign}>{'注册'}</Text>
                         </TouchableOpacity>
                     </View>
                 </Image>

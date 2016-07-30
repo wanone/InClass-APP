@@ -38,7 +38,7 @@ var styles  = StyleSheet.create({
     },  
     modal4: {
         width: Dimensions.get('window').width*0.9,
-        height: 300,
+        height: 265,
         borderRadius: 10,
     },
     btn: {
@@ -307,19 +307,10 @@ var ModalBox = React.createClass({
                         onChangeText={ (text) => this.ChangeApplyReason4(text)}/>
                         
                     </View>
-                    <View style={applyCss.formRow}>
-                        <Text style={applyCss.formTextTime}>{"证明材料:"}</Text>
-                        <TextInput
-                        style={applyCss.textInputTime}
-                        placeholder="证明材料"
-                        placeholderTextColor="#ccc"
-                        multiline = {false}
-                        onChangeText={ (text) => this.ChangeProveThing(text)}/>
-                    </View>
                     <Button onPress={this.openModal5}><Dropdown></Dropdown></Button>
                 </View>        
 
-                <Modal isOpen={this.state.isOpen} onClosed={this.closeModal5} style={[styles.modal, styles.modal4]} position={"center"} backdropContent={BContent}>
+                <Modal isOpen={this.state.isOpen} onClosed={this.closeModal5} style={styles.modal4} position={"center"} backdropContent={BContent}>
                     <View style={applyCss.headTextCon}>
                         <Text style={applyCss.infoHeadText}>{"申请信息"}</Text>
                     </View>
@@ -345,10 +336,6 @@ var ModalBox = React.createClass({
                          <View style={applyCss.infoRow}>
                             <Text style={applyCss.infoRowHead}>{"申请理由:"}</Text>
                             <Text style={applyCss.infoText}>{valueApplyReason}</Text>
-                        </View>
-                        <View style={applyCss.infoRow}>
-                            <Text style={applyCss.infoRowHead}>{"证明材料:"}</Text>
-                            <Text style={applyCss.infoText}>{valueProveThing}</Text>
                         </View>
                         <View style={applyCss.infoRowNew}>
                             <TouchableOpacity

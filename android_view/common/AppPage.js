@@ -28,10 +28,10 @@ export default class AppPage extends Component {
         return (
             <ScrollableTabView
             renderTabBar={()=><ClassTabBarNew/>}>
-                <ClassPage   tabLabel="教室"></ClassPage>
-                <ApplyPage   tabLabel="申请"></ApplyPage>
-                <ControlPage tabLabel="控制"></ControlPage>
-                <MePage      tabLabel="我"></MePage>
+                <ClassPage   tabLabel="教室" navigator={this.props.navigator}></ClassPage>
+                <ApplyPage   tabLabel="申请" navigator={this.props.navigator}></ApplyPage>
+                <ControlPage tabLabel="控制" navigator={this.props.navigator}></ControlPage>
+                <MePage      tabLabel="我"   navigator={this.props.navigator}></MePage>
             </ScrollableTabView>
         );
     }

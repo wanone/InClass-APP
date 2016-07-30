@@ -15,28 +15,9 @@ import {
     TouchableHighlight
 } from 'react-native';
 
-import   AllCss              from    './AllCss';
-import   Table               from    './Table'; 
-import   immutable           from    'immutable';
+import   immutable    from    'immutable';
 
-const  Row = ({num,id,rate,pick_time}) => (
-    <Table  num={num}  id={id}  rate={rate}  pick_time={pick_time}　style={AllCss.containerTableCellBlue}></Table>
-)
-
-const  renderRow = (rowData) => (
-    <Row  num={rowData.get('num')}
-          id={rowData.get('id')}
-          rate={rowData.get('rate')}
-          pick_time={rowData.get('pick_time')}/>
-)
-
-var OnePageR = React.createClass({
-    getInitialState: function(){
-        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        return {
-            dataSource: ds.cloneWithRows( this.getData("http://123.207.6.76/inclass/api/classroom/getrecommendbybuilding?building=1") ),
-        };
-    },
+var Tool = React.createClass({
     convertTime: function(time){
         var date=new Date(time);
         var Y=date.getFullYear() + '-';
@@ -48,7 +29,6 @@ var OnePageR = React.createClass({
         return  Y+M+D+h+m+s;
     },
     getData: function(url){
-        var baseurl 
         var datas = new Array();
         fetch(url)
         .then((response) => response.text())
@@ -75,24 +55,8 @@ var OnePageR = React.createClass({
             console.warn(error);
         })
         return datas;
-    },
-    render: function() {
-        return (
-            <View style={styles.contrainer}>
-                <Table   num="序号"   id="位置"  rate="占用率"  pick_time="时间"  style={AllCss.containerTableCellHead}></Table>
-                <ListView
-                enableEmptySections={true}
-                dataSource={this.state.dataSource}
-                renderRow={renderRow}/>
-            </View>
-        )
     }
 });
 
-const styles = StyleSheet.create({
-    contrainer: {
-        flex: 1,
-    },
-});
 
-module.exports = OnePageR;
+module.exports = Tool;

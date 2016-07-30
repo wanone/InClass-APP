@@ -38,4 +38,4 @@ let classCss = StyleSheet.create({
 	}
 });
 module.exports = classCss;
-/*<ModalBox></ModalBox>*/
+/*this.getData("http://123.207.6.76/inclass/api/classroom/getrecommendbybuilding?building=1")countries.toArray()*/

@@ -23,6 +23,8 @@ import   SevenPageR           from    './SevenPageR';
 import   EightPageR           from    './EightPageR';
 import   NinePageR            from    './NinePageR';
 import   ClassTabBar          from    './ClassTabBar';
+import   Table                from    './Table';
+import   AllCss               from    './AllCss';
 import   ScrollableTabView    from    'react-native-scrollable-tab-view';
  
 export default class RecommendNewPage extends Component{

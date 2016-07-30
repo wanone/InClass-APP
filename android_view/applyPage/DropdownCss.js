@@ -15,7 +15,7 @@ let DropdownCss = StyleSheet.create({
 	containerSelectTab: {
 		width: Dimensions.get('window').width*0.6,
 		height: 40,
-		marginTop: 30,
+		marginTop: 50,
 		marginLeft: Dimensions.get('window').width*0.2,
 		backgroundColor: "#0187d6",
 		justifyContent: "center",

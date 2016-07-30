@@ -9,13 +9,11 @@ import {
     Image,
     TextInput
 } from 'react-native';
-
 import meCss         from    './meCss';
 import TableConCss   from    './TableConCss';
 import TableCon      from    './TableCon';
-import MePage        from    './MePage';
 
-export default class ModifyPass extends Component {
+export default class LeftIcon extends Component {
     _navigate(type = 'Normal') {
         this.props.navigator.push({
           component: logPage2,

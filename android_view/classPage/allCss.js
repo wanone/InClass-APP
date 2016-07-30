@@ -98,6 +98,40 @@ let AllCss = StyleSheet.create({
         textAlign: "center",
         textAlignVertical: "center",
         backgroundColor: "#ddd",
+    },
+    containerTableCellHeadS: {
+        flexDirection: "row",
+        width: Dimensions.get('window').width/3,
+        height: 40,
+        padding: 5,
+        color: "white",
+        fontSize: 18,
+        backgroundColor: "#aaa",
+        textAlign: "center",
+        textAlignVertical: "center"
+    },
+    containerTableCellGrayS: {
+        flexDirection: "row",
+        width: Dimensions.get('window').width/3,
+        height: 40,
+        padding: 5,
+        color: "#0187d6",
+        fontSize: 16,
+        textAlign: "center",
+        textAlignVertical: "center",
+        backgroundColor: "#eee",
+    },
+    containerTableCellBlueS: {
+        flexDirection: "row",
+        width: Dimensions.get('window').width/3,
+        height: 40,
+        padding: 5,
+        color: "#0187d6",
+        fontSize: 16,
+        textAlign: "center",
+        textAlignVertical: "center",
+        backgroundColor: "#ddd",
     }
 });
 module.exports = AllCss;
+/*                */
