@@ -137,4 +137,4 @@ module.exports = AllCss;
 /*                          <TableCon2  num={2}  place={places[1]}  status={statuses[1]}  time={times[1]}　operate={operates[1]} style={styles.containerTableCellBlue}></TableCon2>
                     <TableCon3  num={3}  place={places[2]}  status={statuses[2]}  time={times[2]}　operate={operates[2]} style={styles.containerTableCellBlue}></TableCon3>
                     <TableCon4  num={4}  place={places[3]}  status={statuses[3]}  time={times[3]}　operate={operates[3]} style={styles.containerTableCellBlue}></TableCon4>号"   num="编号"  place="位置"  ratio="占用率" style={AllCss.containerTableCellHead}></Table>
-*/
+this.modePromoteFunc1(this.state.modePromote)*/

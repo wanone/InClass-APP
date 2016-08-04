@@ -130,8 +130,20 @@ var ModalBox = React.createClass({
     close(){
         this.closeModal5();
     },
-    reverseFunc(){
-        alert("ok");
+    func1(){
+        alert(this.state.statusS);
+        if ( this.state.statusS == "开启"){
+            this.state.statusS="关闭";
+            alert(this.state.statusS);
+        }else{
+            this.state.statusS="开启";
+        }
+    },
+    func2(){
+        alert("ok2");
+    },
+    func3(){
+        alert("ok3");
     },
     render() {
         modePeoples = new Array();
@@ -171,30 +183,36 @@ var ModalBox = React.createClass({
 
                 <Modal isOpen={this.state.isOpen} onClosed={this.close} style={styles.modal4} position={"center"}>
                     <View style={styles.headTextCon}>
-                        <Text style={styles.infoHeadText}>{"申请信息"}</Text>
+                        <Text style={styles.infoHeadText}>{"当前状态"}</Text>
                     </View>
                     <View style={styles.infoTextCon}>
                         <View style={styles.modeCon}>
                             <View style={styles.modeConT}>
                                 <Text style={styles.infoRowHead}>{"状态更换:"}</Text>
-                                <TouchableOpacity
-                                onPress={this.reverseFunc}>
-                                <Text style={styles.infoText}>{this.state.statusS}</Text>
-                                </TouchableOpacity>
+                                <View style={styles.infoText}>
+                                    <TouchableOpacity
+                                    onPress={this.func1} style={styles.infoTextBtn}>
+                                        <Text style={styles.infoTextBtnText}>{this.state.statusS}</Text>
+                                    </TouchableOpacity>
+                                </View>
                             </View>
                             <View style={styles.modeConT}>
                                 <Text style={styles.infoRowHead}>{"人控模式:"}</Text>
-                                <TouchableOpacity
-                                onPress={this.reverseFunc}>
-                                <Text style={styles.infoText}>{this.state.modePeople}</Text>
-                                </TouchableOpacity>                            
+                                <View style={styles.infoText}>
+                                    <TouchableOpacity
+                                    onPress={this.func2} style={styles.infoTextBtn}>
+                                        <Text style={styles.infoTextBtnText}>{this.state.modePeople}</Text>
+                                    </TouchableOpacity>    
+                                </View>                        
                             </View>
                             <View style={styles.modeConT}>
                                 <Text style={styles.infoRowHead}>{"远程控制:"}</Text>
-                                <TouchableOpacity
-                                onPress={this.reverseFunc}>
-                                <Text style={styles.infoText}>{this.state.modePromote}</Text>    
-                                </TouchableOpacity>                     
+                                <View style={styles.infoText}>
+                                    <TouchableOpacity
+                                    onPress={this.func3} style={styles.infoTextBtn}>
+                                        <Text style={styles.infoTextBtnText}>{this.state.modePromote}</Text>
+                                    </TouchableOpacity>       
+                                </View>                 
                             </View>
                         </View>
                         <View style={styles.infoRowNew}>
@@ -283,6 +301,9 @@ var styles  = StyleSheet.create({
         textAlignVertical: "center",
         color: "#0187d6",
     },
+    infoTextBtnText: {
+        
+    }
     sureText: {
         fontSize: 18,
         textAlign: "center",
@@ -332,13 +353,23 @@ var styles  = StyleSheet.create({
         height: 210
     },
     infoText: {
-        width: Dimensions.get('window').width*0.5,
+        width: Dimensions.get('window').width*0.45,
         height: 50,
         fontSize: 18,
         color: "#0187d6",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "white",
+    },
+    infoTextBtn: {
+        width: Dimensions.get('window').width*0.2,
+        height: 35,
+        fontSize: 18,
+        color: "#0187d6",
         textAlign: "center",
+        borderRadius: 15,
         textAlignVertical: "center",
-        backgroundColor: "green",
+        backgroundColor: "red",
     },
     infoRow: {
         width: Dimensions.get('window').width*0.9,
@@ -384,13 +415,13 @@ var styles  = StyleSheet.create({
         alignItems: "center",
     },
     infoRowHead: {
-        width: Dimensions.get('window').width*0.4,
+        width: Dimensions.get('window').width*0.45,
         height: 50,
         fontSize: 16,
         textAlign: "center",
         textAlignVertical: "center",
         color: "#0187d6",
-        backgroundColor: "yellow",
+        backgroundColor: "white",
     }
 });
 
