@@ -95,11 +95,11 @@ export default class LogSign extends Component {
                     <View style={styles.logBox}>
                         <TouchableOpacity style={styles.containerStyleLog}
                         onPress={()=>this._navigate('Right')}>
-                            <Text style={styles.styleLog}>{'登录'}</Text>
+                            <Text style={styles.styleLog}>{'登 录'}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.containerStyleSign}
                         onPress={()=>this.getBuildings()}>
-                            <Text style={styles.styleSign}>{'注册'}</Text>
+                            <Text style={styles.styleSign}>{'注 册'}</Text>
                         </TouchableOpacity>
                     </View>
                 </Image>
@@ -120,6 +120,22 @@ class logPage2 extends Component {
     }
     handleChange(text){
         this.setState({valuePass:text});
+    }
+    postData(){
+        valueUser = Number(this.state.valueUser);
+        valuePass = Number(this.state.valuePass);
+        fetch('http://123.207.6.76/inclass/api/student/login?number='+valueUser+"&password="+valuePass)
+        .then((response) => response.text())
+        .then((responseText) => {
+            var data = JSON.parse(responseText);
+            if (data.status == 0){
+                alert("ok");
+            }
+        })
+        .catch((error) => {
+            console.warn(error);
+            alert("error");
+        })
     }
     render() {
         valueUser = this.state.valueUser;

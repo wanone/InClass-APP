@@ -135,5 +135,4 @@ let AllCss = StyleSheet.create({
 });
 module.exports = AllCss;
 /*                         <Table seNum="序号"   num="编号"  place="位置"  ratio="占用率" style={AllCss.containerTableCellHead}></Table>
-  {this.state.TwoPageR ? <TwoPageR    tabLabel={classes[1]}   state={this.state.TwoPageRR}></TwoPageR>:false}
-   {this.state.FivePageR ? <FivePageR   tabLabel={classes[4]}   state={this.state.FivePageRR}></FivePageR>:false}*/
+*/

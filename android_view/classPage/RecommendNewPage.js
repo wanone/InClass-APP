@@ -39,14 +39,25 @@ export default class RecommendNewPage extends Component{
             SixPageRR : false,
             SevenPageRR : false,
             EightPageRR : false,
-            NinePageRR : false
+            NinePageRR : false,
+            OnePageR : true,
+　　　　　　TwoPageR : false,
+　　　　　　ThreePageR : false,
+　　　　　　FourPageR : false,
+　　　　　　FivePageR : false,
+　　　　　　SixPageR : false,
+　　　　　　SevenPageR : false,
+　　　　　　EightPageR : false,
+　　　　　　NinePageR : false
         };
     }
     componentWillMount() {
         this.getBuildings();
+        this.getBuildingsR();
     }
     componentWillUnmount() {
         this.getBuildings();
+        this.getBuildingsR();
     }
     getBuildings(){
         var datas = new Array();
@@ -97,20 +108,69 @@ export default class RecommendNewPage extends Component{
             console.warn(error);
         })
     }
+    getBuildingsR(){
+        var datas = new Array();
+        fetch("http://123.207.6.76/inclass/manage/classroom/getbuildings")
+        .then((response) => response.text())
+        .then((responseText) => {
+            var data = JSON.parse(responseText);
+            if (data.status == 0){
+                var array = data.body;
+                for(var i=0; i<array.length; i++ ){
+                    switch (Number(array[i].building)){
+                        case 1:
+                            this.setState({OnePageR: true});
+                            break;
+                        case 2:
+                            this.setState({TwoPageR: true});
+                            break;
+                        case 3:
+                            this.setState({ThreePageR: true});
+                            break;
+                        case 4:
+                            this.setState({FourPageR: true});
+                            break;
+                        case 5:
+                            this.setState({FivePageR: true});
+                            break;
+                        case 6:
+                            this.setState({SixPageR: true});
+                            break;
+                        case 7:
+                            this.setState({SevenPageR: true});
+                            break;
+                        case 8:
+                            this.setState({EightPageR: true});
+                            break;
+                        case 9:
+                            this.setState({NinePageR: true});
+                            break;
+                        default:
+                            alert("no");
+                    }
+                }
+            }else{
+                alert("request fail");
+            }
+        })
+        .catch((error) => {
+            console.warn(error);
+        })
+    }
     render() {
         return (
             <View style={styles.contrainer}>
                 <ScrollableTabView
                     renderTabBar={()=><ClassTabBar/>}>
-                    <OnePageR   tabLabel="一教" state={this.state.OnePageRR}></OnePageR>
-                    <TwoPageR   tabLabel="二教" state={this.state.TwoPageRR}></TwoPageR>
-                    <ThreePageR tabLabel="三教" state={this.state.ThreePageRR}></ThreePageR>
-                    <FourPageR  tabLabel="四教" state={this.state.FourPageRR}></FourPageR>
-                    <FivePageR  tabLabel="五教" state={this.state.FivePageRR}></FivePageR>
-                    <SixPageR   tabLabel="六教" state={this.state.SixPageRR}></SixPageR>
-                    <SevenPageR tabLabel="七教" state={this.state.SevenPageRR}></SevenPageR>
-                    <EightPageR tabLabel="八教" state={this.state.EightPageRR}></EightPageR>
-                    <NinePageR  tabLabel="九教" state={this.state.NinePageRR}></NinePageR>
+                    {this.state.OnePageR ? <OnePageR   tabLabel={"一教"}   state={this.state.OnePageRR}></OnePageR>:false}
+                    {this.state.TwoPageR ? <TwoPageR   tabLabel={"二教"}   state={this.state.TwoPageRR}></TwoPageR>:false}
+                    {this.state.ThreePageR ? <ThreePageR tabLabel={"三教"}   state={this.state.ThreePageRR}></ThreePageR>:false}
+                    {this.state.FourPageR ? <FourPageR  tabLabel={"四教"}   state={this.state.FourPageRR}></FourPageR>:false}
+                    {this.state.FivePageR ? <FivePageR  tabLabel={"五教"}   state={this.state.FivePageRR}></FivePageR>:false}
+                    {this.state.SixPageR ? <SixPageR   tabLabel={"六教"}   state={this.state.SixPageRR}></SixPageR>:false}
+                    {this.state.SevenPageR ? <SevenPageR tabLabel={"七教"}   state={this.state.SevenPageRR}></SevenPageR>:false}
+                    {this.state.EightPageR ? <EightPageR tabLabel={"八教"}   state={this.state.EightPageRR}></EightPageR>:false}
+                    {this.state.NinePageR ? <NinePageR  tabLabel={"九教"}   state={this.state.NinePageRR}></NinePageR>:false}
                 </ScrollableTabView>
             </View>
         )

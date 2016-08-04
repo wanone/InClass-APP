@@ -93,12 +93,12 @@ var ModalBox = React.createClass({
             valueNumber: '学号',
             valueClass: '班级',
             valueID: '身份证',
-            valueApplyTime: '申请时间',
             valueApplyReason1: '申请理由',
             valueApplyReason2: '',
             valueApplyReason3: '',
             valueApplyReason4: '',
-            valueProveThing: '证明材料',
+            valueStartTime: "",
+            valueEndTime: ""
         }
     },
     openModal1(id) {
@@ -149,8 +149,11 @@ var ModalBox = React.createClass({
     ChangeID(text){
         this.setState({valueID:text});
     },
-    ChangeApplyTime(text){
-        this.setState({valueApplyTime:text});
+    ChangeStartTime(text){
+        this.setState({valueStartTime:text});
+    },
+    ChangeEndTime(text){
+        this.setState({valueEndTime:text});
     },
     ChangeApplyReason1(text){
         this.setState({valueApplyReason1:text});
@@ -164,9 +167,6 @@ var ModalBox = React.createClass({
     ChangeApplyReason4(text){
         this.setState({valueApplyReason4:text});
     },
-    ChangeProveThing(text){
-        this.setState({valueProveThing:text});
-    },
     renderList() {
         var list = [];
         for (var i=0;i<50;i++) {
@@ -174,26 +174,20 @@ var ModalBox = React.createClass({
         }
         return list;
     },
-    postForm(url){
-        this.closeModal5();
-        this.postData();
-        alert("ok");
-    },
-    postData(){
-        fetch("http://123.207.6.76/inclass/api/classroom/selectall", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                valueName : this.state.valueName,
-                valueNumber : this.state.valueNumber,
-                valueClass : this.state.valueClass,
-                valueID : this.state.valueID,
-                valueApplyTime : this.state.valueApplyTime,
-                valueApplyReason : this.state.valueApplyReason1 + this.state.valueApplyReason2 + this.state.valueApplyReason3 + this.state.valueApplyReason4
-            })
+    postForm(){
+        valueUser = Number(this.state.valueUser);
+        valuePass = Number(this.state.valuePass);
+        fetch('http://123.207.6.76/inclass/api/student/login?number='+valueUser+"&password="+valuePass)
+        .then((response) => response.text())
+        .then((responseText) => {
+            var data = JSON.parse(responseText);
+            if (data.status == 0){
+                alert("ok");
+            }
+        })
+        .catch((error) => {
+            console.warn(error);
+            alert("error");
         })
     },
     render() {
@@ -201,7 +195,8 @@ var ModalBox = React.createClass({
         valueNumber = this.state.valueNumber;
         valueClass = this.state.valueClass;
         valueID = this.state.valueID;
-        valueApplyTime = this.state.valueApplyTime;
+        valueStartTime = this.state.valueStartTime;
+        valueEndTime = this.state.valueEndTime;
         valueApplyReason1 = this.state.valueApplyReason1;
         valueApplyReason2 = this.state.valueApplyReason2;
         valueApplyReason3 = this.state.valueApplyReason3;
@@ -253,18 +248,25 @@ var ModalBox = React.createClass({
                         onChangeText={ (text) => this.ChangeID(text)}/>
                     </View>
                     <View style={applyCss.formRow}>
-                        <Text style={applyCss.formTextTime}>{"申请时间:"}</Text>
+                        <Text style={applyCss.formText}>{"开始时间:"}</Text>
                         <TextInput
-                        style={applyCss.textInputTime}
-                        placeholder="申请时间"
+                        style={applyCss.textInput}
+                        placeholder="开始时间"
                         placeholderTextColor="#ccc"
                         multiline = {false}
-                        onChangeText={ (text) => this.ChangeApplyTime(text)}/>
-                        
+                        onChangeText={ (text) => this.ChangeStartTime(text)}/>
+
+                        <Text style={applyCss.formText}>{"结束时间:"}</Text>
+                        <TextInput
+                        style={applyCss.textInput}
+                        placeholder="结束时间"
+                        placeholderTextColor="#ccc"
+                        multiline = {false}
+                        onChangeText={ (text) => this.ChangeEndTime(text)}/>
                     </View>
                     <View style={applyCss.formRowCon}>
                         
-                        <Text style={applyCss.formTextCon}>{"申请理由1:"}</Text>
+                        <Text style={applyCss.formTextCon}>{"申请理由:"}</Text>
                         
                         <TextInput
                         style={applyCss.textInputCon}
@@ -312,8 +314,10 @@ var ModalBox = React.createClass({
                             <Text style={applyCss.infoText}>{valueID}</Text>
                         </View>
                          <View style={applyCss.infoRow}>
-                            <Text style={applyCss.infoRowHead}>{"申请时间:"}</Text>
-                            <Text style={applyCss.infoText}>{valueApplyTime}</Text>
+                            <Text style={applyCss.infoRowHead1}>{"开始时间:"}</Text>
+                            <Text style={applyCss.infoText1}>{valueStartTime}</Text>
+                            <Text style={applyCss.infoRowHead1}>{"结束时间:"}</Text>
+                            <Text style={applyCss.infoText1}>{valueEndTime}</Text>
                         </View>
                          <View style={applyCss.infoRow}>
                             <Text style={applyCss.infoRowHead}>{"申请理由:"}</Text>

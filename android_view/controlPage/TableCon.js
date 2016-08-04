@@ -11,7 +11,9 @@ import {
     TextInput,
     Dimensions
 } from 'react-native';
-import TableConCss from "./TableConCss";
+
+import TableCssCon  from "./TableCssCon";
+
 export default class TableCon extends Component{
     render() {
         return (

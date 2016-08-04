@@ -18,7 +18,6 @@ import {
 import   TabBar              from    './TabBarNew';
 import   ClassPage           from    '../classPage/ClassPage'; 
 import   ControlPage         from    '../controlPage/ControlPage'; 
-import   RecommendPage       from    '../controlPage/RecommendPage';
 import   RecommendNewPage    from    '../controlPage/RecommendNewPage/RecommendNewPage';   
 import   ApplyPage           from    '../applyPage/ApplyPage'; 
 import   MePage              from    '../mePage/MePage'; 
