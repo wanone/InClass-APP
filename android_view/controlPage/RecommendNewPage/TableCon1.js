@@ -13,25 +13,19 @@ import {
 } from 'react-native'; 
 
 import   TableCssCon  from   "./TableCssCon";
+import   ModalBox     from   "./ModalBox";
 
-export default class TableCon extends Component{
+export default class TableCon1 extends Component{
     constructor(props) {
         super(props);
         this.state = {};
     }
     render() {
         return (
-            <View style={TableCssCon.containerTable}>
-                <Text style={this.props.style}>{this.props.num}</Text>
-                <Text style={this.props.style}>{this.props.place}</Text>
-                <Text style={this.props.style}>{this.props.status}</Text>
-                <Text style={this.props.style}>{this.props.time}</Text>
-                <View style={TableCssCon.btnCon}>
-                    <TouchableOpacity  style={TableCssCon.btn}  onPress={this.props.onPress}>
-                        <Text style={TableCssCon.btnText}>{this.props.operate}</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
+            <ModalBox num={this.props.num} place={this.props.place}
+            status={this.props.status} time={this.props.time}
+            operate={this.props.operate}
+            style={this.props.style}></ModalBox>
         )
     }
 }

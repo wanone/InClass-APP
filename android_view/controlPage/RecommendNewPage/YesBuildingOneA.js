@@ -26,7 +26,6 @@ export default class YesBuildingOneA extends Component {
         super(props);
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-            dataSource: ds.cloneWithRows(this.getRecommendBuilding("building=1")),
             status: 1,
         };
 
@@ -41,48 +40,9 @@ export default class YesBuildingOneA extends Component {
         var s=date.getSeconds();
         return  Y+M+D+h+m+s;
     }
-    getRecommendBuilding(url){
-        var baseurl="http://123.207.6.76/inclass/api/classroom/selectall?pageSize=10&requestPage=1&";
-        var urlNew=baseurl + url; 
-        var datas = new Array();
-        fetch(urlNew)
-        .then((response) => response.text())
-        .then((responseText) => {
-            var data = JSON.parse(responseText);
-            if (data.status == 0){
-                var array = data.body.results;
-                for(var i=0; i<array.length; i++ ){
-                    array[i].num=i+1;
-                    array[i].place="位置";
-                    if (array[i].status == 0){
-                        array[i].status="关闭";
-                        array[i].operate="开启";
-                    }else{
-                        array[i].status="开启";
-                        array[i].operate="关闭";
-                    };
-                    array[i].time=this.convertTime(array[i].time);
-                    datas.push(array[i]);
-                };
-                datas = immutable.fromJS(datas);
-                datas = datas.toArray();
-                this.setState({
-                    dataSource: this.state.dataSource.cloneWithRows(datas),
-                });
-            }else{
-                alert("request fail");
-            }
-        })
-        .catch((error) => {
-            console.warn(error);
-        })
-        return datas;
-    }
-    change(){
-        
-    }
     render() {
         var places = new Array();
+        var nums = new Array();
         var statuses = new Array();
         var times = new Array();
         var operates = new Array();
@@ -90,14 +50,13 @@ export default class YesBuildingOneA extends Component {
         statuses = ["关闭", "开启", "关闭", "开启"];
         times = ["2016/04/11", "2016/04/12", "2016/04/13", "2016/04/14"];
         operates = ["开启","关闭","开启","关闭"];
+        operates2 = ["更多","更多","更多","更多"];
+        nums = [1, 2, 3, 4];
         return (
             <View style={styles.contrainer}>
                 <Table   num="序号"   place="位置" status="状态"   time="更新时间"  operate="操作" style={styles.containerTableCellHead}></Table>
                 <View style={styles.contrainerTab}>
-                    <TableCon1  num={1}  place={places[0]}  status={statuses[0]}  time={times[0]}　operate={operates[0]}  onPress={this.change.bind(this)}  style={styles.containerTableCellBlue}></TableCon1>
-                    <TableCon2  num={2}  place={places[1]}  status={statuses[1]}  time={times[1]}　operate={operates[1]}  onPress={this.change.bind(this)}  style={styles.containerTableCellBlue}></TableCon2>
-                    <TableCon3  num={3}  place={places[2]}  status={statuses[2]}  time={times[2]}　operate={operates[2]}  onPress={this.change.bind(this)}  style={styles.containerTableCellBlue}></TableCon3>
-                    <TableCon4  num={4}  place={places[3]}  status={statuses[3]}  time={times[3]}　operate={operates[3]}  onPress={this.change.bind(this)}  style={styles.containerTableCellBlue}></TableCon4>
+                    <TableCon1  num={nums}  place={places}  status={statuses}  time={times}　operate={operates2} style={styles.containerTableCellBlue}></TableCon1>
                 </View>
             </View>
         )
@@ -106,10 +65,16 @@ export default class YesBuildingOneA extends Component {
 
 const styles = StyleSheet.create({
     contrainer: {
-        flex: 1,
+        position: "absolute",
+        zIndex: 100,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height-194,
     },
     contrainerTab: {
-        flex: 1,
+        position: "absolute",
+        zIndex: 100,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height-234,
     },
     containerTableCellHead: {
         flexDirection: "row",

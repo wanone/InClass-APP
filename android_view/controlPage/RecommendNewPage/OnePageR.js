@@ -16,7 +16,6 @@ import {
 } from 'react-native';
 
 import   AllCss              from    './AllCss';
-import   Table               from    './Table';
 import   TableCon            from    './TableCon';    
 import   immutable           from    'immutable';
 import   NoBuildingAll       from    './NoBuildingAll';

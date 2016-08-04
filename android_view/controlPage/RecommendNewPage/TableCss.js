@@ -10,7 +10,6 @@ let TableCss = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: 40,
         backgroundColor: "red",
-        marginBottom: 1,
         justifyContent: "space-between",
         alignItems: "center"
     },
