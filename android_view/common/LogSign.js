@@ -69,6 +69,25 @@ export default class LogSign extends Component {
         }).done;
         return datas;
     }
+    getBuildings(){
+        var datas = new Array();
+        fetch("http://123.207.6.76/inclass/api/classroom/getbuildings")
+        .then((response) => response.text())
+        .then((responseText) => {
+            var data = JSON.parse(responseText);
+            if (data.status == 0){
+                var array = data.body.buildings;
+                for(var i=0; i<array.length; i++ ){
+                    alert(array[i].building);
+                };
+            }else{
+                alert("request fail");
+            }
+        })
+        .catch((error) => {
+            console.warn(error);
+        })
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -79,7 +98,7 @@ export default class LogSign extends Component {
                             <Text style={styles.styleLog}>{'登录'}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.containerStyleSign}
-                        onPress={()=>this.getData("api/classroom/getrecommendbybuilding?building=1")}>
+                        onPress={()=>this.getBuildings()}>
                             <Text style={styles.styleSign}>{'注册'}</Text>
                         </TouchableOpacity>
                     </View>

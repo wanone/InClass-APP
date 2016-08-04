@@ -22,8 +22,7 @@ let controlCss = StyleSheet.create({
 		color: "white"
 	},
 	tableContainer: {
-		flex: 1,
-        marginBottom: 50,
+        flex: 1,
 	},
 	containerTableConCellHead: {
         flexDirection: "row",
@@ -62,5 +61,16 @@ let controlCss = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: 200,
     },
+    containerSelectImg: {
+        width: 50,
+        height: 50,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    backImg: {
+        width: 25,
+        height: 25,
+    },
+
 });
 module.exports = controlCss;

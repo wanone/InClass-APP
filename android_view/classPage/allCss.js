@@ -134,4 +134,5 @@ let AllCss = StyleSheet.create({
     }
 });
 module.exports = AllCss;
-/*                */
+/*                         <Table seNum="序号"   num="编号"  place="位置"  ratio="占用率" style={AllCss.containerTableCellHead}></Table>
+  */

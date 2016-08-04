@@ -15,7 +15,7 @@ import {
     ToastAndroid
 } from 'react-native';
 
-import styles  from   './commonCss';
+import styles  from   './commonCssNew';
 
 export default class TabBar extends Component {
     render() {

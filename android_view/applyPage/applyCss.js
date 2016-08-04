@@ -135,7 +135,7 @@ let applyCss = StyleSheet.create({
     },
     infoRow: {
         width: Dimensions.get('window').width*0.9,
-        height: 35,
+        height: 40,
         flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "center",
@@ -173,6 +173,7 @@ let applyCss = StyleSheet.create({
     infoRowNew: {
         width: Dimensions.get('window').width*0.9,
         height: 40,
+        marginTop: 5,
         flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "center",

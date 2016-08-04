@@ -10,8 +10,9 @@ import {
     TextInput,
 } from 'react-native';
 
-import styles        from  './commonCss';
-import AppPage       from  './AppPage';
+import  styles        from  './commonCss';
+import  AppPage       from  './AppPage';
+import  SuperApp      from  './SuperApp';
 
 export default class homePage extends Component {
     renderScene(route, navigator) {
@@ -27,7 +28,7 @@ export default class homePage extends Component {
         return (
           <Navigator
             style={{flex:1}}
-            initialRoute={{component: AppPage}}
+            initialRoute={{component: SuperApp}}
             configureScene={this.configureScene}
             renderScene={this.renderScene}/>
         );

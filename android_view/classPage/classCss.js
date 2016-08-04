@@ -38,4 +38,15 @@ let classCss = StyleSheet.create({
 	}
 });
 module.exports = classCss;
-/*this.getData("http://123.207.6.76/inclass/api/classroom/getrecommendbybuilding?building=1")countries.toArray()*/
+/*this.getData("http://123.207.6.76/inclass/api/classroom/getrecommendbybuilding?building=1")countries.toArray()
+                    switch(array[i].building){
+                        case 1: this.setState({OnePageRR:true});alert(this.state.OnePageRR);break;
+                        case 2: this.setState({TwoPageRR:true});break;
+                        case 3: this.setState({ThreePageRR:true});break;
+                        case 4: this.setState({FourPageRR:true});break;
+                        case 5: this.setState({FivePageRR:true});break;
+                        case 6: this.setState({SixPageRR:true});break;
+                        case 7: this.setState({SevenPageRR:true});break;
+                        case 8: this.setState({EightPageRR:true});break;
+                        default: this.setState({NinePageRR:true});
+                    }*/

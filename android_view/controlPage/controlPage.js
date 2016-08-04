@@ -10,68 +10,48 @@ import {
     TouchableWithoutFeedback,
     TextInput,
     Dimensions,
-    ScrollView,
-    BackAndroid,
-    Platform,
-    ToastAndroid
+    ScrollView
 } from 'react-native';
 
-import  styles        from   '../common/commonCss';
-import  controlCss    from   './controlCss';
-import  TableCon      from   './TableCon';
+import   classCss      from    "./classCss";
+import   AllCss        from    './AllCss';
+import   Table         from    './Table';
+import   ModalBox      from    './ModalBox';
+import   Button        from    'react-native-button';
+import   Dropdown      from   './Dropdown'; 
+import   DropdownNew   from   './DropdownNew'; 
 
-export default class ControlPage extends Component {
-    componentWillMount() {
-        if (Platform.OS === 'android') {
-            BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
-        }
-    }
-    componentWillUnmount() {
-        if (Platform.OS === 'android') {
-            BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
-        }
-    }
-    onBackAndroid = () => {
-        if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
-            //最近2秒内按过back键，可以退出应用。
-            return false;
-        }
-        this.lastBackPressed = Date.now();
-        ToastAndroid.show('再点击一次退出应用',ToastAndroid.SHORT);
-        return true;
-    };
+export default class ControlPage extends Component{
     render() {
+        var builds = new Array(); //server data
+        builds = ["X1101教室1", "X1102教室", "X1103教室", "X1104教室", "X1105教室", "X1106教室", "X1107教室", "X1108教室", "X1109教室"]; 
         return (
-            <View style={PageCss.container}>
-                <View style={controlCss.headText}>
-                    <Text style={controlCss.tabText}>{"X11010教室"}</Text>
-                </View>
-                <View style={controlCss.tableContainer}>
-                    <TableCon num="编号" place="位置"  condition="状态" conditionTime="状态变更时间" mode="人控模式" operate="操作" remark="备注" style={controlCss.containerTableConCellHead}></TableCon>
-                    <ScrollView style={controlCss.scrollCon} showsVerticalScrollIndicator = {false}>
-                        <TableCon num="1111" place="X6405" condition="关闭" conditionTime="2016/5/13"    mode="off"      operate="开启" remark="普通" style={controlCss.containerTableConCellGray}></TableCon>
-                        <TableCon num="1111" place="X6405" condition="关闭" conditionTime="2016/5/13"    mode="off"      operate="开启" remark="普通" style={controlCss.containerTableConCellBlue}></TableCon> 
-                        <TableCon num="1111" place="X6405" condition="关闭" conditionTime="2016/5/13"    mode="off"      operate="开启" remark="普通" style={controlCss.containerTableConCellGray}></TableCon>
-                        <TableCon num="1111" place="X6405" condition="关闭" conditionTime="2016/5/13"    mode="off"      operate="开启" remark="普通" style={controlCss.containerTableConCellBlue}></TableCon> 
-                        <TableCon num="1111" place="X6405" condition="关闭" conditionTime="2016/5/13"    mode="off"      operate="开启" remark="普通" style={controlCss.containerTableConCellGray}></TableCon> 
-                        <TableCon num="1111" place="X6405" condition="关闭" conditionTime="2016/5/13"    mode="off"      operate="开启" remark="普通" style={controlCss.containerTableConCellBlue}></TableCon> 
-                        <TableCon num="1111" place="X6405" condition="关闭" conditionTime="2016/5/13"    mode="off"      operate="开启" remark="普通" style={controlCss.containerTableConCellGray}></TableCon> 
-                        <TableCon num="1111" place="X6405" condition="关闭" conditionTime="2016/5/13"    mode="off"      operate="开启" remark="普通" style={controlCss.containerTableConCellBlue}></TableCon>
-                        <TableCon num="1111" place="X6405" condition="关闭" conditionTime="2016/5/13"    mode="off"      operate="开启" remark="普通" style={controlCss.containerTableConCellGray}></TableCon> 
-                        <TableCon num="1111" place="X6405" condition="关闭" conditionTime="2016/5/13"    mode="off"      operate="开启" remark="普通" style={controlCss.containerTableConCellBlue}></TableCon> 
-                        <TableCon num="1111" place="X6405" condition="关闭" conditionTime="2016/5/13"    mode="off"      operate="开启" remark="普通" style={controlCss.containerTableConCellGray}></TableCon> 
-                        <TableCon num="1111" place="X6405" condition="关闭" conditionTime="2016/5/13"    mode="off"      operate="开启" remark="普通" style={controlCss.containerTableConCellBlue}></TableCon>
-                    </ScrollView> 
-                </View>
+            <View style={styles.contrainer}>
+                <DropdownNew build={builds}></DropdownNew>
             </View>
-        );
+        )
     }
 }
 
-let PageCss = StyleSheet.create({
-    container: {
-        position: "absolute",
+const styles = StyleSheet.create({
+    contrainer: {
+        flex: 1,
+        backgroundColor: "white",
+    },
+    contrainerDrop: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height-93,
+        height: Dimensions.get('window').height-144,
+        backgroundColor: "red",
+    },
+    containerSelect: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height-144,
+        backgroundColor: "white",
+    },
+    containerSCon: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height-214,
+        backgroundColor: "red",
+        marginTop: 10,
     }
-})
+});

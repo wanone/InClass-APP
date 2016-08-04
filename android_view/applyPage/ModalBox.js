@@ -38,7 +38,7 @@ var styles  = StyleSheet.create({
     },  
     modal4: {
         width: Dimensions.get('window').width*0.9,
-        height: 265,
+        height: 295,
         borderRadius: 10,
     },
     btn: {
@@ -80,45 +80,6 @@ var styles  = StyleSheet.create({
         flex: 1,
         position: "absolute",
         top: 0,
-    },
-    show:{
-        left: 0,
-    },
-    hide: {
-        left: -9999,
-    },
-    containerTableCellHead: {
-        flexDirection: "row",
-        width: Dimensions.get('window').width/4,
-        height: 40,
-        padding: 5,
-        color: "white",
-        fontSize: 18,
-        backgroundColor: "#aaa",
-        textAlign: "center",
-        textAlignVertical: "center"
-    },
-    containerTableCellGray: {
-        flexDirection: "row",
-        width: Dimensions.get('window').width/4,
-        height: 40,
-        padding: 5,
-        color: "#0187d6",
-        fontSize: 16,
-        textAlign: "center",
-        textAlignVertical: "center",
-        backgroundColor: "#eee",
-    },
-    containerTableCellBlue: {
-        flexDirection: "row",
-        width: Dimensions.get('window').width/4,
-        height: 40,
-        padding: 5,
-        color: "#0187d6",
-        fontSize: 16,
-        textAlign: "center",
-        textAlignVertical: "center",
-        backgroundColor: "#ddd",
     }
 });
 var ModalBox = React.createClass({
@@ -213,6 +174,28 @@ var ModalBox = React.createClass({
         }
         return list;
     },
+    postForm(url){
+        this.closeModal5();
+        this.postData();
+        alert("ok");
+    },
+    postData(){
+        fetch("http://123.207.6.76/inclass/api/classroom/selectall", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                valueName : this.state.valueName,
+                valueNumber : this.state.valueNumber,
+                valueClass : this.state.valueClass,
+                valueID : this.state.valueID,
+                valueApplyTime : this.state.valueApplyTime,
+                valueApplyReason : this.state.valueApplyReason1 + this.state.valueApplyReason2 + this.state.valueApplyReason3 + this.state.valueApplyReason4
+            })
+        })
+    },
     render() {
         valueName = this.state.valueName;
         valueNumber = this.state.valueNumber;
@@ -224,7 +207,6 @@ var ModalBox = React.createClass({
         valueApplyReason3 = this.state.valueApplyReason3;
         valueApplyReason4 = this.state.valueApplyReason4;
         valueApplyReason = valueApplyReason1 + valueApplyReason2 + valueApplyReason3 + valueApplyReason4;
-        valueProveThing = this.state.valueProveThing;
         var BContent = <Button onPress={this.closeModal5} style={[styles.btn, styles.btnModal]}>X</Button>;
         return (
             <View style={styles.wrapper}>
@@ -282,7 +264,7 @@ var ModalBox = React.createClass({
                     </View>
                     <View style={applyCss.formRowCon}>
                         
-                        <Text style={applyCss.formTextCon}>{"申请理由:"}</Text>
+                        <Text style={applyCss.formTextCon}>{"申请理由1:"}</Text>
                         
                         <TextInput
                         style={applyCss.textInputCon}
@@ -346,7 +328,7 @@ var ModalBox = React.createClass({
                             </TouchableOpacity>
 
                             <TouchableOpacity
-                            onPress={this.closeModal5}>
+                            onPress={this.postForm}>
                                 <View style={applyCss.sure}>
                                     <Text style={applyCss.sureText}>{'确认'}</Text>
                                 </View>

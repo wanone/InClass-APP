@@ -19,6 +19,7 @@ import ScrollableTabView, { DefaultTabBar, } from 'react-native-scrollable-tab-v
 import styles              from   '../common/commonCss';
 import classCss            from   './classCss';
 import RecommendNewPage    from   './RecommendNewPage';
+import RecommendPage       from   './RecommendPage';
 import AllNewPage          from   './AllNewPage';
 import ExitAPP             from   '../common/ExitAPP';
 
@@ -47,8 +48,8 @@ export default class ClassPage extends Component {
             <View style={PageCss.container}>
                 <ScrollableTabView
                     renderTabBar={()=><DefaultTabBar/>}>
-                        <RecommendNewPage tabLabel="推荐"></RecommendNewPage>
-                        <AllNewPage    tabLabel="全部"></AllNewPage>
+                        <RecommendPage tabLabel="推荐教室"></RecommendPage>
+                        <RecommendNewPage tabLabel="全部教室"></RecommendNewPage>
                 </ScrollableTabView>
             </View>
         );
@@ -59,6 +60,6 @@ let PageCss = StyleSheet.create({
     container: {
         position: "absolute",
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height-93,
+        height: Dimensions.get('window').height-94,
     }
 })

@@ -30,9 +30,8 @@ export default class Page4 extends Component {
 
 let PageCss = StyleSheet.create({
     container: {
-        position: "absolute",
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height-93,
+        height: Dimensions.get('window').height-94,
         backgroundColor: "blue",
     }
 })
