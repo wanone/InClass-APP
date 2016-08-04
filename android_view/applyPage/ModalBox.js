@@ -175,9 +175,21 @@ var ModalBox = React.createClass({
         return list;
     },
     postForm(){
-        valueUser = Number(this.state.valueUser);
-        valuePass = Number(this.state.valuePass);
-        fetch('http://123.207.6.76/inclass/api/student/login?number='+valueUser+"&password="+valuePass)
+        name = valueName;
+        number = Number(valueNumber);
+        classname = valueClass;
+        cardnumber = Number(valueID);
+        starttime = valueStartTime;
+        endtime = valueEndTime;
+        reason = valueApplyReason;
+        fetch("http://www.in-class.cn/api/apply/add?"+
+        "name="+name+
+        "&number="+number+
+        "&classname="+classname+
+        "&cardnumber="+cardnumber+
+        "&starttime="+starttime+
+        "&endtime="+endtime+
+        "&reason="+reason)
         .then((response) => response.text())
         .then((responseText) => {
             var data = JSON.parse(responseText);
