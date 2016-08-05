@@ -17,6 +17,7 @@ import   OnePageR             from    './oneClass/OnePageR';
 import   TwoPageR             from    './twoClass/TwoPageR';
 import   ThreePageR           from    './threeClass/ThreePageR';
 import   FourPageR            from    './fourClass/FourPageR';
+
 import   FivePageR            from    './FivePageR';
 import   SixPageR             from    './SixPageR';
 import   SevenPageR           from    './SevenPageR';
@@ -48,7 +49,8 @@ export default class RecommendNewPage extends Component{
 　　　　　　SixPageR : false,
 　　　　　　SevenPageR : false,
 　　　　　　EightPageR : false,
-　　　　　　NinePageR : false
+　　　　　　NinePageR : false,
+            classes: "",
         };
     }
     componentWillMount() {
@@ -109,14 +111,18 @@ export default class RecommendNewPage extends Component{
         })
     }
     getBuildingsR(){
-        var datas = new Array();
-        fetch("http://192.168.1.169:8080/inclass/api/light/getcontrollightsbystu")
+        classesS = new Array();
+        fetch("http://123.207.6.76/inclass/api/light/getcontrollightsbystu")
         .then((response) => response.text())
         .then((responseText) => {
             var data = JSON.parse(responseText);
             if (data.status == 0){
                 var array = data.body;
-                alert(array.length);
+                for(var i=0; i<array.length; i++ ){
+                    array[i].name=array[i].name+"教室";
+                    classesS.push(array[i].name);
+                };
+                this.setState({classes: classesS});
             }else{
                 alert("request fail");
             }
@@ -126,8 +132,6 @@ export default class RecommendNewPage extends Component{
         })
     }
     render() {
-        var classes=new Array();  //server data
-        classes = ["X1101教室", "X1102教室", "X1103教室", "X1104教室", "X1105教室", "X1106教室", "X1107教室", "X1108教室", "X1109教室"]; 
         return (
             <View style={styles.contrainer}>
                 <View style={styles.contrainerText}>
@@ -135,15 +139,16 @@ export default class RecommendNewPage extends Component{
                 </View>
                 <ScrollableTabView
                     renderTabBar={()=><ClassTabBar/>}>
-                    <OnePageR    tabLabel={classes[0]}   state={this.state.OnePageRR}></OnePageR>
-                   
-                    {this.state.ThreePageR ? <ThreePageR  tabLabel={classes[2]}   state={this.state.ThreePageRR}></ThreePageR>:false}
-                    {this.state.FourPageR ? <FourPageR   tabLabel={classes[3]}   state={this.state.FourPageRR}></FourPageR>:false}
+
+                    <OnePageR    tabLabel={this.state.classes[0]}  state={this.state.OnePageRR}></OnePageR>
+                    <TwoPageR    tabLabel={this.state.classes[1]}  state={this.state.TwoPageRR}></TwoPageR>
+                    <ThreePageR  tabLabel={this.state.classes[2]}  state={this.state.ThreePageRR}></ThreePageR>
+                    <FourPageR   tabLabel={this.state.classes[3]}  state={this.state.FourPageRR}></FourPageR>
                     
-                    {this.state.SixPageR ? <SixPageR    tabLabel={classes[5]}   state={this.state.SixPageRR}></SixPageR>:false}
-                    {this.state.SevenPageR ? <SevenPageR  tabLabel={classes[6]}   state={this.state.SevenPageRR}></SevenPageR>:false}
-                    {this.state.EightPageR ? <EightPageR  tabLabel={classes[7]}   state={this.state.EightPageRR}></EightPageR>:false}
-                    {this.state.NinePageR ? <NinePageR   tabLabel={classes[8]}   state={this.state.NinePageRR}></NinePageR>:false}
+                    {this.state.SixPageR ? <SixPageR    tabLabel={this.state.classes[5]}   state={this.state.SixPageRR}></SixPageR>:false}
+                    {this.state.SevenPageR ? <SevenPageR  tabLabel={this.state.classes[6]}   state={this.state.SevenPageRR}></SevenPageR>:false}
+                    {this.state.EightPageR ? <EightPageR  tabLabel={this.state.classes[7]}   state={this.state.EightPageRR}></EightPageR>:false}
+                    {this.state.NinePageR ? <NinePageR   tabLabel={this.state.classes[8]}   state={this.state.NinePageRR}></NinePageR>:false}
                 </ScrollableTabView>
             </View>
         )

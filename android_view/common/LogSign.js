@@ -44,52 +44,6 @@ export default class LogSign extends Component {
         ToastAndroid.show('再点击一次退出应用',ToastAndroid.SHORT);
         return true;
     }
-    getData(url){
-        var datas = [];
-        var baseurl = "http://192.168.1.169:8080/inclass/";
-        var urlNew = baseurl + url;
-        var datas = [];
-        fetch(urlNew)
-        .then((response) => response.text())
-        .then((responseText) => {
-            var data = JSON.parse(responseText);
-            if (data.status == 0){
-                var array = data.body;
-                alert(array.length);
-                for(var i=0; i<array.length; i++ ){
-                    datas.push(array[i]);
-                }
-                this.setState({
-                    dataSource: this.state.dataSource.cloneWithRows(datas),
-                });
-            }else{
-                alert("request fail");
-            }
-        })
-        .catch((error) => {
-            console.warn(error);
-        }).done;
-        return datas;
-    }
-    getBuildings(){
-        var datas = new Array();
-        fetch("http://123.207.6.76/inclass/api/classroom/getbuildings")
-        .then((response) => response.text())
-        .then((responseText) => {
-            var data = JSON.parse(responseText);
-            if (data.status == 0){
-                var array = data.body.buildings;
-                for(var i=0; i<array.length; i++ ){
-                    alert(array[i].building);
-                };
-            }else{
-                alert("request fail");
-            }
-        })
-        .catch((error) => {
-            console.warn(error);
-        })
-    }
     render() {
         return (
             <View style={styles.container}>
@@ -100,7 +54,7 @@ export default class LogSign extends Component {
                             <Text style={styles.styleLog}>{'登 录'}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.containerStyleSign}
-                        onPress={()=>this.getBuildings()}>
+                        onPress={()=>this._navigate('Right')}>
                             <Text style={styles.styleSign}>{'注 册'}</Text>
                         </TouchableOpacity>
                     </View>
@@ -137,7 +91,6 @@ class logPage2 extends Component {
         .then((responseText) => {
             var data = JSON.parse(responseText);
             if (data.status == 0){
-                alert("ok");
                 this.props.navigator.push({
                     component: homePage,
                 });
@@ -181,9 +134,7 @@ class logPage2 extends Component {
                     <View style={styles.sureIcon}>
                         <TouchableOpacity style={styles.logBtn}
                         onPress={()=>{
-                            this.props.navigator.push({
-                                component: homePage,
-                            });
+                            this.postData();
                         }}>
                             <Text style={styles.styleLog}>{'登 录'}</Text>
                         </TouchableOpacity>

@@ -19,7 +19,7 @@ import   AllCss              from    '../AllCss';
 import   TableCon            from    '../TableCon';    
 import   immutable           from    'immutable';
 import   NoBuildingAll       from    '../NoBuildingAll';
-import   YesBuildingFourA     from    './YesBuildingFourA';
+import   YesBuildingFourA    from    './YesBuildingFourA';
 
 export default class FourPageR extends Component {
     render() {
