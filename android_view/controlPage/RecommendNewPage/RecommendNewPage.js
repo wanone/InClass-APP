@@ -110,45 +110,13 @@ export default class RecommendNewPage extends Component{
     }
     getBuildingsR(){
         var datas = new Array();
-        fetch("http://123.207.6.76/inclass/manage/classroom/getbuildings")
+        fetch("http://192.168.1.169:8080/inclass/api/light/getcontrollightsbystu")
         .then((response) => response.text())
         .then((responseText) => {
             var data = JSON.parse(responseText);
             if (data.status == 0){
                 var array = data.body;
-                for(var i=0; i<array.length; i++ ){
-                    switch (Number(array[i].building)){
-                        case 1:
-                            this.setState({OnePageR: true});
-                            break;
-                        case 2:
-                            this.setState({TwoPageR: true});
-                            break;
-                        case 3:
-                            this.setState({ThreePageR: true});
-                            break;
-                        case 4:
-                            this.setState({FourPageR: true});
-                            break;
-                        case 5:
-                            this.setState({FivePageR: true});
-                            break;
-                        case 6:
-                            this.setState({SixPageR: true});
-                            break;
-                        case 7:
-                            this.setState({SevenPageR: true});
-                            break;
-                        case 8:
-                            this.setState({EightPageR: true});
-                            break;
-                        case 9:
-                            this.setState({NinePageR: true});
-                            break;
-                        default:
-                            alert("no");
-                    }
-                }
+                alert(array.length);
             }else{
                 alert("request fail");
             }

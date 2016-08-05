@@ -302,8 +302,11 @@ var styles  = StyleSheet.create({
         color: "#0187d6",
     },
     infoTextBtnText: {
-        
-    }
+        fontSize: 18,
+        color: "white",
+        textAlign: "center",
+        textAlignVertical: "center",
+    },
     sureText: {
         fontSize: 18,
         textAlign: "center",
@@ -366,9 +369,9 @@ var styles  = StyleSheet.create({
         height: 35,
         fontSize: 18,
         color: "#0187d6",
-        textAlign: "center",
+        justifyContent: "center",
+        alignItems: "center",
         borderRadius: 15,
-        textAlignVertical: "center",
         backgroundColor: "red",
     },
     infoRow: {
@@ -417,7 +420,7 @@ var styles  = StyleSheet.create({
     infoRowHead: {
         width: Dimensions.get('window').width*0.45,
         height: 50,
-        fontSize: 16,
+        fontSize: 18,
         textAlign: "center",
         textAlignVertical: "center",
         color: "#0187d6",

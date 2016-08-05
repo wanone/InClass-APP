@@ -27,11 +27,13 @@ export default class LogSign extends Component {
         if (Platform.OS === 'android') {
             BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
         }
+        console.disableYellowBox = true;
     }
     componentWillUnmount() {
         if (Platform.OS === 'android') {
             BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
         }
+        console.disableYellowBox = true;
     }
     onBackAndroid = () => {
         if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
@@ -44,7 +46,7 @@ export default class LogSign extends Component {
     }
     getData(url){
         var datas = [];
-        var baseurl = "http://123.207.6.76/inclass/";
+        var baseurl = "http://192.168.1.169:8080/inclass/";
         var urlNew = baseurl + url;
         var datas = [];
         fetch(urlNew)
@@ -99,7 +101,7 @@ export default class LogSign extends Component {
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.containerStyleSign}
                         onPress={()=>this.getBuildings()}>
-                            <Text style={styles.styleSign}>{'注 册'}</Text>
+                            <Text style={styles.styleSign}>{'注 册1'}</Text>
                         </TouchableOpacity>
                     </View>
                 </Image>
@@ -111,25 +113,34 @@ class logPage2 extends Component {
     constructor(props){
         super(props);
         this.state={
-          valueUser: '用户名',
+          valueNum: '学号',
           valuePass: '******'
         };
     }
     onChangeText(text){
-        this.setState({valueUser:text});
+        this.setState({valueNum:text});
     }
     handleChange(text){
         this.setState({valuePass:text});
     }
+    componentWillMount() {
+        console.disableYellowBox = true;
+    }
+    componentWillUnmount() {
+        console.disableYellowBox = true;
+    }
     postData(){
-        valueUser = Number(this.state.valueUser);
+        valueNum = Number(this.state.valueNum);
         valuePass = Number(this.state.valuePass);
-        fetch('http://123.207.6.76/inclass/api/student/login?number='+valueUser+"&password="+valuePass)
+        fetch('http://123.207.6.76/inclass/api/student/login?number='+valueNum+"&password="+valuePass)
         .then((response) => response.text())
         .then((responseText) => {
             var data = JSON.parse(responseText);
             if (data.status == 0){
                 alert("ok");
+                this.props.navigator.push({
+                    component: homePage,
+                });
             }
         })
         .catch((error) => {
@@ -138,7 +149,7 @@ class logPage2 extends Component {
         })
     }
     render() {
-        valueUser = this.state.valueUser;
+        valueNum = this.state.valueNum;
         valuePass = this.state.valuePass;
         return (
             <View style={styles.containerLS}>
@@ -155,7 +166,7 @@ class logPage2 extends Component {
                         style={styles.textinput}
                         placeholderTextColor="#ccc"
                         multiline = {false}
-                        value={valueUser}
+                        value={valueNum}
                         onChangeText={ (text) => this.onChangeText(text)}/>
 
                         <TextInput
@@ -170,9 +181,7 @@ class logPage2 extends Component {
                     <View style={styles.sureIcon}>
                         <TouchableOpacity style={styles.logBtn}
                         onPress={()=>{
-                            this.props.navigator.push({
-                                component: homePage,
-                            });
+                            this.postData();
                         }}>
                             <Text style={styles.styleLog}>{'登 录'}</Text>
                         </TouchableOpacity>

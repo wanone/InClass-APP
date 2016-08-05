@@ -223,4 +223,37 @@ module.exports = applyCss;
                         </View>
 
 
-                        <Button onPress={this.open}></Button>  */
+                        <Button onPress={this.open}></Button>  
+                for(var i=0; i<array.length; i++ ){
+                    switch (Number(array[i].building)){
+                        case 1:
+                            this.setState({OnePageR: true});
+                            break;
+                        case 2:
+                            this.setState({TwoPageR: true});
+                            break;
+                        case 3:
+                            this.setState({ThreePageR: true});
+                            break;
+                        case 4:
+                            this.setState({FourPageR: true});
+                            break;
+                        case 5:
+                            this.setState({FivePageR: true});
+                            break;
+                        case 6:
+                            this.setState({SixPageR: true});
+                            break;
+                        case 7:
+                            this.setState({SevenPageR: true});
+                            break;
+                        case 8:
+                            this.setState({EightPageR: true});
+                            break;
+                        case 9:
+                            this.setState({NinePageR: true});
+                            break;
+                        default:
+                            alert("no");
+                    }
+                }*/
