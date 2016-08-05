@@ -10,8 +10,9 @@ import {
     TextInput,
     ScrollView
 } from 'react-native';
-import meCss      from  './meCss';
-import TableCon   from  './TableCon';
+
+import   meCss      from    './meCss';
+import   Record     from    './Record';
 
 export default class ApplyRecord extends Component {
     _navigate(type = 'Normal') {
@@ -42,28 +43,11 @@ class logPage2 extends Component {
                         <Text style={meCss.headText}>{"申请记录"}</Text>
                     </View>
                 </View>
-                <View style={meCss.containerCon}>
-                    <TableCon   seNum="序号"   time="申请时间"   condition="申请状态" remark="备注"   operate="操作"       style={meCss.containerTableConCellHead}></TableCon>
-                    <ScrollView style={meCss.scrollCon} showsVerticalScrollIndicator = {false}>
-                        <TableCon   seNum="11010"  time="2016/3/15"  condition="成功"     remark="wanone" operate="查看 删除"  style={meCss.containerTableConCellGray}></TableCon>
-                        <TableCon   seNum="11010"  time="2016/3/15"  condition="成功"     remark="wanone" operate="查看 删除"  style={meCss.containerTableConCellBlue}></TableCon>
-                        <TableCon   seNum="11010"  time="2016/3/15"  condition="成功"     remark="wanone" operate="查看 删除"  style={meCss.containerTableConCellGray}></TableCon>
-                        <TableCon   seNum="11010"  time="2016/3/15"  condition="成功"     remark="wanone" operate="查看 删除"  style={meCss.containerTableConCellBlue}></TableCon>
-                        <TableCon   seNum="11010"  time="2016/3/15"  condition="成功"     remark="wanone" operate="查看 删除"  style={meCss.containerTableConCellGray}></TableCon>
-                        <TableCon   seNum="11010"  time="2016/3/15"  condition="成功"     remark="wanone" operate="查看 删除"  style={meCss.containerTableConCellBlue}></TableCon>
-                        <TableCon   seNum="11010"  time="2016/3/15"  condition="成功"     remark="wanone" operate="查看 删除"  style={meCss.containerTableConCellGray}></TableCon>
-                        <TableCon   seNum="11010"  time="2016/3/15"  condition="成功"     remark="wanone" operate="查看 删除"  style={meCss.containerTableConCellBlue}></TableCon>
-                        <TableCon   seNum="11010"  time="2016/3/15"  condition="成功"     remark="wanone" operate="查看 删除"  style={meCss.containerTableConCellGray}></TableCon>
-                        <TableCon   seNum="11010"  time="2016/3/15"  condition="成功"     remark="wanone" operate="查看 删除"  style={meCss.containerTableConCellBlue}></TableCon>
-                        <TableCon   seNum="11010"  time="2016/3/15"  condition="成功"     remark="wanone" operate="查看 删除"  style={meCss.containerTableConCellGray}></TableCon>
-                        <TableCon   seNum="11010"  time="2016/3/15"  condition="成功"     remark="wanone" operate="查看 删除"  style={meCss.containerTableConCellBlue}></TableCon>
-                        <TableCon   seNum="11010"  time="2016/3/15"  condition="成功"     remark="wanone" operate="查看 删除"  style={meCss.containerTableConCellGray}></TableCon>
-                        <TableCon   seNum="11010"  time="2016/3/15"  condition="成功"     remark="wanone" operate="查看 删除"  style={meCss.containerTableConCellBlue}></TableCon>
-                        <TableCon   seNum="11010"  time="2016/3/15"  condition="成功"     remark="wanone" operate="查看 删除"  style={meCss.containerTableConCellGray}></TableCon>
-                        <TableCon   seNum="11010"  time="2016/3/15"  condition="成功"     remark="wanone" operate="查看 删除"  style={meCss.containerTableConCellBlue}></TableCon>
-                        <TableCon   seNum="11010"  time="2016/3/15"  condition="成功"     remark="wanone" operate="查看 删除"  style={meCss.containerTableConCellGray}></TableCon>
-                        <TableCon   seNum="11010"  time="2016/3/15"  condition="成功"     remark="wanone" operate="查看 删除"  style={meCss.containerTableConCellBlue}></TableCon>
-                    </ScrollView>
+                <View style={meCss.recordCon}>
+                    <Record/>
+                </View>
+                <View style={meCss.placeCon}>
+                    <Text style={meCss.remarkText}>{"向下滑动查看更多申请记录"}</Text>
                 </View>
             </View>
         );

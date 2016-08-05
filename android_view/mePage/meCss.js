@@ -10,9 +10,19 @@ let meCss = StyleSheet.create({
         flex: 1,
         position: "relative" 
     },
-    containerCon: {
-        flex: 1,
-        marginBottom: 70,
+    recordCon: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height-120,
+        backgroundColor: "#ddd",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    placeCon: {
+        width: Dimensions.get('window').width,
+        height: 50,
+        backgroundColor: "white",
+        justifyContent: "center",
+        alignItems: "center"
     },
     scrollCon: {
         width: Dimensions.get('window').width,
@@ -39,7 +49,15 @@ let meCss = StyleSheet.create({
     },
     nameText: {
         fontSize: 20,
-        color: "#0187d6"
+        color: "#0187d6",
+        textAlign: "center",
+        textAlignVertical: "center",
+    },
+    remarkText: {
+        fontSize: 18,
+        color: "#0187d6",
+        textAlign: "center",
+        textAlignVertical: "center",
     },
     containerStyleTab:{
         flexDirection: "row",
@@ -73,7 +91,6 @@ let meCss = StyleSheet.create({
     containerLS: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
-        backgroundColor: "#0187d6",
         position: "relative",
     },
     containerLSNew: {

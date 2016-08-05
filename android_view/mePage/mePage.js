@@ -23,8 +23,6 @@ import  SystemInform     from   './SystemInform';
 import  Profile          from   './Profile';
 import  Exit             from   './Exit';
 
-
-
 export default class MePage extends Component {
 
     renderScene(route, navigator) {
