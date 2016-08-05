@@ -16,11 +16,9 @@ import {
 import   Button             from   'react-native-button';
 import   Modal              from   'react-native-modalbox';
 import   Slider             from   'react-native-slider';
-import   applyCss           from   './applyCss';
-import   AllCss             from   './AllCss';
-import   Table              from   './Table';
-import   TableCssCon        from   "./TableCssCon";
-import   TableCon           from   "./TableCon";
+import   applyCss           from   '../applyCss';
+import   AllCss             from   '../AllCss';
+import   TableCon           from   "../TableCon";
 
 var window  = Dimensions.get('window');
 

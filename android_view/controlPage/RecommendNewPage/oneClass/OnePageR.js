@@ -15,18 +15,18 @@ import {
     TouchableHighlight
 } from 'react-native';
 
-import   AllCss              from    './AllCss';
-import   Table               from    './Table';  
+import   AllCss              from    '../AllCss';
+import   TableCon            from    '../TableCon';    
 import   immutable           from    'immutable';
-import   NoBuildingAll       from    './NoBuildingAll';
-import   YesBuildingTwoA      from    './YesBuildingTwoA';
+import   NoBuildingAll       from    '../NoBuildingAll';
+import   YesBuildingOneA     from    './YesBuildingOneA';
 
-export default class TwoPageR extends Component {
+export default class OnePageR extends Component {
     render() {
         return (
             <View style={styles.contrainer}>
             {
-                this.props.state == true ? <YesBuildingTwoA/> : <NoBuildingAll/>
+                this.props.state == true ? <YesBuildingOneA/> : <YesBuildingOneA/>
             }
             </View>
         )

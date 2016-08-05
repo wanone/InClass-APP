@@ -12,21 +12,20 @@ import {
     Dimensions
 } from 'react-native'; 
 
-import   TableCssCon  from   "./TableCssCon";
+import   TableCssCon  from   "../TableCssCon";
 import   ModalBox     from   "./ModalBox";
-import   TableCon     from   "./TableCon";
 
-export default class TableCon2 extends Component{
+export default class TableCon1 extends Component{
     constructor(props) {
         super(props);
         this.state = {};
     }
     render() {
         return (
-            <TableCon num={this.props.num} place={this.props.place}
+            <ModalBox num={this.props.num} place={this.props.place}
             status={this.props.status} time={this.props.time}
             operate={this.props.operate}
-            style={this.props.style}></TableCon>
+            style={this.props.style}></ModalBox>
         )
     }
 }

@@ -13,10 +13,10 @@ import {
     ScrollView
 } from 'react-native';
 
-import   OnePageR             from    './OnePageR';
-import   TwoPageR             from    './TwoPageR';
-import   ThreePageR           from    './ThreePageR';
-import   FourPageR            from    './FourPageR';
+import   OnePageR             from    './oneClass/OnePageR';
+import   TwoPageR             from    './twoClass/TwoPageR';
+import   ThreePageR           from    './threeClass/ThreePageR';
+import   FourPageR            from    './fourClass/FourPageR';
 import   FivePageR            from    './FivePageR';
 import   SixPageR             from    './SixPageR';
 import   SevenPageR           from    './SevenPageR';
