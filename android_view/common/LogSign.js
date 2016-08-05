@@ -10,7 +10,8 @@ import {
     TextInput,
     BackAndroid,
     Platform,
-    ToastAndroid
+    ToastAndroid,
+    ListView
 } from 'react-native';
 
 import   styles      from  './commonCss';
@@ -55,7 +56,7 @@ export default class LogSign extends Component {
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.containerStyleSign}
                         onPress={()=>this._navigate('Right')}>
-                            <Text style={styles.styleSign}>{'1注 册'}</Text>
+                            <Text style={styles.styleSign}>{'注 册'}</Text>
                         </TouchableOpacity>
                     </View>
                 </Image>
@@ -134,9 +135,7 @@ class logPage2 extends Component {
                     <View style={styles.sureIcon}>
                         <TouchableOpacity style={styles.logBtn}
                         onPress={()=>{
-                            this.props.navigator.push({
-                                component: homePage,
-                            });
+                            this.postData();
                         }}>
                             <Text style={styles.styleLog}>{'登 录'}</Text>
                         </TouchableOpacity>

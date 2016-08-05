@@ -8,11 +8,27 @@ import {
     TouchableOpacity,
     Image,
     TextInput,
-    ScrollView
+    ScrollView,
+    ListView
 } from 'react-native';
 
-import   meCss      from    './meCss';
-import   Record     from    './Record';
+import   meCss         from    './meCss';
+import   Record        from    './Record';
+import   immutable     from    'immutable';
+
+const  Row = ({num,classS,status,applyTime,dealTime,startTime,endTime}) => (
+    <Record  num={num}  classS={classS}  status={status}  applyTime={applyTime}　dealTime={dealTime} startTime={startTime} endTime={endTime}></Record>
+)
+
+const  renderRow = (rowData) => (
+    <Row  num={rowData.get('num')}
+          classS={rowData.get('classS')}
+          status={rowData.get('status')}
+          applyTime={rowData.get('applyTime')}
+          dealTime={rowData.get('dealTime')}
+          startTime={rowData.get('startTime')}
+          endTime={rowData.get('endTime')}/>
+)
 
 export default class ApplyRecord extends Component {
     _navigate(type = 'Normal') {
@@ -31,6 +47,70 @@ export default class ApplyRecord extends Component {
     }
 }
 class logPage2 extends Component {
+    constructor(props) {
+        super(props);
+        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.state = {
+            dataSource: ds.cloneWithRows(this.getData()),
+        };
+
+    }
+    convertTime(time){
+        var date=new Date(time);
+        var Y=date.getFullYear() + '-';
+        var M=(date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        var D=date.getDate() + ' ';
+        var h=date.getHours() + ':';
+        var m=date.getMinutes() + ':';
+        var s=date.getSeconds();
+        return  Y+M+D+h+m+s;
+    }
+    componentWillMount() {
+        this.getData();
+        console.disableYellowBox = true;
+    }
+    componentWillUnmount() {
+        this.getData();
+        console.disableYellowBox = true;
+    }
+    getData(){
+        var datas = new Array();
+        fetch("http://123.207.6.76/inclass/apply/selectBystu")
+        .then((response) => response.text())
+        .then((responseText) => {
+            var data = JSON.parse(responseText);
+            if (data.status == 0){
+                alert("je");
+                var array = data.body;
+                for(var i=0; i<array.length; i++ ){
+                    array[i].num=i+1;
+                    array[i].class=array[i].classroomId+"教室";
+                    if (array[i].checkStatus == 0){
+                        array[i].status="未审核";
+                    }else{
+                        array[i].status="通过";
+                    }
+                    array[i].applyTime=this.convertTime(array[i].applyTime);
+                    array[i].dealTime=this.convertTime(array[i].checkTime);
+                    array[i].startTime=this.convertTime(array[i].startTime);
+                    array[i].endTime=this.convertTime(array[i].endTime);
+                    datas.push(array[i]);
+                    alert(array[i].endTime);
+                };
+                datas = immutable.fromJS(datas);
+                datas = datas.toArray();
+                this.setState({
+                    dataSource: this.state.dataSource.cloneWithRows(datas),
+                });
+            }else{
+                alert("request fail");
+            }
+        })
+        .catch((error) => {
+            console.warn(error);
+        })
+        return datas;
+    }
     render() {
         return (
             <View style={meCss.containerLS}>
@@ -44,7 +124,10 @@ class logPage2 extends Component {
                     </View>
                 </View>
                 <View style={meCss.recordCon}>
-                    <Record/>
+                    <ListView
+                    enableEmptySections={true}
+                    dataSource={this.state.dataSource}
+                    renderRow={renderRow}/>
                 </View>
                 <View style={meCss.placeCon}>
                     <Text style={meCss.remarkText}>{"向下滑动查看更多申请记录"}</Text>
