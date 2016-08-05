@@ -11,7 +11,6 @@ import {
     BackAndroid,
     Platform,
     ToastAndroid,
-    ListView
 } from 'react-native';
 
 import   styles      from  './commonCss';
