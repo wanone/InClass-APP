@@ -19,14 +19,14 @@ import   AllCss              from    './AllCss';
 import   Table               from    './Table';  
 import   immutable           from    'immutable';
 import   NoBuildingAll       from    './NoBuildingAll';
-import   YesBuildingSix      from    './YesBuildingSix';
+import   YesBuildingSixA      from    './YesBuildingSixA';
 
 export default class SixPageR extends Component {
     render() {
         return (
             <View style={styles.contrainer}>
             {
-                this.props.state == true ? <YesBuildingSix/> : <NoBuildingAll/>
+                this.props.state == true ? <YesBuildingSixA/> : <YesBuildingSixA/>
             }
             </View>
         )

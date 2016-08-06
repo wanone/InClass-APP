@@ -82,6 +82,7 @@ class logPage2 extends Component {
         valueIntroduction = valueIntroduction1 + valueIntroduction2 + valueIntroduction3 + valueIntroduction4;
         return (
             <View style={meCss.containerLSNew}>
+
                 <View style={meCss.headIconNew}>
                     <TouchableOpacity style={meCss.backIcon}
                     onPress={()=>this.props.navigator.pop()}>
@@ -91,7 +92,8 @@ class logPage2 extends Component {
                         <Text style={meCss.headTextNew}>{"个人信息"}</Text>
                     </View>
                 </View>
-                <View style={meCss.containerCon}>
+
+                <View style={meCss.containerConNew}>
                     <View style={applyCss.formRow}>
                         <Text style={applyCss.formText}>{"姓名:"}</Text>
                         <TextInput

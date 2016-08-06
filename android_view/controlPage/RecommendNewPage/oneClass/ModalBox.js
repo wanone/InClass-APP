@@ -298,7 +298,7 @@ var styles  = StyleSheet.create({
         position: "absolute",
         zIndex: 99,
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height-260,
+        height: Dimensions.get('window').height-270,
     },
     modal2: {
         height: 230,

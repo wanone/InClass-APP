@@ -36,6 +36,7 @@ export default class YesBuildingSix extends Component {
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
             dataSource: ds.cloneWithRows(this.getRecommendBuilding("building=6")),
+            class404: false,
         };
 
     }
@@ -59,6 +60,9 @@ export default class YesBuildingSix extends Component {
             var data = JSON.parse(responseText);
             if (data.status == 0){
                 var array = data.body;
+                if (array.length == 0 ){
+                    this.setState({class404: true});
+                }
                 for(var i=0; i<array.length; i++ ){
                     array[i].num=i+1;
                     array[i].rate=array[i].rate+"%";
@@ -83,6 +87,7 @@ export default class YesBuildingSix extends Component {
         return (
             <View style={styles.contrainer}>
                 <Table   num="序号"   id="教室号"  rate="占用率"  pick_time="时间"  style={AllCss.containerTableCellHead}></Table>
+                {this.state.class404 ? <Image source={require('./class404.png')} style={styles.color404}/> : false}
                 <ListView
                 enableEmptySections={true}
                 dataSource={this.state.dataSource}

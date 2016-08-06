@@ -40,7 +40,7 @@ export default class RecommendNewPage extends Component{
             SevenPageRR : false,
             EightPageRR : false,
             NinePageRR : false,
-            OnePageR : true,
+            OnePageR : false,
 　　　　　　TwoPageR : false,
 　　　　　　ThreePageR : false,
 　　　　　　FourPageR : false,
@@ -61,7 +61,7 @@ export default class RecommendNewPage extends Component{
     }
     getBuildings(){
         var datas = new Array();
-        fetch("http://123.207.6.76/inclass/api/classroom/getbuildings")
+        fetch("http://123.207.6.76/inclass/manage/classroom/getbuildings")
         .then((response) => response.text())
         .then((responseText) => {
             var data = JSON.parse(responseText);

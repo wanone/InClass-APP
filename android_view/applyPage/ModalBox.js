@@ -38,7 +38,7 @@ var styles  = StyleSheet.create({
     },  
     modal4: {
         width: Dimensions.get('window').width*0.9,
-        height: 295,
+        height: 375,
         borderRadius: 10,
     },
     btn: {
@@ -97,8 +97,8 @@ var ModalBox = React.createClass({
             valueApplyReason2: '',
             valueApplyReason3: '',
             valueApplyReason4: '',
-            valueStartTime: "",
-            valueEndTime: ""
+            valueStartTime: "开始时间",
+            valueEndTime: "结束时间"
         }
     },
     openModal1(id) {
@@ -182,6 +182,9 @@ var ModalBox = React.createClass({
         starttime = valueStartTime;
         endtime = valueEndTime;
         reason = valueApplyReason;
+        if (!(name && number && classname && cardnumber && starttime && endtime && reason)){
+            alert("请将申请表填写完整");
+        }
         fetch("http://www.in-class.cn/api/apply/add?"+
         "name="+name+
         "&number="+number+
@@ -194,7 +197,7 @@ var ModalBox = React.createClass({
         .then((responseText) => {
             var data = JSON.parse(responseText);
             if (data.status == 0){
-                alert("ok");
+                alert("您已提交申请");
             }
         })
         .catch((error) => {
@@ -234,6 +237,7 @@ var ModalBox = React.createClass({
                         placeholderTextColor="#ccc"
                         multiline = {false}
                         onChangeText={ (text) => this.ChangeName(text)}/>
+
                         <Text style={applyCss.formText}>{"学号:"}</Text>
                         <TextInput
                         style={applyCss.textInput}
@@ -278,7 +282,12 @@ var ModalBox = React.createClass({
                     </View>
                     <View style={applyCss.formRowCon}>
                         
-                        <Text style={applyCss.formTextCon}>{"申请理由:"}</Text>
+                        <View style={applyCss.formTextCon}>
+                            <Text style={applyCss.formTextS}>{"申"}</Text>
+                            <Text style={applyCss.formTextS}>{"请"}</Text>
+                            <Text style={applyCss.formTextS}>{"理"}</Text>
+                            <Text style={applyCss.formTextS}>{"由:"}</Text>
+                        </View>
                         
                         <TextInput
                         style={applyCss.textInputCon}
@@ -312,10 +321,12 @@ var ModalBox = React.createClass({
                     </View>
                     <View style={applyCss.infoTextCon}>
                         <View style={applyCss.infoRow}>
-                            <Text style={applyCss.infoRowHead1}>{"姓名:"}</Text>
-                            <Text style={applyCss.infoText1}>{valueName}</Text>
-                            <Text style={applyCss.infoRowHead1}>{"学号:"}</Text>
-                            <Text style={applyCss.infoText1}>{valueNumber}</Text>
+                            <Text style={applyCss.infoRowHead}>{"姓名:"}</Text>
+                            <Text style={applyCss.infoText}>{valueName}</Text>
+                        </View>
+                        <View style={applyCss.infoRow}>
+                            <Text style={applyCss.infoRowHead}>{"学号:"}</Text>
+                            <Text style={applyCss.infoText}>{valueNumber}</Text>
                         </View>
                         <View style={applyCss.infoRow}>
                             <Text style={applyCss.infoRowHead}>{"班级:"}</Text>
@@ -325,13 +336,15 @@ var ModalBox = React.createClass({
                             <Text style={applyCss.infoRowHead}>{"身份证:"}</Text>
                             <Text style={applyCss.infoText}>{valueID}</Text>
                         </View>
-                         <View style={applyCss.infoRow}>
-                            <Text style={applyCss.infoRowHead1}>{"开始时间:"}</Text>
-                            <Text style={applyCss.infoText1}>{valueStartTime}</Text>
-                            <Text style={applyCss.infoRowHead1}>{"结束时间:"}</Text>
-                            <Text style={applyCss.infoText1}>{valueEndTime}</Text>
+                        <View style={applyCss.infoRow}>
+                            <Text style={applyCss.infoRowHead}>{"开始时间:"}</Text>
+                            <Text style={applyCss.infoText}>{valueStartTime}</Text>
                         </View>
-                         <View style={applyCss.infoRow}>
+                        <View style={applyCss.infoRow}>
+                            <Text style={applyCss.infoRowHead}>{"结束时间:"}</Text>
+                            <Text style={applyCss.infoText}>{valueEndTime}</Text>
+                        </View>
+                        <View style={applyCss.infoRow}>
                             <Text style={applyCss.infoRowHead}>{"申请理由:"}</Text>
                             <Text style={applyCss.infoText}>{valueApplyReason}</Text>
                         </View>

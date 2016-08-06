@@ -17,15 +17,15 @@ import DropdownCss from "./DropdownCss";
 export default class Dropdown extends Component{
     render() {
         return (
-            <View style={DropdownCss.containerSelectTab}>
+            <TouchableOpacity style={DropdownCss.containerSelectTab} onPress={this.props.open}>
                 <View style={DropdownCss.containerSelectImg}>
                     <Image source={require('./class.png')} style={DropdownCss.backImg}/>
                 </View>
-                <Text style={DropdownCss.containerSelectText}>{'第一教学楼'}</Text>
+                <Text style={DropdownCss.containerSelectText}>{this.props.buildingText}</Text>
                 <View style={DropdownCss.containerSelectImg}>
                     <Image source={require('./triangle.png')} style={DropdownCss.triangleImg}/>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     }
 }

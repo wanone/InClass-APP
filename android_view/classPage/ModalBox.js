@@ -20,6 +20,7 @@ import   applyCss           from   './applyCss';
 import   AllCss             from   './AllCss';
 import   Table              from   './Table';
 import   Building           from   './Building';
+import   BuildingS          from   './BuildingS';
 import   Dropdown           from   './Dropdown';
 import   YesBuildingOne     from   './YesBuildingOne';
 import   YesBuildingTwo     from   './YesBuildingTwo';
@@ -114,6 +115,7 @@ var ModalBox = React.createClass({
       　    isDisabled: false,
       　    swipeToClose: true,
       　    sliderValue: 0.3,
+            buildingText: "第一教学楼",
             Building1 : false,
             Building2 : false,
             Building3 : false,
@@ -132,6 +134,8 @@ var ModalBox = React.createClass({
             YesBuildingSeven : false,
             YesBuildingEight : false,
             YesBuildingNine : false,
+            statusModal: 1,
+            statusBuilding: false,
         }
     },
     openModal1(id) {
@@ -222,49 +226,61 @@ var ModalBox = React.createClass({
         this.clearCon();
         this.closeModal5();
         this.setState({YesBuildingOne : true});
+        this.setState({buildingText : "第一教学楼"});
     },
     close2(){
         this.clearCon();
         this.closeModal5();
         this.setState({YesBuildingTwo : true});
+        this.setState({buildingText : "第二教学楼"});
     },
     close3(){
         this.clearCon();
         this.closeModal5();
         this.setState({YesBuildingThree : true});
+        this.setState({buildingText : "第三教学楼"});
     },
     close4(){
         this.clearCon();
         this.closeModal5();
         this.setState({YesBuildingFour : true});
+        this.setState({buildingText : "第四教学楼"});
     },
     close5(){
         this.clearCon();
         this.closeModal5();
         this.setState({YesBuildingFive : true});
+        this.setState({buildingText : "第五教学楼"});
     },
     close6(){
         this.clearCon();
         this.closeModal5();
         this.setState({YesBuildingSix : true});
+        this.setState({buildingText : "第六教学楼"});
     },
     close7(){
         this.clearCon();
         this.closeModal5();
         this.setState({YesBuildingSeven : true});
+        this.setState({buildingText : "第七教学楼"});
     },
     close8(){
         this.clearCon();
         this.closeModal5();
         this.setState({YesBuildingEight : true});
+        this.setState({buildingText : "第八教学楼"});
     },
     close9(){
         this.clearCon();
         this.closeModal5();
         this.setState({YesBuildingNine : true});
+        this.setState({buildingText : "第九教学楼"});
     },
     open(){
-        this.openModal5();
+        if (this.state.statusModal ==1 ){
+            this.openModal5();
+            this.setState({statusModal : 1});
+        }
     },
     componentWillMount() {
         this.getBuildings();
@@ -280,6 +296,9 @@ var ModalBox = React.createClass({
             var data = JSON.parse(responseText);
             if (data.status == 0){
                 var array = data.body.buildings;
+                if (array.length == 0){
+                    this.setState({statusBuilding: true});
+                };
                 for(var i=0; i<array.length; i++ ){
                     switch (Number(array[i].building)){
                         case 1:
@@ -322,7 +341,6 @@ var ModalBox = React.createClass({
         })
     },
     render() {
-        var BContent = <Button onPress={this.closeModal5} style={[styles.btn, styles.btnModal]}>X</Button>;
         return (
             <View style={styles.wrapper}>
                 <Modal style={[styles.modal, styles.modal4]} position={"bottom"} ref={"modal6"} swipeArea={20}>
@@ -333,30 +351,31 @@ var ModalBox = React.createClass({
                     </ScrollView>
                 </Modal>
 
-                <Button onPress={this.open}><Dropdown></Dropdown></Button>
+                <Dropdown open={this.open} buildingText={this.state.buildingText}></Dropdown>
 
                 <Modal isOpen={this.state.isOpen} onClosed={this.close} style={styles.modal4} position={"center"}>
-                {this.state.Building1 == true ? <Building  num={1}  closeModal={this.close1.bind(this)}/> : false}
-                {this.state.Building2 == true ? <Building  num={2}  closeModal={this.close2.bind(this)}/> : false}
-                {this.state.Building3 == true ? <Building  num={3}  closeModal={this.close3.bind(this)}/> : false}
-                {this.state.Building4 == true ? <Building  num={4}  closeModal={this.close4.bind(this)}/> : false}
-                {this.state.Building5 == true ? <Building  num={5}  closeModal={this.close5.bind(this)}/> : false}
-                {this.state.Building6 == true ? <Building  num={6}  closeModal={this.close6.bind(this)}/> : false}
-                {this.state.Building7 == true ? <Building  num={7}  closeModal={this.close7.bind(this)}/> : false}
-                {this.state.Building8 == true ? <Building  num={8}  closeModal={this.close8.bind(this)}/> : false}
-                {this.state.Building9 == true ? <Building  num={9}  closeModal={this.close9.bind(this)}/> : false}
+                {this.state.statusBuilding ? <BuildingS  closeModal={this.closeModal5}/> : false}
+                {this.state.Building1 ? <Building  num={1}  closeModal={this.close1.bind(this)}/> : false}
+                {this.state.Building2 ? <Building  num={2}  closeModal={this.close2.bind(this)}/> : false}
+                {this.state.Building3 ? <Building  num={3}  closeModal={this.close3.bind(this)}/> : false}
+                {this.state.Building4 ? <Building  num={4}  closeModal={this.close4.bind(this)}/> : false}
+                {this.state.Building5 ? <Building  num={5}  closeModal={this.close5.bind(this)}/> : false}
+                {this.state.Building6 ? <Building  num={6}  closeModal={this.close6.bind(this)}/> : false}
+                {this.state.Building7 ? <Building  num={7}  closeModal={this.close7.bind(this)}/> : false}
+                {this.state.Building8 ? <Building  num={8}  closeModal={this.close8.bind(this)}/> : false}
+                {this.state.Building9 ? <Building  num={9}  closeModal={this.close9.bind(this)}/> : false}
                 </Modal>
 
                 <View style={styles.classCon}>
-                {this.state.YesBuildingOne == true ? <YesBuildingOne/> : false}
-                {this.state.YesBuildingTwo == true ? <YesBuildingTwo/> : false}
-                {this.state.YesBuildingThree  == true ? <YesBuildingThree/> : false}
-                {this.state.YesBuildingFour == true ? <YesBuildingFour/> : false}
-                {this.state.YesBuildingFive == true ? <YesBuildingFive/> : false}
-                {this.state.YesBuildingSix == true ? <YesBuildingSix/> : false}
-                {this.state.YesBuildingSeven == true ? <YesBuildingSeven/> : false}
-                {this.state.YesBuildingEight == true ? <YesBuildingEight/> : false}
-                {this.state.YesBuildingNine == true ? <YesBuildingNine/> : false}
+                {this.state.YesBuildingOne ? <YesBuildingOne/> : false}
+                {this.state.YesBuildingTwo ? <YesBuildingTwo/> : false}
+                {this.state.YesBuildingThree  ? <YesBuildingThree/> : false}
+                {this.state.YesBuildingFour ? <YesBuildingFour/> : false}
+                {this.state.YesBuildingFive ? <YesBuildingFive/> : false}
+                {this.state.YesBuildingSix ? <YesBuildingSix/> : false}
+                {this.state.YesBuildingSeven ? <YesBuildingSeven/> : false}
+                {this.state.YesBuildingEight ? <YesBuildingEight/> : false}
+                {this.state.YesBuildingNine ? <YesBuildingNine/> : false}
                 </View>
 
             </View>

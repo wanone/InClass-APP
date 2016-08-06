@@ -10,6 +10,18 @@ let meCss = StyleSheet.create({
         flex: 1,
         position: "relative" 
     },
+    containerCon: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height-50,
+        backgroundColor: "#0187d6",
+        paddingBottom: 70,
+    },
+    containerConNew: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height-50,
+        backgroundColor: "#fff",
+        paddingBottom: 100,
+    },
     recordCon: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height-120,

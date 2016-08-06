@@ -19,14 +19,14 @@ import   AllCss              from    './AllCss';
 import   Table               from    './Table';  
 import   immutable           from    'immutable';
 import   NoBuildingAll       from    './NoBuildingAll';
-import   YesBuildingEight    from    './YesBuildingEight';
+import   YesBuildingEightA   from    './YesBuildingEightA';
 
 export default class EightPageR extends Component {
     render() {
         return (
             <View style={styles.contrainer}>
             {
-                this.props.state == true ? <YesBuildingEight/> : <NoBuildingAll/>
+                this.props.state == true ? <YesBuildingEightA/> : <YesBuildingEightA/>
             }
             </View>
         )

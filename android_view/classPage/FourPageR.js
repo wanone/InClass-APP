@@ -19,14 +19,14 @@ import   AllCss              from    './AllCss';
 import   Table               from    './Table';  
 import   immutable           from    'immutable';
 import   NoBuildingAll       from    './NoBuildingAll';
-import   YesBuildingFour     from    './YesBuildingFour';
+import   YesBuildingFourA     from    './YesBuildingFourA';
 
 export default class FourPageR extends Component {
     render() {
         return (
             <View style={styles.contrainer}>
             {
-                this.props.state == true ? <YesBuildingFour/> : <NoBuildingAll/>
+                this.props.state == true ? <YesBuildingFourA/> : <YesBuildingFourA/>
             }
             </View>
         )

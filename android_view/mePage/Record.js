@@ -28,49 +28,49 @@ export default class Record extends Component {
                 <View style={styles.Row}>
                     <Text style={styles.RowHeadText}>{"申请人:"}</Text>
                     <View style={styles.RowConText}>
-                        <Text style={styles.RowConTextC}>{this.prop.name}</Text>
+                        <Text style={styles.RowConTextC}>{this.props.name}</Text>
                     </View>
                 </View>
 
                 <View style={styles.Row}>
                     <Text style={styles.RowHeadText}>{"申请教室:"}</Text>
                     <View style={styles.RowConText}>
-                        <Text style={styles.RowConTextC}>{this.prop.classS}</Text>
+                        <Text style={styles.RowConTextC}>{this.props.classS}</Text>
                     </View>
                 </View>
 
                 <View style={styles.Row}>
                     <Text style={styles.RowHeadText}>{"审核状态:"}</Text>
                     <View style={styles.RowConText}>
-                        <Text style={styles.RowConTextC}>{this.prop.status}</Text>
+                        <Text style={styles.RowConTextC}>{this.props.status}</Text>
                     </View>
                 </View>
 
                 <View style={styles.Row}>
                     <Text style={styles.RowHeadText}>{"申请时间:"}</Text>
                     <View style={styles.RowConText}>
-                        <Text style={styles.RowConTextC}>{this.prop.applyTime}</Text>
+                        <Text style={styles.RowConTextC}>{this.props.applyTime}</Text>
                     </View>
                 </View>
 
                 <View style={styles.Row}>
                     <Text style={styles.RowHeadText}>{"审核时间:"}</Text>
                     <View style={styles.RowConText}>
-                        <Text style={styles.RowConTextC}>{this.prop.dealTime}</Text>
+                        <Text style={styles.RowConTextC}>{this.props.dealTime}</Text>
                     </View>
                 </View>
 
                 <View style={styles.Row}>
                     <Text style={styles.RowHeadText}>{"开始时间:"}</Text>
                     <View style={styles.RowConText}>
-                        <Text style={styles.RowConTextC}>{this.prop.startTime}</Text>
+                        <Text style={styles.RowConTextC}>{this.props.startTime}</Text>
                     </View>
                 </View>
 
                 <View style={styles.Row}>
                     <Text style={styles.RowHeadText}>{"结束时间:"}</Text>
                     <View style={styles.RowConText}>
-                        <Text style={styles.RowConTextC}>{this.prop.endTime}</Text>
+                        <Text style={styles.RowConTextC}>{this.props.endTime}</Text>
                     </View>
                 </View>
             </View>
@@ -83,6 +83,8 @@ let styles = StyleSheet.create({
         width: Dimensions.get('window').width-50,
         height: Dimensions.get('window').height-150,
         position: "relative",
+        marginTop: 15,
+        marginBottom: 15,
         backgroundColor: '#0187d6',
         borderRadius: 15,
         justifyContent: "center",

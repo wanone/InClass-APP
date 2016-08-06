@@ -16,20 +16,6 @@ import   meCss         from    './meCss';
 import   Record        from    './Record';
 import   immutable     from    'immutable';
 
-const  Row = ({num,classS,status,applyTime,dealTime,startTime,endTime}) => (
-    <Record  num={num}  classS={classS}  status={status}  applyTime={applyTime}　dealTime={dealTime} startTime={startTime} endTime={endTime}></Record>
-)
-
-const  renderRow = (rowData) => (
-    <Row  num={rowData.get('num')}
-          classS={rowData.get('classS')}
-          status={rowData.get('status')}
-          applyTime={rowData.get('applyTime')}
-          dealTime={rowData.get('dealTime')}
-          startTime={rowData.get('startTime')}
-          endTime={rowData.get('endTime')}/>
-)
-
 export default class ApplyRecord extends Component {
     _navigate(type = 'Normal') {
         this.props.navigator.push({
@@ -46,12 +32,28 @@ export default class ApplyRecord extends Component {
         );
     }
 }
+
+const  Row = ({num,name,classS,status,applyTime,dealTime,startTime,endTime}) => (
+    <Record  num={num}  name={name}  classS={classS}  status={status}  applyTime={applyTime}　dealTime={dealTime} startTime={startTime} endTime={endTime}></Record>
+)
+
+const  renderRow = (rowData) => (
+    <Row  num={rowData.get('num')}
+          name={rowData.get('name')}
+          classS={rowData.get('classS')}
+          status={rowData.get('status')}
+          applyTime={rowData.get('applyTime')}
+          dealTime={rowData.get('dealTime')}
+          startTime={rowData.get('startTime')}
+          endTime={rowData.get('endTime')}/>
+)
+
 class logPage2 extends Component {
     constructor(props) {
         super(props);
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-            dataSource: ds.cloneWithRows(this.getData()),
+            dataSource: ds.cloneWithRows(this.getData),
         };
 
     }
@@ -75,15 +77,15 @@ class logPage2 extends Component {
     }
     getData(){
         var datas = new Array();
-        fetch("http://123.207.6.76/inclass/apply/selectBystu")
+        fetch("http://123.207.6.76/inclass/api/apply/selectBystu")
         .then((response) => response.text())
         .then((responseText) => {
             var data = JSON.parse(responseText);
             if (data.status == 0){
-                alert("je");
                 var array = data.body;
                 for(var i=0; i<array.length; i++ ){
                     array[i].num=i+1;
+                    array[i].name=array[i].student_name;
                     array[i].class=array[i].classroomId+"教室";
                     if (array[i].checkStatus == 0){
                         array[i].status="未审核";
@@ -95,7 +97,6 @@ class logPage2 extends Component {
                     array[i].startTime=this.convertTime(array[i].startTime);
                     array[i].endTime=this.convertTime(array[i].endTime);
                     datas.push(array[i]);
-                    alert(array[i].endTime);
                 };
                 datas = immutable.fromJS(datas);
                 datas = datas.toArray();
@@ -124,10 +125,13 @@ class logPage2 extends Component {
                     </View>
                 </View>
                 <View style={meCss.recordCon}>
+                    
                     <ListView
                     enableEmptySections={true}
                     dataSource={this.state.dataSource}
+                    showsVerticalScrollIndicator = {false}
                     renderRow={renderRow}/>
+
                 </View>
                 <View style={meCss.placeCon}>
                     <Text style={meCss.remarkText}>{"向下滑动查看更多申请记录"}</Text>

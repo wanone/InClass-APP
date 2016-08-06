@@ -19,14 +19,14 @@ import   AllCss              from    './AllCss';
 import   Table               from    './Table';  
 import   immutable           from    'immutable';
 import   NoBuildingAll       from    './NoBuildingAll';
-import   YesBuildingSeven    from    './YesBuildingSeven';
+import   YesBuildingSevenA    from    './YesBuildingSevenA';
 
 export default class SevenPageR extends Component {
     render() {
         return (
             <View style={styles.contrainer}>
             {
-                this.props.state == true ? <YesBuildingSeven/> : <NoBuildingAll/>
+                this.props.state == true ? <YesBuildingSevenA/> : <YesBuildingSevenA/>
             }
             </View>
         )

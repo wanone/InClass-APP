@@ -75,9 +75,15 @@ let applyCss = StyleSheet.create({
         top: 5,
     	width: 50,
 		height: 190,
-		fontSize: 18,
-		color: "white",
+        paddingTop: 40,
+        paddingBottom: 40,
+        justifyContent: "space-between",
+      　alignItems: "center",
 		backgroundColor: '#0187d6'
+    },
+    formTextS: {
+        fontSize: 20,
+        color: "white",
     },
     textInputCon: {
 		width: Dimensions.get('window').width-50,
@@ -127,7 +133,7 @@ let applyCss = StyleSheet.create({
     },
     infoTextCon: {
         width: Dimensions.get('window').width*0.9,
-        height: 210
+        height: 260
     },
     infoText: {
         fontSize: 18,
@@ -151,10 +157,14 @@ let applyCss = StyleSheet.create({
     infoText: {
         width: Dimensions.get("window").width*0.9-100,
         height: 35,
+        fontSize: 16,
         textAlign: "center",
         textAlignVertical: "center",
         borderWidth: 2,
-        borderColor: "#ccc",
+        borderTopWidth: 0,
+        borderLeftWidth: 0,
+        borderRightWidth: 0,
+        borderBottomColor: '#0187d6',
     },
     infoRowHead1: {
         width: 100,
@@ -208,17 +218,3 @@ let applyCss = StyleSheet.create({
     }
 });
 module.exports = applyCss;
-/*<View style={applyCss.sureIcon}>
-                            <TouchableOpacity style={applyCss.logBtn} onPress={() => {
-                                alert(
-                                    '姓名: '+valueName+" , "+
-                                    '学号: '+valueNumber+" , "+
-                                    '班级: '+valueClass+" , "+
-                                    '身份证: '+valueID+" , "+
-                                    '申请时间: '+valueApplyTime+" , "+
-                                    '申请理由: '+valueApplyReason
-                                );
-                            }}>
-                                <Text style={applyCss.styleLog}>{'提 交'}</Text>
-                            </TouchableOpacity>
-                        </View>*/

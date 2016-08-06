@@ -32,83 +32,17 @@ export default class RecommendNewPage extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            OnePageRR : false,
-            TwoPageRR : false,
-            ThreePageRR : false,
-            FourPageRR : false,
-            FivePageRR : false,
-            SixPageRR : false,
-            SevenPageRR : false,
-            EightPageRR : false,
-            NinePageRR : false,
-            OnePageR : true,
+            OnePageR : false,
 　　　　　　TwoPageR : false,
 　　　　　　ThreePageR : false,
-　　　　　　FourPageR : false,
-　　　　　　FivePageR : false,
-　　　　　　SixPageR : false,
-　　　　　　SevenPageR : false,
-　　　　　　EightPageR : false,
-　　　　　　NinePageR : false,
             classes: "",
         };
     }
     componentWillMount() {
-        this.getBuildings();
         this.getBuildingsR();
     }
     componentWillUnmount() {
-        this.getBuildings();
         this.getBuildingsR();
-    }
-    getBuildings(){
-        var datas = new Array();
-        fetch("http://123.207.6.76/inclass/api/classroom/getbuildings")
-        .then((response) => response.text())
-        .then((responseText) => {
-            var data = JSON.parse(responseText);
-            if (data.status == 0){
-                var array = data.body.buildings;
-                for(var i=0; i<array.length; i++ ){
-                    switch (Number(array[i].building)){
-                        case 1:
-                            this.setState({OnePageRR: true});
-                            break;
-                        case 2:
-                            this.setState({TwoPageRR: true});
-                            break;
-                        case 3:
-                            this.setState({ThreePageRR: true});
-                            break;
-                        case 4:
-                            this.setState({FourPageRR: true});
-                            break;
-                        case 5:
-                            this.setState({FivePageRR: true});
-                            break;
-                        case 6:
-                            this.setState({SixPageRR: true});
-                            break;
-                        case 7:
-                            this.setState({SevenPageRR: true});
-                            break;
-                        case 8:
-                            this.setState({EightPageRR: true});
-                            break;
-                        case 9:
-                            this.setState({NinePageRR: true});
-                            break;
-                        default:
-                            alert("no");
-                    }
-                }
-            }else{
-                alert("request fail");
-            }
-        })
-        .catch((error) => {
-            console.warn(error);
-        })
     }
     getBuildingsR(){
         classesS = new Array();
@@ -123,6 +57,19 @@ export default class RecommendNewPage extends Component{
                     classesS.push(array[i].name);
                 };
                 this.setState({classes: classesS});
+                switch (Number(array.length)){
+                     case 1:
+                        this.setState({OnePageR: true});
+                        break;
+                    case 2:
+                        this.setState({OnePageR: true});
+                        this.setState({TwoPageR: true});
+                        break;
+                    default:
+                        this.setState({OnePageR: true});
+                        this.setState({TwoPageR: true});
+                        this.setState({ThreePageR: true});
+                }
             }else{
                 alert("request fail");
             }
@@ -139,16 +86,9 @@ export default class RecommendNewPage extends Component{
                 </View>
                 <ScrollableTabView
                     renderTabBar={()=><ClassTabBar/>}>
-
-                    <OnePageR    tabLabel={this.state.classes[0]}  state={this.state.OnePageRR}></OnePageR>
-                    <TwoPageR    tabLabel={this.state.classes[1]}  state={this.state.TwoPageRR}></TwoPageR>
-                    <ThreePageR  tabLabel={this.state.classes[2]}  state={this.state.ThreePageRR}></ThreePageR>
-                    <FourPageR   tabLabel={this.state.classes[3]}  state={this.state.FourPageRR}></FourPageR>
-                    
-                    {this.state.SixPageR ? <SixPageR    tabLabel={this.state.classes[5]}   state={this.state.SixPageRR}></SixPageR>:false}
-                    {this.state.SevenPageR ? <SevenPageR  tabLabel={this.state.classes[6]}   state={this.state.SevenPageRR}></SevenPageR>:false}
-                    {this.state.EightPageR ? <EightPageR  tabLabel={this.state.classes[7]}   state={this.state.EightPageRR}></EightPageR>:false}
-                    {this.state.NinePageR ? <NinePageR   tabLabel={this.state.classes[8]}   state={this.state.NinePageRR}></NinePageR>:false}
+                    {this.state.OnePageR ? <OnePageR tabLabel={this.state.classes[0]}></OnePageR>:false}
+                    {this.state.TwoPageR ? <TwoPageR tabLabel={this.state.classes[1]}></TwoPageR>:false}
+                    {this.state.ThreePageR ? <ThreePageR tabLabel={this.state.classes[2]}></ThreePageR>:false}
                 </ScrollableTabView>
             </View>
         )
@@ -157,7 +97,6 @@ export default class RecommendNewPage extends Component{
 const styles = StyleSheet.create({
     contrainer: {
         flex: 1,
-        marginBottom: 36,
     },
     contrainerText: {
         width: Dimensions.get('window').width,

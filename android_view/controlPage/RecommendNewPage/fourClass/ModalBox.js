@@ -30,8 +30,10 @@ var ModalBox = React.createClass({
       　    swipeToClose: true,
       　    sliderValue: 0.3,
             statusS: "开启",
-            modePeople: "开启",
-            modePromote: "开启"
+            mode: "开启",
+            modes: "",
+            placeC: "",
+            classesR: "",
         }
     },
     openModal1(id) {
@@ -77,6 +79,45 @@ var ModalBox = React.createClass({
         }
         return list;
     },
+    componentWillMount() {
+        this.getData();
+    },
+    componentWillUnmount() {
+        this.getData();
+    },
+    getData(){
+        var modesS = new Array();
+        var array = new Array();
+        var lightS = new Array();
+        var classesS = new Array();
+        fetch("http://123.207.6.76/inclass/api/light/getcontrollightsbystu")
+        .then((response) => response.text())
+        .then((responseText) => {
+            var data = JSON.parse(responseText);
+            if (data.status == 0){
+                var array = data.body[0].lights;
+                for(var i=0; i<array.length; i++ ){
+                    if ( array[i].mode == 0 ){
+                        modesS.push("关闭");
+                    }else{
+                        modesS.push("开启");
+                    };
+                };
+                this.setState({modes: modesS});
+
+                var array2 = data.body;
+                for(var i=0; i<array2.length; i++ ){
+                    classesS.push(array2[i].name);
+                };
+                this.setState({classesR: classesS});
+            }else{
+                alert("request fail");
+            }
+        })
+        .catch((error) => {
+            console.warn(error);
+        })
+    },
     statusFunc(text){
         if ( text == "开启"){
             this.state.statusS="关闭";
@@ -84,89 +125,94 @@ var ModalBox = React.createClass({
             this.state.statusS="开启";
         }
     },
-    modePeopleFunc(text){
-         if ( text == "开启"){
-            this.state.modePeople="关闭";
+    modeFunc(text){
+        if ( text == "开启"){
+            this.state.mode="关闭";
         }else{
-            this.state.modePeople="开启";
-        }
-    },
-    modePromoteFunc(text){
-         if ( text == "开启"){
-            this.state.modePromote="关闭";
-        }else{
-            this.state.modePromote="开启";
+            this.state.mode="开启";
         }
     },
     open(){
         this.openModal5();
     },
     open1(){
+        this.setState({placeC:this.props.place[0]});
         this.statusFunc(this.props.status[0]);
-        this.modePeopleFunc(modePeoples[0]);
-        this.modePromoteFunc(modePromotes[0]);
+        this.modeFunc(this.state.modes[0]);
         this.openModal5();
     },
     open2(){
+        this.setState({placeC:this.props.place[1]});
         this.statusFunc(this.props.status[1]);
-        this.modePeopleFunc(modePeoples[1]);
-        this.modePromoteFunc(modePromotes[1]);
+        this.modeFunc(this.state.modes[1]);
         this.openModal5();
     },
     open3(){
+        this.setState({placeC:this.props.place[2]});
         this.statusFunc(this.props.status[2]);
-        this.modePeopleFunc(modePeoples[2]);
-        this.modePromoteFunc(modePromotes[2]);
+        this.modeFunc(this.state.modes[2]);
         this.openModal5();
     },
     open4(){
+        this.setState({placeC:this.props.place[3]});
         this.statusFunc(this.props.status[3]);
-        this.modePeopleFunc(modePeoples[3]);
-        this.modePromoteFunc(modePromotes[3]);
+        this.modeFunc(this.state.modes[3]);
         this.openModal5();
     },
     close(){
         this.closeModal5();
     },
-    statusSFunc1(){
-        alert(this.state.statusS);
-        if ( this.state.statusS == "开启"){
-            this.state.statusS="关闭";
-            alert(this.state.statusS);
+    statusSChange(){
+        if (this.state.mode == "关闭"){
+            if (this.props.statusS == "开启"){
+                alert("您已开启照明灯");
+            }else{
+                alert("您已关闭照明灯");
+            }
+            placeCC = Number(this.state.placeC);
+            if (this.state.statusS == "开启"){
+                statusSS=Number(1);
+            }else{
+                statusSS=Number(0);
+            }
+            fetch('http://123.207.6.76/inclass/api/light/updatestatus?id='+placeCC+"&status="+statusSS)
+            .then((response) => response.text())
+            .then((responseText) => {
+                var data = JSON.parse(responseText);
+                if (data.status == 0){
+                }
+            })
+            .catch((error) => {
+                console.warn(error);
+            })
         }else{
-            this.state.statusS="开启";
-            alert(this.state.statusS);
+            alert("当前处于自动模式，不能远程开关照明灯");
         }
     },
-    modePeopleFunc1(){
-        alert(this.state.modePeople);
-        if ( this.state.modePeople == "开启"){
-            this.state.modePeople="关闭";
-            alert(this.state.modePeople);
+    modeChange(){
+        classes=Number(this.state.classesR[0]); 
+        if (this.state.mode == "开启"){
+            modeS=Number(1);
+            alert("您已开启远程控制模式");
         }else{
-            this.state.modePeople="开启";
-            alert(this.state.modePeople);
+            modeS=Number(0);
+            alert("您已关闭远程控制模式");
         }
-    },
-    modePromoteFunc1(){
-        alert(this.state.modePromote);
-        if ( this.state.modePromote == "开启"){
-            this.state.modePromote="关闭";
-            alert(this.state.modePromote);
-        }else{
-            this.state.modePromote="开启";
-            alert(this.state.modePromote);
-        }
+        fetch('http://123.207.6.76/inclass/api/light/updatemode?classroom_id='+classes+"&mode="+modeS)
+        .then((response) => response.text())
+        .then((responseText) => {
+            var data = JSON.parse(responseText);
+            if (data.status == 0){
+            }
+        })
+        .catch((error) => {
+            console.warn(error);
+        })
     },
     postData(){
         this.close();
-        alert("close");
     },
     render() {
-        modePeoples = new Array();
-        modePromotes = new Array();
-        modePeoples = ["关闭", "开启", "关闭", "开启"];
-        modePromotes = ["开启", "关闭", "开启", "关闭"];
         var BContent = <Button onPress={this.closeModal5} style={[styles.btn, styles.btnModal]}>X</Button>;
         return (
             <View style={styles.wrapper}>
@@ -200,36 +246,27 @@ var ModalBox = React.createClass({
 
                 <Modal isOpen={this.state.isOpen} onClosed={this.close} style={styles.modal4} position={"center"}>
                     <View style={styles.headTextCon}>
-                        <Text style={styles.infoHeadText}>{"当前状态"}</Text>
+                        <Text style={styles.infoHeadText}>{"当前操作"}</Text>
                     </View>
                     <View style={styles.infoTextCon}>
                         <View style={styles.modeCon}>
                             <View style={styles.modeConT}>
-                                <Text style={styles.infoRowHead}>{"状态更换:"}</Text>
-                                <View style={styles.infoText}>
-                                    <TouchableOpacity
-                                    onPress={this.statusSFunc1} style={styles.infoTextBtn}>
-                                        <Text style={styles.infoTextBtnText}>{this.state.statusS}</Text>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                            <View style={styles.modeConT}>
-                                <Text style={styles.infoRowHead}>{"人控模式:"}</Text>
-                                <View style={styles.infoText}>
-                                    <TouchableOpacity
-                                    onPress={this.modePeopleFunc1} style={styles.infoTextBtn}>
-                                        <Text style={styles.infoTextBtnText}>{this.state.modePeople}</Text>
-                                    </TouchableOpacity>    
-                                </View>                        
-                            </View>
-                            <View style={styles.modeConT}>
                                 <Text style={styles.infoRowHead}>{"远程控制:"}</Text>
                                 <View style={styles.infoText}>
                                     <TouchableOpacity
-                                    onPress={this.modePromoteFunc1} style={styles.infoTextBtn}>
-                                        <Text style={styles.infoTextBtnText}>{this.state.modePromote}</Text>
+                                    onPress={this.modeChange} style={styles.infoTextBtn}>
+                                        <Text style={styles.infoTextBtnText}>{this.state.mode}</Text>
                                     </TouchableOpacity>       
                                 </View>                 
+                            </View>
+                            <View style={styles.modeConT}>
+                                <Text style={styles.infoRowHead}>{"状态更换:"}</Text>
+                                <View style={styles.infoText}>
+                                    <TouchableOpacity
+                                    onPress={this.statusSChange} style={styles.infoTextBtn}>
+                                        <Text style={styles.infoTextBtnText}>{this.state.statusS}</Text>
+                                    </TouchableOpacity>
+                                </View>
                             </View>
                         </View>
                         <View style={styles.infoRowNew}>
@@ -261,7 +298,7 @@ var styles  = StyleSheet.create({
         position: "absolute",
         zIndex: 99,
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height-260,
+        height: Dimensions.get('window').height-270,
     },
     modal2: {
         height: 230,
@@ -275,16 +312,16 @@ var styles  = StyleSheet.create({
         position: "absolute",
         zIndex: 101,
         width: Dimensions.get('window').width*0.9,
-        height: 240,
+        height: 210,
         borderRadius: 10,
     },
     modeCon: {
         width: Dimensions.get('window').width*0.9,
-        height: 150,
+        height: 120,
     },
     modeConT: {
         width: Dimensions.get('window').width*0.9,
-        height: 50,
+        height: 60,
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",

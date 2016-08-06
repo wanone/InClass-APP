@@ -19,14 +19,14 @@ import   AllCss              from    './AllCss';
 import   Table               from    './Table';  
 import   immutable           from    'immutable';
 import   NoBuildingAll       from    './NoBuildingAll';
-import   YesBuildingFive      from    './YesBuildingFive';
+import   YesBuildingFiveA    from    './YesBuildingFiveA';
 
 export default class FivePageR extends Component {
     render() {
         return (
             <View style={styles.contrainer}>
             {
-                this.props.state == true ? <YesBuildingFive/> : <NoBuildingAll/>
+                this.props.state == true ? <YesBuildingFiveA/> : <YesBuildingFiveA/>
             }
             </View>
         )

@@ -19,14 +19,14 @@ import   AllCss              from    './AllCss';
 import   Table               from    './Table';  
 import   immutable           from    'immutable';
 import   NoBuildingAll       from    './NoBuildingAll';
-import   YesBuildingOne      from    './YesBuildingOne';
+import   YesBuildingOneA     from    './YesBuildingOneA';
 
 export default class OnePageR extends Component {
     render() {
         return (
             <View style={styles.contrainer}>
             {
-                this.props.state == true ? <YesBuildingOne/> : <NoBuildingAll/>
+                this.props.state == true ? <YesBuildingOneA/> : <YesBuildingOneA/>
             }
             </View>
         )

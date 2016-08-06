@@ -19,14 +19,14 @@ import   AllCss              from    './AllCss';
 import   Table               from    './Table';  
 import   immutable           from    'immutable';
 import   NoBuildingAll       from    './NoBuildingAll';
-import   YesBuildingNine     from    './YesBuildingNine';
+import   YesBuildingNineA     from    './YesBuildingNineA';
 
 export default class NinePageR extends Component {
     render() {
         return (
             <View style={styles.contrainer}>
             {
-                this.props.state == true ? <YesBuildingNine/> : <NoBuildingAll/>
+                this.props.state == true ? <YesBuildingNineA/> : <YesBuildingNineA/>
             }
             </View>
         )

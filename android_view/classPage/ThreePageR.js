@@ -19,14 +19,14 @@ import   AllCss              from    './AllCss';
 import   Table               from    './Table';  
 import   immutable           from    'immutable';
 import   NoBuildingAll       from    './NoBuildingAll';
-import   YesBuildingThree    from    './YesBuildingThree';
+import   YesBuildingThreeA   from    './YesBuildingThreeA';
 
 export default class ThreePageR extends Component {
     render() {
         return (
             <View style={styles.contrainer}>
             {
-                this.props.state == true ? <YesBuildingThree/> : <NoBuildingAll/>
+                this.props.state == true ? <YesBuildingThreeA/> : <YesBuildingThreeA/>
             }
             </View>
         )

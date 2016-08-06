@@ -19,14 +19,14 @@ import   AllCss              from    './AllCss';
 import   Table               from    './Table';  
 import   immutable           from    'immutable';
 import   NoBuildingAll       from    './NoBuildingAll';
-import   YesBuildingTwo      from    './YesBuildingTwo';
+import   YesBuildingTwoA      from    './YesBuildingTwoA';
 
 export default class TwoPageR extends Component {
     render() {
         return (
             <View style={styles.contrainer}>
             {
-                this.props.state == true ? <YesBuildingTwo/> : <NoBuildingAll/>
+                this.props.state == true ? <YesBuildingTwoA/> : <YesBuildingTwoA/>
             }
             </View>
         )
