@@ -18,7 +18,8 @@ import   AllCss     from    './AllCss';
 import   Table      from    './Table';
 import   ModalBox   from    './ModalBox';
 import   Button     from    'react-native-button';
-import   Dropdown   from   './Dropdown'; 
+import   Dropdown   from    './Dropdown'; 
+
 
 export default class RecommendPage extends Component{
     render() {

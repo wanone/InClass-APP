@@ -17,6 +17,7 @@ import {
 
 import   TableCon1   from    './TableCon1'; 
 import   Table       from    '../Table'; 
+import   Tool        from    '../Tool'; 
 
 export default class YesBuildingOneA extends Component {
     constructor(props) {
@@ -42,7 +43,8 @@ export default class YesBuildingOneA extends Component {
         var array = new Array();
         var lightS = new Array();
         var placesS = new Array();
-        fetch("http://123.207.6.76/inclass/api/light/getcontrollightsbystu")
+        var url = Tool.url();
+        fetch(url+"api/light/getcontrollightsbystu")
         .then((response) => response.text())
         .then((responseText) => {
             var data = JSON.parse(responseText);

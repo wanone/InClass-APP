@@ -13,11 +13,12 @@ import {
     ScrollView
 } from 'react-native';
 
-import  Button     from  'react-native-button';
-import  Modal      from  'react-native-modalbox';
-import  Slider     from  'react-native-slider';
-import  Dropdown   from  './Dropdown';
-import  applyCss   from  './applyCss';
+import   Button     from    'react-native-button';
+import   Modal      from    'react-native-modalbox';
+import   Slider     from    'react-native-slider';
+import   Dropdown   from    './Dropdown';
+import   applyCss   from    './applyCss';
+import   Tool       from    '../common/Tool';
 
 var window  = Dimensions.get('window');
 var styles  = StyleSheet.create({
@@ -185,7 +186,8 @@ var ModalBox = React.createClass({
         if (!(name && number && classname && cardnumber && starttime && endtime && reason)){
             alert("请将申请表填写完整");
         }
-        fetch("http://www.in-class.cn/api/apply/add?"+
+        var url = Tool.url();
+        fetch(url+"api/apply/add?"+
         "name="+name+
         "&number="+number+
         "&classname="+classname+

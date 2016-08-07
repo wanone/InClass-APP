@@ -15,9 +15,10 @@ import {
     TouchableHighlight
 } from 'react-native';
 
-import   AllCss              from    './AllCss';
-import   Table               from    './Table'; 
-import   immutable           from    'immutable';
+import   AllCss        from    './AllCss';
+import   Table         from    './Table'; 
+import   immutable     from    'immutable';
+import   Tool          from    '../common/Tool';
 
 const  Row = ({num,id,rate,pick_time}) => (
     <Table  num={num}  id={id}  rate={rate}  pick_time={pick_time}　style={AllCss.containerTableCellBlue}></Table>
@@ -50,7 +51,8 @@ export default class YesBuildingTwo extends Component {
         return  Y+M+D+h+m+s;
     }
     getRecommendBuilding(url){
-        var baseurl="http://123.207.6.76/inclass/api/classroom/getrecommendbybuilding?";
+        var newUrl = Tool.url();
+        var baseurl=newUrl+"api/classroom/getrecommendbybuilding?";
         var urlNew=baseurl + url; 
         var datas = new Array();
         fetch(urlNew)

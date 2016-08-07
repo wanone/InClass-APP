@@ -13,8 +13,9 @@ import {
     ToastAndroid,
 } from 'react-native';
 
-import   styles            from    './commonCss';
-import   homePage          from    './homePage';
+import   styles      from    './commonCss';
+import   homePage    from    './homePage';
+import   Tool        from    './Tool';
 
 export default class LogSign extends Component {
     _navigate(type = 'Normal') {
@@ -89,7 +90,8 @@ class logPage2 extends Component {
         if (!(valueNum && valuePass)){
             alert("用户名或密码未输入");
         };
-        fetch('http://123.207.6.76/inclass/api/student/login?number='+valueNum+"&password="+valuePass)
+        var url = Tool.url();
+        fetch(url+"api/student/login?number="+valueNum+"&password="+valuePass)
         .then((response) => response.text())
         .then((responseText) => {
             var data = JSON.parse(responseText);
@@ -101,7 +103,13 @@ class logPage2 extends Component {
         })
         .catch((error) => {
             console.warn(error);
+            alert("用户名或密码错误")
         })
+    }
+    postData1(){
+        this.props.navigator.push({
+            component: homePage,
+        });
     }
     render() {
         valueNum = this.state.valueNum;

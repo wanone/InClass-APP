@@ -17,6 +17,7 @@ import {
 
 import    TableCon            from    './TableCon'; 
 import    immutable           from    'immutable';
+import    Tool                from    '../common/Tool';
 
 const  Row = ({num, id, rate, max, status, changeTime}) => (
     <TableCon  num={num}  id={id}  rate={rate}  max={max}  status={status}  changeTime={changeTime}　style={styles.containerTableCellBlue}></TableCon>
@@ -52,7 +53,8 @@ export default class YesBuildingSixA extends Component {
         return  Y+M+D+h+m+s;
     }
     getRecommendBuilding(url){
-        var baseurl="http://123.207.6.76/inclass/api/classroom/selectall?pageSize=10&requestPage=1&";
+        var newurl =Tool.url();
+        var baseurl=newurl+"api/classroom/selEctall?pageSize=10&requestPage=1&";
         var urlNew=baseurl + url; 
         var datas = new Array();
         fetch(urlNew)

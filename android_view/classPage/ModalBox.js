@@ -31,6 +31,7 @@ import   YesBuildingSix     from   './YesBuildingSix';
 import   YesBuildingSeven   from   './YesBuildingSeven';
 import   YesBuildingEight   from   './YesBuildingEight';
 import   YesBuildingNine    from   './YesBuildingNine';
+import   Tool               from    '../common/Tool'; 
 
 var window  = Dimensions.get('window');
 
@@ -290,7 +291,8 @@ var ModalBox = React.createClass({
     },
     getBuildings(){
         var datas = new Array();
-        fetch("http://123.207.6.76/inclass/api/classroom/getbuildings")
+        url = Tool.url();
+        fetch(url+"api/classroom/getbuildings")
         .then((response) => response.text())
         .then((responseText) => {
             var data = JSON.parse(responseText);

@@ -17,7 +17,6 @@ import   OnePageR             from    './oneClass/OnePageR';
 import   TwoPageR             from    './twoClass/TwoPageR';
 import   ThreePageR           from    './threeClass/ThreePageR';
 import   FourPageR            from    './fourClass/FourPageR';
-
 import   FivePageR            from    './FivePageR';
 import   SixPageR             from    './SixPageR';
 import   SevenPageR           from    './SevenPageR';
@@ -26,6 +25,7 @@ import   NinePageR            from    './NinePageR';
 import   ClassTabBar          from    './ClassTabBar';
 import   Table                from    './Table';
 import   AllCss               from    './AllCss';
+import   Tool                 from    './Tool';
 import   ScrollableTabView    from    'react-native-scrollable-tab-view';
  
 export default class RecommendNewPage extends Component{
@@ -46,7 +46,8 @@ export default class RecommendNewPage extends Component{
     }
     getBuildingsR(){
         classesS = new Array();
-        fetch("http://123.207.6.76/inclass/api/light/getcontrollightsbystu")
+        var url =Tool.url();
+        fetch(url+"api/light/getcontrollightsbystu")
         .then((response) => response.text())
         .then((responseText) => {
             var data = JSON.parse(responseText);

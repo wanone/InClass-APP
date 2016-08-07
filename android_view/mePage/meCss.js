@@ -136,6 +136,21 @@ let meCss = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
+    containerDel: {
+        position: "absolute",
+        right: 10,
+        top: 0,
+        width: 50,
+        height: 50,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    containerDelText: {
+        textAlign: "center",
+        textAlignVertical: "center",
+        color: 'red',
+        fontSize: 20,
+    },
     containerTableCon: {
         flexDirection: "row",
         width: Dimensions.get('window').width,

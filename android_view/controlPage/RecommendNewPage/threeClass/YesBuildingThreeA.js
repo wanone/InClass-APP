@@ -17,6 +17,7 @@ import {
 
 import   TableCon3   from    './TableCon3'; 
 import   Table       from    '../Table'; 
+import   Tool        from    '../Tool'; 
 
 export default class YesBuildingThreeA extends Component {
     constructor(props) {
@@ -40,7 +41,8 @@ export default class YesBuildingThreeA extends Component {
         var timesS = new Array();
         var array = new Array();
         var lightS = new Array();
-        fetch("http://123.207.6.76/inclass/api/light/getcontrollightsbystu")
+        var url =Tool.url();
+        fetch(url+"api/light/getcontrollightsbystu")
         .then((response) => response.text())
         .then((responseText) => {
             var data = JSON.parse(responseText);

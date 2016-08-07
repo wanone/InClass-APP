@@ -24,6 +24,7 @@ import   EightPageR           from    './EightPageR';
 import   NinePageR            from    './NinePageR';
 import   ClassTabBar          from    './ClassTabBar';
 import   Table                from    './Table';
+import   Tool                 from    '../common/Tool';
 import   AllCss               from    './AllCss';
 import   ScrollableTabView    from    'react-native-scrollable-tab-view';
  
@@ -61,7 +62,8 @@ export default class RecommendNewPage extends Component{
     }
     getBuildings(){
         var datas = new Array();
-        fetch("http://123.207.6.76/inclass/manage/classroom/getbuildings")
+        url =Tool.url();
+        fetch(url+"manage/classroom/getbuildings")
         .then((response) => response.text())
         .then((responseText) => {
             var data = JSON.parse(responseText);
@@ -110,7 +112,7 @@ export default class RecommendNewPage extends Component{
     }
     getBuildingsR(){
         var datas = new Array();
-        fetch("http://123.207.6.76/inclass/manage/classroom/getbuildings")
+        fetch(url+"manage/classroom/getbuildings")
         .then((response) => response.text())
         .then((responseText) => {
             var data = JSON.parse(responseText);

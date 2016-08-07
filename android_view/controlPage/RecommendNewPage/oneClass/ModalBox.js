@@ -19,6 +19,7 @@ import   Slider             from   'react-native-slider';
 import   applyCss           from   '../applyCss';
 import   AllCss             from   '../AllCss';
 import   TableCon           from   "../TableCon";
+import   Tool               from   "../Tool";
 
 var window  = Dimensions.get('window');
 
@@ -90,7 +91,8 @@ var ModalBox = React.createClass({
         var array = new Array();
         var lightS = new Array();
         var classesS = new Array();
-        fetch("http://123.207.6.76/inclass/api/light/getcontrollightsbystu")
+        url =Tool.url();
+        fetch(url+"api/light/getcontrollightsbystu")
         .then((response) => response.text())
         .then((responseText) => {
             var data = JSON.parse(responseText);
@@ -175,11 +177,12 @@ var ModalBox = React.createClass({
             }else{
                 statusSS=Number(0);
             }
-            fetch('http://123.207.6.76/inclass/api/light/updatestatus?id='+placeCC+"&status="+statusSS)
+            fetch(url+'api/light/updatestatus?id='+placeCC+"&status="+statusSS)
             .then((response) => response.text())
             .then((responseText) => {
                 var data = JSON.parse(responseText);
                 if (data.status == 0){
+
                 }
             })
             .catch((error) => {
@@ -198,7 +201,7 @@ var ModalBox = React.createClass({
             modeS=Number(0);
             alert("您已关闭远程控制模式");
         }
-        fetch('http://123.207.6.76/inclass/api/light/updatemode?classroom_id='+classes+"&mode="+modeS)
+        fetch(url+'api/light/updatemode?classroom_id='+classes+"&mode="+modeS)
         .then((response) => response.text())
         .then((responseText) => {
             var data = JSON.parse(responseText);

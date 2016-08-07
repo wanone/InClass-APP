@@ -15,6 +15,7 @@ import {
 import   meCss         from    './meCss';
 import   Record        from    './Record';
 import   immutable     from    'immutable';
+import   Tool          from    '../common/Tool';
 
 export default class ApplyRecord extends Component {
     _navigate(type = 'Normal') {
@@ -77,7 +78,8 @@ class logPage2 extends Component {
     }
     getData(){
         var datas = new Array();
-        fetch("http://123.207.6.76/inclass/api/apply/selectBystu")
+        var url =Tool.url();
+        fetch(url+"api/apply/selectBystu")
         .then((response) => response.text())
         .then((responseText) => {
             var data = JSON.parse(responseText);
@@ -85,8 +87,8 @@ class logPage2 extends Component {
                 var array = data.body;
                 for(var i=0; i<array.length; i++ ){
                     array[i].num=i+1;
-                    array[i].name=array[i].student_name;
-                    array[i].class=array[i].classroomId+"教室";
+                    array[i].name=array[i].studentName;
+                    array[i].classS=array[i].classroomId+"教室";
                     if (array[i].checkStatus == 0){
                         array[i].status="未审核";
                     }else{
@@ -112,6 +114,12 @@ class logPage2 extends Component {
         })
         return datas;
     }
+    delData(){
+        var dataDel = new Array();
+        this.setState({
+            dataSource: this.state.dataSource.cloneWithRows(dataDel),
+        })
+    }
     render() {
         return (
             <View style={meCss.containerLS}>
@@ -122,6 +130,11 @@ class logPage2 extends Component {
                     </TouchableOpacity>
                     <View style={meCss.headCon}>
                         <Text style={meCss.headText}>{"申请记录"}</Text>
+                    </View>
+                    <View style={meCss.containerDel}>
+                        <TouchableOpacity onPress={this.delData.bind(this)}>
+                            <Text style={meCss.containerDelText}>{"清空"}</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
                 <View style={meCss.recordCon}>
