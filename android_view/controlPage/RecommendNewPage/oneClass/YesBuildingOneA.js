@@ -38,38 +38,40 @@ export default class YesBuildingOneA extends Component {
         this.getData();
     }
     getData(){
-        var statusesS = new Array();
-        var timesS = new Array();
-        var array = new Array();
-        var lightS = new Array();
-        var placesS = new Array();
-        var url = Tool.url();
-        fetch(url+"api/light/getcontrollightsbystu")
-        .then((response) => response.text())
-        .then((responseText) => {
-            var data = JSON.parse(responseText);
-            if (data.status == 0){
-                var array = data.body[0].lights;
-                for(var i=0; i<array.length; i++ ){
-                    if (array[i].status == 0){
-                        statusesS.push("关闭");
-                    }else{
-                        statusesS.push("开启");
+        setInterval( () => {
+            var statusesS = new Array();
+            var timesS = new Array();
+            var array = new Array();
+            var lightS = new Array();
+            var placesS = new Array();
+            var url = Tool.url();
+            fetch(url+"api/light/getcontrollightsbystu")
+            .then((response) => response.text())
+            .then((responseText) => {
+                var data = JSON.parse(responseText);
+                if (data.status == 0){
+                    var array = data.body[0].lights;
+                    for(var i=0; i<array.length; i++ ){
+                        if (array[i].status == 0){
+                            statusesS.push("关闭");
+                        }else{
+                            statusesS.push("开启");
+                        };
+                        array[i].time=this.convertTime(array[i].time);
+                        timesS.push(array[i].time);
+                        placesS.push(array[i].id);
                     };
-                    array[i].time=this.convertTime(array[i].time);
-                    timesS.push(array[i].time);
-                    placesS.push(array[i].id);
-                };
-                this.setState({statuses: statusesS});
-                this.setState({times: timesS});
-                this.setState({places: placesS});
-            }else{
-                alert("request fail");
-            }
-        })
-        .catch((error) => {
-            console.warn(error);
-        })
+                    this.setState({statuses: statusesS});
+                    this.setState({times: timesS});
+                    this.setState({places: placesS});
+                }else{
+                    alert("request fail");
+                }
+            })
+            .catch((error) => {
+                console.warn(error);
+            })
+        }, 3000)
     }
     convertTime(time){
         var date=new Date(time);

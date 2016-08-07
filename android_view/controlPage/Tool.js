@@ -15,9 +15,11 @@ import {
     TouchableHighlight
 } from 'react-native';
 
+import   ToolNew        from    '../common/Tool';
+
 var Tool={
     url: function(){
-        return "http://192.168.1.169:8080/inclass/";
+        return ToolNew.url();
     },
 }
 

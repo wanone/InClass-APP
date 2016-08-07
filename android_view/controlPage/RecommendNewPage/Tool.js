@@ -15,9 +15,11 @@ import {
     TouchableHighlight
 } from 'react-native';
 
+import   ToolNew        from    '../Tool';
+
 var Tool={
     url: function(){
-        return "http://www.in-class.cn/";
+        return ToolNew.url();
     },
 }
 

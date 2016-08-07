@@ -82,9 +82,11 @@ var ModalBox = React.createClass({
     },
     componentWillMount() {
         this.getData();
+        this.statusFunc();
     },
     componentWillUnmount() {
         this.getData();
+        this.statusFunc();
     },
     getData(){
         var modesS = new Array();
@@ -121,11 +123,13 @@ var ModalBox = React.createClass({
         })
     },
     statusFunc(text){
-        if ( text == "开启"){
+        setInterval(() => {
+            if ( text == "开启"){
             this.state.statusS="关闭";
-        }else{
-            this.state.statusS="开启";
-        }
+            }else{
+                this.state.statusS="开启";
+            }
+        },3000);
     },
     modeFunc(text){
         if ( text == "开启"){

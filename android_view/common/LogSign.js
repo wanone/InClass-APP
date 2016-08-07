@@ -146,7 +146,8 @@ class logPage2 extends Component {
                         onPress={()=>{
                             this.postData();
                         }}>
-                            <Text style={styles.styleLog}>{'登 录'}</Text>
+                            <Text style={styles.styleLog}
+                            >{'登 录'}</Text>
                         </TouchableOpacity>
                     </View>
                 </Image>
