@@ -26,7 +26,7 @@ export default class FourPageR extends Component {
         return (
             <View style={styles.contrainer}>
             {
-                this.props.state == true ? <YesBuildingFourA/> : <NoBuildingAll/>
+                this.props.state == true ? <YesBuildingFourA/> : <YesBuildingFourA/>
             }
             </View>
         )

@@ -82,9 +82,11 @@ var ModalBox = React.createClass({
     },
     componentWillMount() {
         this.getData();
+        this.statusFunc();
     },
     componentWillUnmount() {
         this.getData();
+        this.statusFunc();
     },
     getData(){
         var modesS = new Array();
@@ -121,11 +123,13 @@ var ModalBox = React.createClass({
         })
     },
     statusFunc(text){
-        if ( text == "开启"){
+        setInterval(() => {
+            if ( text == "开启"){
             this.state.statusS="关闭";
-        }else{
-            this.state.statusS="开启";
-        }
+            }else{
+                this.state.statusS="开启";
+            }
+        },3000);
     },
     modeFunc(text){
         if ( text == "开启"){
@@ -182,6 +186,7 @@ var ModalBox = React.createClass({
             .then((responseText) => {
                 var data = JSON.parse(responseText);
                 if (data.status == 0){
+
                 }
             })
             .catch((error) => {
@@ -192,7 +197,7 @@ var ModalBox = React.createClass({
         }
     },
     modeChange(){
-        classes=Number(this.state.classesR[0]); 
+        classes=Number(this.state.classesR[3]); 
         if (this.state.mode == "开启"){
             modeS=Number(1);
             alert("您已开启远程控制模式");

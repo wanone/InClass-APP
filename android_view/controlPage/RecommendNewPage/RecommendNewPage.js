@@ -17,11 +17,7 @@ import   OnePageR             from    './oneClass/OnePageR';
 import   TwoPageR             from    './twoClass/TwoPageR';
 import   ThreePageR           from    './threeClass/ThreePageR';
 import   FourPageR            from    './fourClass/FourPageR';
-import   FivePageR            from    './FivePageR';
-import   SixPageR             from    './SixPageR';
-import   SevenPageR           from    './SevenPageR';
-import   EightPageR           from    './EightPageR';
-import   NinePageR            from    './NinePageR';
+
 import   ClassTabBar          from    './ClassTabBar';
 import   Table                from    './Table';
 import   AllCss               from    './AllCss';
@@ -32,17 +28,83 @@ export default class RecommendNewPage extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            OnePageR : false,
+            OnePageRR : false,
+            TwoPageRR : false,
+            ThreePageRR : false,
+            FourPageRR : false,
+            FivePageRR : false,
+            SixPageRR : false,
+            SevenPageRR : false,
+            EightPageRR : false,
+            NinePageRR : false,
+            OnePageR : true,
 　　　　　　TwoPageR : false,
 　　　　　　ThreePageR : false,
+　　　　　　FourPageR : false,
+　　　　　　FivePageR : false,
+　　　　　　SixPageR : false,
+　　　　　　SevenPageR : false,
+　　　　　　EightPageR : false,
+　　　　　　NinePageR : false,
             classes: "",
         };
     }
     componentWillMount() {
+        this.getBuildings();
         this.getBuildingsR();
     }
     componentWillUnmount() {
+        this.getBuildings();
         this.getBuildingsR();
+    }
+    getBuildings(){
+        var datas = new Array();
+        fetch("http://123.207.6.76/inclass/api/classroom/getbuildings")
+        .then((response) => response.text())
+        .then((responseText) => {
+            var data = JSON.parse(responseText);
+            if (data.status == 0){
+                var array = data.body.buildings;
+                for(var i=0; i<array.length; i++ ){
+                    switch (Number(array[i].building)){
+                        case 1:
+                            this.setState({OnePageRR: true});
+                            break;
+                        case 2:
+                            this.setState({TwoPageRR: true});
+                            break;
+                        case 3:
+                            this.setState({ThreePageRR: true});
+                            break;
+                        case 4:
+                            this.setState({FourPageRR: true});
+                            break;
+                        case 5:
+                            this.setState({FivePageRR: true});
+                            break;
+                        case 6:
+                            this.setState({SixPageRR: true});
+                            break;
+                        case 7:
+                            this.setState({SevenPageRR: true});
+                            break;
+                        case 8:
+                            this.setState({EightPageRR: true});
+                            break;
+                        case 9:
+                            this.setState({NinePageRR: true});
+                            break;
+                        default:
+                            alert("no");
+                    }
+                }
+            }else{
+                alert("request fail");
+            }
+        })
+        .catch((error) => {
+            console.warn(error);
+        })
     }
     getBuildingsR(){
         classesS = new Array();
@@ -58,19 +120,6 @@ export default class RecommendNewPage extends Component{
                     classesS.push(array[i].name);
                 };
                 this.setState({classes: classesS});
-                switch (Number(array.length)){
-                     case 1:
-                        this.setState({OnePageR: true});
-                        break;
-                    case 2:
-                        this.setState({OnePageR: true});
-                        this.setState({TwoPageR: true});
-                        break;
-                    default:
-                        this.setState({OnePageR: true});
-                        this.setState({TwoPageR: true});
-                        this.setState({ThreePageR: true});
-                }
             }else{
                 alert("request fail");
             }
@@ -87,9 +136,12 @@ export default class RecommendNewPage extends Component{
                 </View>
                 <ScrollableTabView
                     renderTabBar={()=><ClassTabBar/>}>
-                    {this.state.OnePageR ? <OnePageR tabLabel={this.state.classes[0]}></OnePageR>:false}
-                    {this.state.TwoPageR ? <TwoPageR tabLabel={this.state.classes[1]}></TwoPageR>:false}
-                    {this.state.ThreePageR ? <ThreePageR tabLabel={this.state.classes[2]}></ThreePageR>:false}
+
+                    <OnePageR    tabLabel={this.state.classes[0]} ></OnePageR>
+                    <TwoPageR    tabLabel={this.state.classes[1]} ></TwoPageR>
+                    <ThreePageR  tabLabel={this.state.classes[2]} ></ThreePageR>
+                    <FourPageR   tabLabel={this.state.classes[3]} ></FourPageR>
+                    
                 </ScrollableTabView>
             </View>
         )
@@ -98,6 +150,7 @@ export default class RecommendNewPage extends Component{
 const styles = StyleSheet.create({
     contrainer: {
         flex: 1,
+        marginBottom: 36,
     },
     contrainerText: {
         width: Dimensions.get('window').width,

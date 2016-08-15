@@ -60,7 +60,7 @@ export default class YesBuildingTwoA extends Component {
             .then((responseText) => {
                 var data = JSON.parse(responseText);
                 if (data.status == 0){
-                    var array = data.body[0].lights;
+                    var array = data.body[1].lights;
                     for(var i=0; i<array.length; i++ ){
                         if (array[i].status == 0){
                             statusesS.push("关闭");

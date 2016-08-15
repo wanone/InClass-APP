@@ -192,7 +192,7 @@ var ModalBox = React.createClass({
         }
     },
     modeChange(){
-        classes=Number(this.state.classesR[0]); 
+        classes=Number(this.state.classesR[1]); 
         if (this.state.mode == "开启"){
             modeS=Number(1);
             alert("您已开启远程控制模式");

@@ -17,6 +17,7 @@ import {
 
 import   TableCon4   from    './TableCon4'; 
 import   Table       from    '../Table'; 
+import   Tool        from    '../Tool'; 
 
 export default class YesBuildingFourA extends Component {
     constructor(props) {
@@ -24,8 +25,53 @@ export default class YesBuildingFourA extends Component {
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
             status: 1,
+            statuses: "",
+            times: "",
+            places: "",
         };
 
+    }
+    componentWillMount() {
+        this.getData();
+    }
+    componentWillUnmount() {
+        this.getData();
+    }
+    getData(){
+        setInterval( () => {
+            var statusesS = new Array();
+            var timesS = new Array();
+            var array = new Array();
+            var lightS = new Array();
+            var placesS = new Array();
+            var url = Tool.url();
+            fetch(url+"api/light/getcontrollightsbystu")
+            .then((response) => response.text())
+            .then((responseText) => {
+                var data = JSON.parse(responseText);
+                if (data.status == 0){
+                    var array = data.body[3].lights;
+                    for(var i=0; i<array.length; i++ ){
+                        if (array[i].status == 0){
+                            statusesS.push("关闭");
+                        }else{
+                            statusesS.push("开启");
+                        };
+                        array[i].time=this.convertTime(array[i].time);
+                        timesS.push(array[i].time);
+                        placesS.push(array[i].id);
+                    };
+                    this.setState({statuses: statusesS});
+                    this.setState({times: timesS});
+                    this.setState({places: placesS});
+                }else{
+                    alert("request fail");
+                }
+            })
+            .catch((error) => {
+                console.warn(error);
+            })
+        }, 3000)
     }
     convertTime(time){
         var date=new Date(time);
@@ -38,22 +84,13 @@ export default class YesBuildingFourA extends Component {
         return  Y+M+D+h+m+s;
     }
     render() {
-        var places = new Array();
-        var nums = new Array();
-        var statuses = new Array();
-        var times = new Array();
-        var operates = new Array();
-        places = ["区域一", "区域二", "区域三", "区域四"];
-        statuses = ["关闭", "开启", "关闭", "开启"];
-        times = ["2016/04/11", "2016/04/12", "2016/04/13", "2016/04/14"];
-        operates = ["开启","关闭","开启","关闭"];
         operates2 = ["更多","更多","更多","更多"];
         nums = [1, 2, 3, 4];
         return (
             <View style={styles.contrainer}>
                 <Table   num="序号"   place="位置" status="状态"   time="更新时间"  operate="操作" style={styles.containerTableCellHead}></Table>
                 <View style={styles.contrainerTab}>
-                    <TableCon4  num={nums}  place={places}  status={statuses}  time={times}　operate={operates2} style={styles.containerTableCellBlue}></TableCon4>
+                    <TableCon4  num={nums}  place={this.state.places}  status={this.state.statuses}  time={this.state.times}　operate={operates2} style={styles.containerTableCellBlue}></TableCon4>
                 </View>
             </View>
         )
